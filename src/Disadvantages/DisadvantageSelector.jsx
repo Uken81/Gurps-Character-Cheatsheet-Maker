@@ -1,4 +1,4 @@
-import SearchBar from "../SearchBar";
+import SearchBar from "../Components/SearchBar";
 import DisadvantagesListArray from "./DisadvantagesObject/Disadvantages";
 
 
