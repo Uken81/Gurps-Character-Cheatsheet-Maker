@@ -1,1 +1,6 @@
-
+.searchBar {
+    font-weight: bold;
+    border: black solid 10px;
+    font-size: x-large;
+    width: 40%;
+}

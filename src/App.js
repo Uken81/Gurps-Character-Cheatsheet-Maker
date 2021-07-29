@@ -2,24 +2,29 @@ import { useState } from 'react';
 import './App.css';
 import AdvantageSelector from './Advantages/AdvantageSelector';
 import Disadvantageselector from './Disadvantages/DisadvantageSelector';
-import ToggleAdvantageDisadvantage from './ToggleAdvantageDisadvantage/ToggleAdvantageDisadvantage';
+import ToggleAdvantageDisadvantage from './Components/ToggleAdvantageDisadvantage/ToggleAdvantageDisadvantage';
+import Selected from './Selected/DisplaySelected';
 
 
 function App() {
 const [isAdvantage, setIsAdvantage] = useState(true);
-const [selectedAdvantages, setSelectedAdvantages] = useState([]);
-const [selectedDisadvantages, setSelectedDisadvantages] = useState([]);
+const [selectedAdvantagesList, setselectedAdvantagesList] = useState([]);
+const [selectedDisadvantagesList, setSelectedDisadvantagesList] = useState([]);
 
 const log = ()=> {
-  console.log(isAdvantage);
+  console.log(selectedAdvantagesList);
 }
 
 
   return (
     <div className="App">
       <ToggleAdvantageDisadvantage isAdvantage={isAdvantage} setIsAdvantage={setIsAdvantage} />
-      {isAdvantage && <AdvantageSelector selectedAdvantages={selectedAdvantages} setSelectedAdvantages={setSelectedAdvantages}/>}
-      {!isAdvantage && <Disadvantageselector selectedDisadvantages={selectedDisadvantages} setSelectedDisadvantages={setSelectedDisadvantages}/>}
+      <Selected 
+      selectedAdvantagesList={selectedAdvantagesList} 
+      selectedDisadvantagesList={selectedDisadvantagesList} 
+      />
+      {isAdvantage && <AdvantageSelector selectedAdvantagesList={selectedAdvantagesList} setSelectedAdvantagesList={setselectedAdvantagesList}/>}
+      {!isAdvantage && <Disadvantageselector selectedDisadvantagesList={selectedDisadvantagesList} setSelectedDisadvantagesList={setSelectedDisadvantagesList}/>}
 
       <button onClick={log}>MainLog</button>
     </div>
