@@ -7,15 +7,12 @@ const AdvantageSelector = (props) => {
     const setSelectedAdvantagesList = props.setSelectedAdvantagesList;
 
     let options;
-
     const createOptions = () => {
         options = AdvantagesListArray.map(opt => ({ label: opt.title, value: opt.title }));
-        console.log(options);
     };
     createOptions();
 
     let arr = [];
-
     const onChange = (event) => {
         event.forEach((e) => {
             arr.push(e.value)
@@ -33,10 +30,10 @@ const AdvantageSelector = (props) => {
     return (
         <div>
             <h1>Select Your Characters Advantages</h1>
-            <SearchBar options={options} onChange={onChange} />
+            <SearchBar options={options} onChange={onChange} placeHolder='Search Advantages'/>
             <button onClick={log}>Log</button>
         </div>
     );
 }
-// onChange={opt => setSelectedAdvantagesList(opt)} placeHolder='Search Advantages'
+
 export default AdvantageSelector;

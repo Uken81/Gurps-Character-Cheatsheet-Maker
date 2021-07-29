@@ -1,6 +1,25 @@
+.selection-screen {
+    background-color: blanchedalmond;
+    min-height: 500px;
+    padding-left: 2%;
+}
+
 .searchBar {
     font-weight: bold;
-    border: black solid 10px;
+    border: black solid 20px;
+    /* border-radius: 30%; */
     font-size: x-large;
-    width: 40%;
+    width: 45%;
+}
+
+.selected {
+    background-color: cornsilk;
+    float: right;
+    margin-right: 5%;
+    padding: 2%;
+    border: black solid 10px;
+}
+li {
+    font-size: larger;
+    list-style: none;
 }

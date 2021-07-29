@@ -7,15 +7,12 @@ const Disadvantageselector = (props) => {
     const setSelectedDisadvantagesList = props.setSelectedDisadvantagesList;
 
     let options;
-
     const createOptions = () => {
         options = DisadvantagesListArray.map(opt => ({ label: opt.title, value: opt.title }));
-        console.log(options);
     };
     createOptions();
 
     let arr = [];
-
     const onChange = (event) => {
         event.forEach((e) => {
             arr.push(e.value)
