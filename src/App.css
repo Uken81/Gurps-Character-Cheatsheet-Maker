@@ -1,4 +1,4 @@
-.selection-screen {
+.selection-section {
     background-color: blanchedalmond;
     min-height: 500px;
     padding-left: 2%;
@@ -12,12 +12,13 @@
     width: 45%;
 }
 
-.selected {
+.selected-window {
     background-color: cornsilk;
     float: right;
     margin-right: 5%;
     padding: 2%;
     border: black solid 10px;
+    /* text-align: center; */
 }
 li {
     font-size: larger;

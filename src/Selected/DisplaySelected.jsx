@@ -6,7 +6,7 @@ const Selected = (props) => {
     const selectedDisadvantagesList = props.selectedDisadvantagesList
 
     return (  
-        <div className='selected'>
+        <div className='selected-window'>
             <h1>Selected Advantages</h1>
             <SelectedAdvantages selectedAdvantagesList={selectedAdvantagesList}/>
             <h1>Selected Disadvantages</h1>

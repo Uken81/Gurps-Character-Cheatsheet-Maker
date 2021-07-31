@@ -1,5 +1,5 @@
 import SearchBar from "../Components/SearchBar/SearchBar";
-import AdvantagesListArray from "./AdvantagesObject/Advantages";
+import AdvantagesArray from "./AdvantagesObject/Advantages";
 
 
 const AdvantageSelector = (props) => {
@@ -8,7 +8,7 @@ const AdvantageSelector = (props) => {
 
     let options;
     const createOptions = () => {
-        options = AdvantagesListArray.map(opt => ({ label: opt.title, value: opt.title }));
+        options = AdvantagesArray.map(opt => ({ label: opt.title, value: opt }));
     };
     createOptions();
 

@@ -5,7 +5,7 @@ const SelectedAdvantages = (props) => {
         <ul>
            {selectedAdvantagesList.map((element) => {
                return (
-                   <li key={`${element}-selected`}>{element}</li>
+                   <li key={`${element.title}-selected`}>{element.title}</li>
                )
            })} 
         </ul>

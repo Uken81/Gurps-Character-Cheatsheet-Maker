@@ -1,4 +1,4 @@
-const AdvantagesListArray = [
+const AdvantagesArray = [
      {
         title: "Absolute Direction",
         points: "5 or 10 points",
@@ -54,4 +54,4 @@ const AdvantagesListArray = [
     }
 ]
 
-export default AdvantagesListArray;
+export default AdvantagesArray;
