@@ -1,11 +1,11 @@
-const DisplayAdvantages = (props) => {
-    const selectedAdvantagesList = props.selectedAdvantagesList;
+const DisplayDisadvantages = (props) => {
+    const selectedDisadvantagesList = props.selectedDisadvantagesList;
 
 
     return (
         <div>
-            <h1>Advantages</h1>
-            {selectedAdvantagesList.map((obj) => {
+            <h1>Disadvantages</h1>
+            {selectedDisadvantagesList.map((obj) => {
                 return (
                     <div key={`${obj.title}-container`}>
                         <h2>{obj.title}</h2>
@@ -29,4 +29,4 @@ const DisplayAdvantages = (props) => {
     );
 }
 
-export default DisplayAdvantages;
+export default DisplayDisadvantages;

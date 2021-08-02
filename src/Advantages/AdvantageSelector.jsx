@@ -21,9 +21,7 @@ const AdvantageSelector = (props) => {
     }
 
     const log = () => {
-        console.log(options);
-        console.log(selectedAdvantagesList);
-        console.log(arr);
+        console.log(AdvantagesArray[0].subCategories);
     }
 
 
@@ -31,7 +29,7 @@ const AdvantageSelector = (props) => {
         <div>
             <h1>Select Your Characters Advantages</h1>
             <SearchBar options={options} onChange={onChange} placeHolder='Search Advantages'/>
-            <button onClick={log}>Log</button>
+            <button onClick={log}>obj</button>
         </div>
     );
 }

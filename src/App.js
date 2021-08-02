@@ -5,6 +5,7 @@ import Disadvantageselector from './Disadvantages/DisadvantageSelector';
 import ToggleAdvantageDisadvantage from './Components/ToggleAdvantageDisadvantage/ToggleAdvantageDisadvantage';
 import Selected from './Selected/DisplaySelected';
 import DisplayAdvantages from './Display Results/DisplayAdvantages';
+import DisplayDisadvantages from './Display Results/DisplayDisadvantages';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
       <button onClick={log}>MainLog</button>
       <div className='results-window'>
         <DisplayAdvantages selectedAdvantagesList={selectedAdvantagesList} />
+        <DisplayDisadvantages selectedDisadvantagesList={selectedDisadvantagesList} />
       </div>
     </div>
   );

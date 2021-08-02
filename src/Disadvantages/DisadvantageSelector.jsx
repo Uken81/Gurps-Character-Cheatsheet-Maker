@@ -8,7 +8,7 @@ const Disadvantageselector = (props) => {
 
     let options;
     const createOptions = () => {
-        options = DisadvantagesListArray.map(opt => ({ label: opt.title, value: opt.title }));
+        options = DisadvantagesListArray.map(opt => ({ label: opt.title, value: opt }));
     };
     createOptions();
 

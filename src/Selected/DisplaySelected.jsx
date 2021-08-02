@@ -3,7 +3,7 @@ import SelectedDisadvantages from "../Selected/Selected/SelectedDisadvantages";
 
 const Selected = (props) => {
     const selectedAdvantagesList = props.selectedAdvantagesList;
-    const selectedDisadvantagesList = props.selectedDisadvantagesList
+    const selectedDisadvantagesList = props.selectedDisadvantagesList;
 
     return (  
         <div className='selected-window'>
