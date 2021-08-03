@@ -7,7 +7,7 @@ const DisplayAdvantages = (props) => {
             <h1>Advantages</h1>
             {selectedAdvantagesList.map((obj) => {
                 return (
-                    <div key={`${obj.title}-container`}>
+                    <div className='results-container' key={`${obj.title}-container`}>
                         <h2>{obj.title}</h2>
                         <p>{obj.points}</p>
                         <p>{obj.description}</p>

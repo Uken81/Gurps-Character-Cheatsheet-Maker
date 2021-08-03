@@ -3,14 +3,14 @@ import './App.css';
 import AdvantageSelector from './Advantages/AdvantageSelector';
 import Disadvantageselector from './Disadvantages/DisadvantageSelector';
 import ToggleAdvantageDisadvantage from './Components/ToggleAdvantageDisadvantage/ToggleAdvantageDisadvantage';
-import Selected from './Selected/DisplaySelected';
+import DisplaySelected from './Selected/DisplaySelected';
 import DisplayAdvantages from './Display Results/DisplayAdvantages';
 import DisplayDisadvantages from './Display Results/DisplayDisadvantages';
 
 
 function App() {
   const [isAdvantage, setIsAdvantage] = useState(true);
-  const [selectedAdvantagesList, setselectedAdvantagesList] = useState([]);
+  const [selectedAdvantagesList, setSelectedAdvantagesList] = useState([]);
   const [selectedDisadvantagesList, setSelectedDisadvantagesList] = useState([]);
 
   const log = () => {
@@ -20,13 +20,15 @@ function App() {
 
   return (
     <div className="App">
-      <div className='selection-section'>
+      <div className='selection-window'>
         <ToggleAdvantageDisadvantage isAdvantage={isAdvantage} setIsAdvantage={setIsAdvantage} />
-        <Selected
+        <DisplaySelected
           selectedAdvantagesList={selectedAdvantagesList}
+          setSelectedAdvantagesList={setSelectedAdvantagesList}
           selectedDisadvantagesList={selectedDisadvantagesList}
+          setSelectedDisadvantagesList={setSelectedDisadvantagesList}
         />
-        {isAdvantage && <AdvantageSelector selectedAdvantagesList={selectedAdvantagesList} setSelectedAdvantagesList={setselectedAdvantagesList} />}
+        {isAdvantage && <AdvantageSelector selectedAdvantagesList={selectedAdvantagesList} setSelectedAdvantagesList={setSelectedAdvantagesList} />}
         {!isAdvantage && <Disadvantageselector selectedDisadvantagesList={selectedDisadvantagesList} setSelectedDisadvantagesList={setSelectedDisadvantagesList} />}
       </div>
       <button onClick={log}>MainLog</button>

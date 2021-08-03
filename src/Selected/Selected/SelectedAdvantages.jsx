@@ -1,15 +1,28 @@
 const SelectedAdvantages = (props) => {
-    const selectedAdvantagesList = props.selectedAdvantagesList
+    const selectedAdvantagesList = props.selectedAdvantagesList;
+    const onClick = props.onClick;
 
-    return (  
+    const sal = ()=> {
+        console.log(selectedAdvantagesList);
+    }
+
+    return (
         <ul>
-           {selectedAdvantagesList.map((element) => {
-               return (
-                   <li key={`${element.title}-selected`}>{element.title}</li>
-               )
-           })} 
+            {selectedAdvantagesList.map((element, key) => {
+                return (
+                    <li key={`li-${element.title}`}>
+                        <button
+                            className='selected-button'
+                            key={`${element.title}-selected`}
+                            onClick={()=> onClick('advantage', element.title)}
+                            >
+                            {element.title}
+                        </button>
+                    </li>
+                )
+            })}
         </ul>
     );
 }
- 
+
 export default SelectedAdvantages;
