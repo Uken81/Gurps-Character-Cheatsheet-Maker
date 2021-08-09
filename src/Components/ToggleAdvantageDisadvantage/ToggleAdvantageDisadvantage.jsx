@@ -1,11 +1,10 @@
 const ToggleAdvantageDisadvantage = (props) => {
-    const isAdvantage = props.isAdvantage;
-    const setIsAdvantage = props.setIsAdvantage;
+    const setIsChoosingAdvantages = props.setIsChoosingAdvantages;
 
     return (
-        <div>
-            <button onClick={()=> setIsAdvantage(true)}>Advantages</button>
-            <button onClick={()=> setIsAdvantage(false)}>Disadvantages</button>
+        <div className='toggle'>
+            <button className='toggle-button' autoFocus onClick={()=> setIsChoosingAdvantages(true)}>Advantages</button>
+            <button className='toggle-button' onClick={()=> setIsChoosingAdvantages(false)}>Disadvantages</button>
         </div>
     );
 }

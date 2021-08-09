@@ -2,27 +2,52 @@
     list-style: none;
 }
 
+.toggle {
+    display: flex;
+    flex-direction: row;
+    margin: 2%;
+}
+
+.toggle-button {
+    font-weight: bold;
+    margin: 5%;
+    background-color: whitesmoke;
+    width: 10rem;
+    height: 2rem;
+}
+
+h1 {
+    font-size: 3rem;
+    text-align: center;
+}
+
 .selection-window {
-    background-color: blanchedalmond;
-    min-height: 500px;
-    padding-left: 2%;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    color: whitesmoke;  
     list-style: none;
+    align-items: center;
 }
 
 .searchBar {
     font-weight: bold;
     border: black solid 20px;
-    /* border-radius: 30%; */
     font-size: x-large;
-    width: 45%;
+    margin-bottom: 3%;
+    color: black;
 }
 
 .selected-window {
-    background-color: cornsilk;
+    background-color: black;
+    /* background-color: cornsilk; */
     /* float: right; */
-    margin-right: 5%;
+    margin: 5% 5%;
+    margin-bottom: 5%;
     padding: 2%;
-    border: black solid 10px;
+    border: whitesmoke solid 10px;
+    color: white;
+    width: fit-content;
     /* text-align: center; */
 }
 
@@ -35,8 +60,8 @@
     text-decoration: none;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
-    color: #FFFFFF;
-    background-color: black;
+    color: black;
+    background-color: whitesmoke;
     text-align: center;
     transition: all 0.2s;
 }
@@ -58,12 +83,35 @@
 .results-window {
     white-space: pre-wrap;
     background-color: cornsilk;
+    padding: 2%;
 }
 
 .results-container {
     background-color: blanchedalmond;
+    font-size: 1.5rem;
     margin: 10%;
     border: 10px solid black;
     border-radius: 20%;
-    padding: 5%;
+    padding: 2% 5% 5% 5%;
+}
+
+h2 {
+    font-size: 4rem;
+    text-align: center;
+    text-shadow: whitesmoke 5px 2px;
+}
+
+.points {
+    background-color: black;
+    color: whitesmoke;
+    padding: 1%;
+    width: 20%;
+}
+
+.sub-category {
+    background-color: whitesmoke;
+    border: 5px solid black ;
+    
+    margin: 2%;
+    padding: 2%;
 }

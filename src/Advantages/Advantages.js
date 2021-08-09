@@ -1,6 +1,7 @@
 const AdvantagesArray = [
      {
         title: "Absolute Direction",
+        type: "advantage",
         points: "5 or 10 points",
         description: "You have an excellent sense of direction.This ability comes in two levels:",
         subCategories: [{
@@ -18,6 +19,7 @@ const AdvantagesArray = [
     
      {
         title: "Absolute Timing",
+        type: "advantage",
         points: "2 or 5 points",
         description: "You have an accurate mental clock. This ability comes in two levels, both of which are somewhat cinematic:",
         subCategories: [{
@@ -35,6 +37,7 @@ const AdvantagesArray = [
     
     {
         title: "Acute Senses",
+        type: "advantage",
         points: "2 points/level",
         description: "You have superior senses. Each Acute Sense is a separate advantage that gives +1 per level to all Sense rolls (p. 358) you make – or the GM makes for you – using that one sense. Acute Hearing gives you a bonus to hear something, or to notice a sound (for instance, someone taking the safety off a gun in the dark).",
         subCategories: [{
@@ -50,7 +53,7 @@ const AdvantagesArray = [
             text: "Gives you a bonus to spot things visually, and whenever you do a visual search (for instance, looking for traps or footprints).",
             points: "2 points/level"
         }],
-        extraText: "With the GM’s permission, you may also buy Acute Sense advantages for specialized senses such as Scanning Sense and Vibration Sense. You cannot usually buy Acute Senses in play – raise your Perception instead. However, if you lose a sense, the GM may allow you to spend earned points on other Acute Senses to compensate. For instance, if you are blinded, you might acquire Acute Hearing."
+        extraText: <strong><i>With the GM’s permission, you may also buy Acute Sense advantages for specialized senses such as Scanning Sense and Vibration Sense. You cannot usually buy Acute Senses in play – raise your Perception instead. However, if you lose a sense, the GM may allow you to spend earned points on other Acute Senses to compensate. For instance, if you are blinded, you might acquire Acute Hearing.</i></strong>
     }
 ]
 
