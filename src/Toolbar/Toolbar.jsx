@@ -1,4 +1,4 @@
-import CopyToClipboard from "./CopyToClipboard/CopyToClipboard";
+import CopyToClipboard from "./CopyToClipboard/CopyToClipboard.jsx";
 
 const Toolbar = () => {
 
