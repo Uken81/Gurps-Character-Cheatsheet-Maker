@@ -5,6 +5,7 @@ import DisplaySelected from './Selected/DisplaySelected';
 import DisplayAdvantages from './Display Results/DisplayAdvantages';
 import DisplayDisadvantages from './Display Results/DisplayDisadvantages';
 import SearchBar from './Components/SearchBar/SearchBar';
+import Toolbar from './Toolbar/Toolbar';
 
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
     console.log(isChoosingAdvantages);
   }
 
- 
+
   return (
     <div className="App">
       <div className='selection-window'>
@@ -40,8 +41,11 @@ function App() {
           setSelectedDisadvantagesList={setSelectedDisadvantagesList}
         />
       </div>
-      <button onClick={log}>MainLog</button>
-      <div className='results-window'>
+      <div className='toolbar-window'>
+        <button onClick={log}>MainLog</button>
+        <Toolbar />
+      </div>
+      <div className='results-window' id='results'>
         <DisplayAdvantages selectedAdvantagesList={selectedAdvantagesList} />
         <DisplayDisadvantages selectedDisadvantagesList={selectedDisadvantagesList} />
       </div>
