@@ -81,6 +81,7 @@ h1 {
     }
 }
 .results-window {
+    display: none;
     white-space: pre-wrap;
     background-color: cornsilk;
     padding: 2%;

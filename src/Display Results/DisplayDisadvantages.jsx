@@ -4,7 +4,7 @@ const DisplayDisadvantages = (props) => {
 
     return (
         <div>
-            <h1>Disadvantages</h1>
+            {selectedDisadvantagesList.length >0 && <h1>Disadvantages</h1>}
             {selectedDisadvantagesList.map((obj) => {
                 return (
                     <div className='results-container' key={`${obj.title}-container`}>

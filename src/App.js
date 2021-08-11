@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import ToggleAdvantageDisadvantage from './Components/ToggleAdvantageDisadvantage/ToggleAdvantageDisadvantage';
 import DisplaySelected from './Selected/DisplaySelected';
@@ -13,10 +13,19 @@ function App() {
   const [selectedAdvantagesList, setSelectedAdvantagesList] = useState([]);
   const [selectedDisadvantagesList, setSelectedDisadvantagesList] = useState([]);
 
-  const log = () => {
-    console.log('selectedAdvantages: ' + selectedAdvantagesList);
-    console.log(isChoosingAdvantages);
-  }
+  useEffect(()=> {
+    const displayResultsWindow = ()=> {
+      console.log('display');
+      const resultsWindow = document.getElementById('results');
+      if (selectedAdvantagesList.length || selectedDisadvantagesList > 0) {
+        resultsWindow.style.display = 'block';
+      } else {
+        resultsWindow.style.display = 'none';
+      }
+    }
+    displayResultsWindow();
+  }, [selectedAdvantagesList, selectedDisadvantagesList]);
+  
 
 
   return (
@@ -29,7 +38,6 @@ function App() {
 
         <SearchBar
           isChoosingAdvantages={isChoosingAdvantages}
-          selectedAdvantagesList={selectedAdvantagesList}
           setSelectedAdvantagesList={setSelectedAdvantagesList}
           setSelectedDisadvantagesList={setSelectedDisadvantagesList}
         />
@@ -42,7 +50,6 @@ function App() {
         />
       </div>
       <div className='toolbar-window'>
-        <button onClick={log}>MainLog</button>
         <Toolbar />
       </div>
       <div className='results-window' id='results'>

@@ -1,10 +1,10 @@
 const DisplayAdvantages = (props) => {
     const selectedAdvantagesList = props.selectedAdvantagesList;
-
+console.log(selectedAdvantagesList);
 
     return (
         <div>
-            <h1>Advantages</h1>
+            {selectedAdvantagesList.length >0 && <h1>Advantages</h1>}
             {selectedAdvantagesList.map((obj) => {
                 return (
                     <div className='results-container' key={`${obj.title}-container`}>
