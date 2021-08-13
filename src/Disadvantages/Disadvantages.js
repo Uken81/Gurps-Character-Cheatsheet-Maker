@@ -3,7 +3,7 @@ const DisadvantagesArray = [{
         points: '-15 points',
         type: 'disadvantage',
         description: <p>You have trouble focusing on anything not of immediate interest. You have -5 on all IQ and IQ-based skill rolls, save those for the task you are currently concentrating on. If no engaging task or topic presents itself, your attention will drift to more interesting matters in five minutes, and you will ignore your immediate surroundings until something catches your attention and brings you back. Once adrift in your own thoughts, you must roll against Perception-5 in order to notice any event short of personal physical injury. <br/><br/>You may attempt to rivet your attention on a boring topic through sheer strength of will. To do so, make a Will-5 roll once every five minutes. “Boring topics” include small talk, repetitive manual tasks, guard duty, driving on an empty highway . . .  <br/><br/>Absent-minded individuals also tend to forget trivial tasks (like paying the bills) and items (like car keys and checkbooks). Whenever it becomes important that you have performed such a task or brought such an item, the GM should call for a roll against IQ-2. On a failure, this detail slipped your attention.</p>,
-        extraText: <strong><i>Example: An absent-minded detective is in a shootout. He was involved in gunplay earlier in the day, in which he fired four rounds, so the GM calls for an IQ-2 roll. The detective fails the roll, and discovers too late that he forgot to reload his weapon, so his revolver has only two bullets left!</i></strong>
+        extraText: <strong>Example: An absent-minded detective is in a shootout. He was involved in gunplay earlier in the day, in which he fired four rounds, so the GM calls for an IQ-2 roll. The detective fails the roll, and discovers too late that he forgot to reload his weapon, so his revolver has only two bullets left!</strong>
     },
     {
         title: 'Addiction',
@@ -52,7 +52,7 @@ const DisadvantagesArray = [{
         Most of the time, you may confine your drinking to the evenings, and therefore function normally (for game purposes). However, any time you are in the presence of alcohol, you must roll vs. Will to avoid partaking. A failed roll means you go on a binge lasting 2d hours, followed by a hangover; see Drinking and Intoxication (p. 439). Alcoholics on a binge are characterized by sudden mood swings from extreme friendliness to extreme hostility and may attack friends, talk too freely, or make other mistakes. <br />
         The other drawback of Alcoholism is that it is hard to get rid of. Should you manage to withdraw, you no longer need to drink daily . . . but you must still make a Will+4 roll whenever you are in the presence of alcohol. A failed roll does not reinstate the addiction, but does set off a binge. (Three binges in a week will reinstate the addiction.) Thus, there is no normal way to buy off this disadvantage. <br />
         </p>,
-        extraText: 'Continued Alcoholism will steal your abilities. You must roll yearly against HT+2 until you withdraw. Failure means you lose a level from one of your four basic attributes roll randomly to determine which.'
+        extraText: <p>Continued Alcoholism will steal your abilities. You must roll yearly against HT+2 until you withdraw. Failure means you lose a level from one of your four basic attributes roll randomly to determine which.</p>
     },
 
 ]

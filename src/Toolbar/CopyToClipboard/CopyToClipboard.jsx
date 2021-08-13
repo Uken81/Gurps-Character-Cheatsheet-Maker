@@ -1,4 +1,5 @@
 const CopyToClipboard = () => {
+//This works pretty much as intended but can get some strange results in certain text editors like Google Docs. Is there a better way to do this?
     const copyToClipboard = () => {
         const sectionToCopy = document.getElementById('results');
         let currentRange;

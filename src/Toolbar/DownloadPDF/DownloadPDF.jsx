@@ -1,7 +1,6 @@
 import html2canvas from 'html2canvas';
 import { jsPDF } from "jspdf";
 
-
 const DownloadPDF = ()=> {
     function getPDF() {
         function getWidth() {
@@ -34,7 +33,7 @@ const DownloadPDF = ()=> {
         const PDF_Height = (PDF_Width * 1.5) + (top_left_margin * 2);
         const canvas_image_width = HTML_Width;
         const canvas_image_height = HTML_Height;
-    
+
         const totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1;
     
     
@@ -54,21 +53,14 @@ const DownloadPDF = ()=> {
                 pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height * i) + (top_left_margin * 4), canvas_image_width, canvas_image_height);
             }
     
-            pdf.save("HTML-Document.pdf");
+            pdf.save('GCCM.pdf');
         });
     };
-            
-
     
     return (  
         <button onClick={getPDF}>Download PDF</button>
     );
+}
     
-    }
-
-    
-
-    
-
  
 export default DownloadPDF;

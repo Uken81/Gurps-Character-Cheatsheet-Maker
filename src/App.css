@@ -1,19 +1,30 @@
+/* Should I seperate these and use in the relevant component? */
 * {
     list-style: none;
 }
 
-.toggle {
+.toggle-window {
     display: flex;
     flex-direction: row;
-    margin: 2%;
+   justify-content: center;
 }
 
-.toggle-button {
+.toggle-buttons {
     font-weight: bold;
-    margin: 5%;
-    background-color: whitesmoke;
     width: 10rem;
     height: 2rem;
+}
+
+.toggle-disadvantage-section {
+    padding-left: 10%;
+}
+
+#toggle-advantage {
+    background-color: whitesmoke;
+}
+
+#toggle-disadvantage {
+    background-color: darkgray;
 }
 
 h1 {
@@ -21,7 +32,7 @@ h1 {
     text-align: center;
 }
 
-.selection-window {
+.userSelection-window {
     display: flex;
     flex-direction: column;
     background-color: black;
@@ -40,14 +51,13 @@ h1 {
 
 .selected-window {
     background-color: black;
-    /* background-color: cornsilk; */
-    /* float: right; */
     margin: 5% 5%;
     margin-bottom: 5%;
     padding: 2%;
     border: whitesmoke solid 10px;
     color: white;
     width: fit-content;
+    font-size: 1.5rem;
     /* text-align: center; */
 }
 
@@ -66,20 +76,6 @@ h1 {
     transition: all 0.2s;
 }
 
-.selected-button:hover {
-    background-color: darkgray;
-}
-
-@media all and (max-width:30em) {
-    .selected-button {
-        display: block;
-        margin: 0.2em auto;
-    }
-    li {
-        font-size: larger;
-        list-style: none;
-    }
-}
 .results-window {
     display: none;
     white-space: pre-wrap;
@@ -100,6 +96,12 @@ h2 {
     font-size: 4rem;
     text-align: center;
     text-shadow: whitesmoke 5px 2px;
+}
+
+h3 {
+    font-size: 6rem;
+    text-align: center;
+    text-shadow: darkgray 3px 2px;
 }
 
 .points {

@@ -13,11 +13,11 @@ function App() {
   const [selectedAdvantagesList, setSelectedAdvantagesList] = useState([]);
   const [selectedDisadvantagesList, setSelectedDisadvantagesList] = useState([]);
 
-  useEffect(()=> {
-    const displayResultsWindow = ()=> {
-      console.log('display');
+  //Would this effect be better placed in Display Results? If so should it be in a seperate component?
+  useEffect(() => {
+    const displayResultsWindow = () => {
       const resultsWindow = document.getElementById('results');
-      if (selectedAdvantagesList.length || selectedDisadvantagesList > 0) {
+      if (selectedAdvantagesList.length || selectedDisadvantagesList.length > 0) {
         resultsWindow.style.display = 'block';
       } else {
         resultsWindow.style.display = 'none';
@@ -25,12 +25,11 @@ function App() {
     }
     displayResultsWindow();
   }, [selectedAdvantagesList, selectedDisadvantagesList]);
-  
 
 
   return (
     <div className="App">
-      <div className='selection-window'>
+      <div className='userSelection-window'>
         <ToggleAdvantageDisadvantage
           isChoosingAdvantages={isChoosingAdvantages}
           setIsChoosingAdvantages={setIsChoosingAdvantages}
