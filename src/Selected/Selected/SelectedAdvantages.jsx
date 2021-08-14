@@ -3,13 +3,13 @@ const SelectedAdvantages = (props) => {
 
     return (
         <ul>
-            {selectedAdvantagesList.map((element) => {
+            {selectedAdvantagesList.map(({title}) => {
                 return (
                     <li
                         className='selected'
-                        key={`${element.title}-selected`}
+                        key={`${title}-selected`}
                     >
-                        {element.title}
+                        {title}
                     </li>
                 )
             })}

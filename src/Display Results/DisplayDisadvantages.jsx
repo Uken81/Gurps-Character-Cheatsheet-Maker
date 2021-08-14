@@ -4,22 +4,22 @@ const DisplayDisadvantages = (props) => {
     return (
         <div>
             {selectedDisadvantagesList.length >0 && <h3>Disadvantages</h3>}
-            {selectedDisadvantagesList.map((obj) => {
+            {selectedDisadvantagesList.map(({title, points, description, subCategories, extraText}) => {
                 return (
-                    <div className='results-container' key={`${obj.title}-container`}>
-                        <h2>{obj.title}</h2>
-                        <p className='points'><strong>{obj.points}</strong></p>
-                        <p>{obj.description}</p>
-                        {obj.subCategories && obj.subCategories.map((sub) => {
+                    <div className='results-container' key={`${title}-container`}>
+                        <h2>{title}</h2>
+                        <p className='points'><strong>{points}</strong></p>
+                        <p>{description}</p>
+                        {subCategories && subCategories.map(({name, text, points}) => {
                             return (
-                                <div className='sub-category' key={`${sub.name}-container`}>
-                                    <p><strong>{sub.name}</strong></p>
-                                    <p>{sub.text}</p>
-                                    <p><strong>{sub.points}</strong></p>
+                                <div className='sub-category' key={`${name}-container`}>
+                                    <p><strong>{name}</strong></p>
+                                    <p>{text}</p>
+                                    <p><strong>{points}</strong></p>
                                 </div>
                             )
                         })}
-                        <i>{obj.extraText}</i>
+                        <i>{extraText}</i>
                     </div>
                 )
             })}
