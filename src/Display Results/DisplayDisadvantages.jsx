@@ -9,12 +9,12 @@ const DisplayDisadvantages = (props) => {
                     <div className='results-container' key={`${title}-container`}>
                         <h2>{title}</h2>
                         <p className='points'><strong>{points}</strong></p>
-                        <p>{description}</p>
+                        {description}
                         {subCategories && subCategories.map(({name, text, points}) => {
                             return (
                                 <div className='sub-category' key={`${name}-container`}>
-                                    <p><strong>{name}</strong></p>
-                                    <p>{text}</p>
+                                    <strong><p>{name}</p></strong>
+                                    {text}
                                     <p><strong>{points}</strong></p>
                                 </div>
                             )
@@ -24,7 +24,6 @@ const DisplayDisadvantages = (props) => {
                 )
             })}
         </div>
-
     );
 }
 
