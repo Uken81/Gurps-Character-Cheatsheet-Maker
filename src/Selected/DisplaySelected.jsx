@@ -1,6 +1,8 @@
 import SelectedAdvantages from "./Selected/SelectedAdvantages"
 import SelectedDisadvantages from "../Selected/Selected/SelectedDisadvantages";
 
+import './displaySelected.styles.css';
+
 const DisplaySelected = (props) => {
     const selectedAdvantagesList = props.selectedAdvantagesList;
     const selectedDisadvantagesList = props.selectedDisadvantagesList;

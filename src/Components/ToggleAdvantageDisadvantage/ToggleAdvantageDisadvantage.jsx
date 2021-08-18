@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 
+import './Toggle.styles.css';
+
 const ToggleAdvantageDisadvantage = (props) => {
     const isChoosingAdvantages = props.isChoosingAdvantages;
     const setIsChoosingAdvantages = props.setIsChoosingAdvantages;

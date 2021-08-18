@@ -1,30 +1,5 @@
-/* Should I seperate these and use in the relevant component? */
 * {
     list-style: none;
-}
-
-.toggle-window {
-    display: flex;
-    flex-direction: row;
-   justify-content: center;
-}
-
-.toggle-buttons {
-    font-weight: bold;
-    width: 10rem;
-    height: 2rem;
-}
-
-.toggle-disadvantage-section {
-    padding-left: 10%;
-}
-
-#toggle-advantage {
-    background-color: whitesmoke;
-}
-
-#toggle-disadvantage {
-    background-color: darkgray;
 }
 
 h1 {
@@ -36,60 +11,9 @@ h1 {
     display: flex;
     flex-direction: column;
     background-color: black;
-    color: whitesmoke;  
+    color: whitesmoke;
     list-style: none;
     align-items: center;
-}
-
-.searchBar {
-    font-weight: bold;
-    border: black solid 20px;
-    font-size: x-large;
-    margin-bottom: 3%;
-    color: black;
-}
-
-.selected-window {
-    background-color: black;
-    margin: 5% 5%;
-    margin-bottom: 5%;
-    padding: 2%;
-    border: whitesmoke solid 10px;
-    color: white;
-    width: fit-content;
-    font-size: 1.5rem;
-    /* text-align: center; */
-}
-
-.selected-button {
-    display: inline-block;
-    padding: 0.3em 1.2em;
-    margin: 0 0.3em 0.3em 0;
-    border-radius: 2em;
-    box-sizing: border-box;
-    text-decoration: none;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
-    color: black;
-    background-color: whitesmoke;
-    text-align: center;
-    transition: all 0.2s;
-}
-
-.results-window {
-    display: none;
-    white-space: pre-wrap;
-    background-color: cornsilk;
-    padding: 2%;
-}
-
-.results-container {
-    background-color: blanchedalmond;
-    font-size: 1.5rem;
-    margin: 10%;
-    border: 10px solid black;
-    border-radius: 20%;
-    padding: 2% 5% 5% 5%;
 }
 
 h2 {
@@ -102,19 +26,4 @@ h3 {
     font-size: 6rem;
     text-align: center;
     text-shadow: darkgray 3px 2px;
-}
-
-.points {
-    background-color: black;
-    color: whitesmoke;
-    padding: 1%;
-    width: 20%;
-}
-
-.sub-category {
-    background-color: whitesmoke;
-    border: 5px solid black ;
-    
-    margin: 2%;
-    padding: 2%;
 }

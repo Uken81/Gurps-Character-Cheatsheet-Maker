@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
-import AdvantagesArray from '../../Advantages/Advantages';
-import DisadvantagesArray from '../../Disadvantages/Disadvantages';
+import AdvantagesArray from '../../Attribute Objects/Advantages/Advantages';
+import DisadvantagesArray from '../../Attribute Objects/Disadvantages/Disadvantages';
+
+import './SearchBar.styles.css'
 
 const SearchBar = (props) => {
     const [advantageOptions, setAdvantageOptions] = useState([]);
@@ -19,8 +21,7 @@ const SearchBar = (props) => {
     
     const createDisadvantageOptions = () => {
         let arr = DisadvantagesArray.map(opt => ({ label: opt.title, value: opt, category: opt.type }));
-        setDisadvantageOptions(arr);
-         
+        setDisadvantageOptions(arr);    
     };
     createAdvantageOptions();
     createDisadvantageOptions();    

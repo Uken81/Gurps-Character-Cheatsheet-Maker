@@ -1,3 +1,5 @@
+import './DisplayResults.styles.css';
+
 const DisplayAdvantages = (props) => {
     const selectedAdvantagesList = props.selectedAdvantagesList;
 
