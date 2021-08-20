@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
+
 import './App.css';
+
 import ToggleAdvantageDisadvantage from './Components/ToggleAdvantageDisadvantage/ToggleAdvantageDisadvantage';
 import DisplaySelected from './Selected/DisplaySelected';
-import DisplayAdvantages from './Display Results/DisplayAdvantages';
-import DisplayDisadvantages from './Display Results/DisplayDisadvantages';
 import SearchBar from './Components/SearchBar/SearchBar';
-import Toolbar from './Toolbar/Toolbar';
+
+import PrintPDF from './Components/Print PDF/printPDF';
+import CopyToClipboard from './Components/CopyToClipboard/CopyToClipboard';
 
 
 function App() {
@@ -29,7 +31,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className='userSelection-window'>
+      <div className='user-selection-window'>
         <ToggleAdvantageDisadvantage
           isChoosingAdvantages={isChoosingAdvantages}
           setIsChoosingAdvantages={setIsChoosingAdvantages}
@@ -48,12 +50,12 @@ function App() {
           setSelectedDisadvantagesList={setSelectedDisadvantagesList}
         />
       </div>
-      <div className='toolbar-window'>
-        <Toolbar />
-      </div>
       <div className='results-window' id='results'>
-        <DisplayAdvantages selectedAdvantagesList={selectedAdvantagesList} />
-        <DisplayDisadvantages selectedDisadvantagesList={selectedDisadvantagesList} />
+        <CopyToClipboard />
+        <PrintPDF
+          selectedAdvantagesList={selectedAdvantagesList}
+          selectedDisadvantagesList={selectedDisadvantagesList}
+        />
       </div>
     </div>
   );

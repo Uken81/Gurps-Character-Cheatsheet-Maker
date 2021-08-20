@@ -10,7 +10,7 @@ I have made this app to allow the players of a RPG I run to easily access clear 
 My main aims are:
 That it is very quick and easy for the players to create it(as any GM knows, players are a lazy bunch).
 
-Users can download a clear PDF of their choices thats is nicely formatted and easy to read.
+Users can download a PDF of their choices that is nicely formatted and easy to read.
 
 After downloading it is easy for Users to access it on all their devices.
 

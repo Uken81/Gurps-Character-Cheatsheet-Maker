@@ -14,23 +14,20 @@ const SearchBar = (props) => {
     const setSelectedDisadvantagesList = props.setSelectedDisadvantagesList;
 
    useEffect(()=> {
-    const createAdvantageOptions = () => {
-        let arr = AdvantagesArray.map(opt => ({ label: opt.title, value: opt, category: opt.type }));
-        setAdvantageOptions(arr);
-    };
+       const createSearchOptions = () => {
+        let adsArr = AdvantagesArray.map(opt => ({ label: opt.title, value: opt, category: opt.type }));
+        let disadsArr = DisadvantagesArray.map(opt => ({ label: opt.title, value: opt, category: opt.type }));
+        setAdvantageOptions(adsArr);
+        setDisadvantageOptions(disadsArr); 
+       }
+       createSearchOptions();
+   },[]);
+
     
-    const createDisadvantageOptions = () => {
-        let arr = DisadvantagesArray.map(opt => ({ label: opt.title, value: opt, category: opt.type }));
-        setDisadvantageOptions(arr);    
-    };
-    createAdvantageOptions();
-    createDisadvantageOptions();    
-   },[])
-
-
-    let adsArr = [];
-    let disadsArr = [];
+    
     const handleChange = (event) => {
+        let adsArr = [];
+        let disadsArr = [];
         console.log(event);
         event.forEach((e) => {
             e.value.type === 'advantage' ? adsArr.push(e.value) : disadsArr.push(e.value);    
@@ -44,7 +41,7 @@ const SearchBar = (props) => {
 );
 
     return (  
-        <div>
+        <div className='searchbar-container'>
             <h1>Select your Characters {isChoosingAdvantages ? 'Advantages' : 'Disadvantages'}</h1>
             <Select
                 className='searchBar'

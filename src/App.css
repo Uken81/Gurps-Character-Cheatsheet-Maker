@@ -7,7 +7,7 @@ h1 {
     text-align: center;
 }
 
-.userSelection-window {
+.user-selection-window {
     display: flex;
     flex-direction: column;
     background-color: black;
@@ -26,4 +26,8 @@ h3 {
     font-size: 6rem;
     text-align: center;
     text-shadow: darkgray 3px 2px;
+}
+
+button:hover {
+    cursor: pointer;
 }
