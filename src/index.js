@@ -3,11 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+
+import { NavLink, Route, Switch } from 'react-router-dom'
+import signInAndSignUp from './Components/SignInAndSignUp/sign-in-and-sign-up';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Switch>
+    
+      <Route exact path='/' component={App}/>
+      <Route path='/sign-in-and-sign-up' component={signInAndSignUp} />
+      <App />
+    </Switch>
+    
+  </BrowserRouter>,
   document.getElementById('root')
 );
 

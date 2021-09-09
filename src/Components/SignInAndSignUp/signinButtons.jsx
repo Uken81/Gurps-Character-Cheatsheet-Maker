@@ -1,0 +1,21 @@
+import { Link } from "react-router-dom";
+
+import './sign-in-and-sign-up.scss';
+
+export const SignInButton = () => {
+    return (
+        <div className='sign-in-link'>
+            <Link to='/sign-in-and-sign-up'>SIGN IN</Link>
+        </div>
+    );
+}
+
+export const BackFromSignIN = () => {
+    return (
+        <div className="sign-in-link">
+        <Link to='/' >BACK</Link>
+    </div>
+    )
+}
+
+// export { SignInButton, BackFromSignIN };

@@ -1,5 +1,5 @@
 .results-window {
-    display: none;
+    /* display: none; */
     white-space: pre-wrap;
     background-color: cornsilk;
     /* padding: 0% 2%; */
@@ -12,6 +12,7 @@
 }
 
 .tool-button {
+    /* display: none; */
     /* background-color: white; */
     background-color: black;
     /* color: black; */

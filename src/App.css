@@ -1,5 +1,7 @@
 * {
     list-style: none;
+    text-decoration: none;
+    margin: 0;
 }
 
 h1 {
@@ -7,7 +9,16 @@ h1 {
     text-align: center;
 }
 
-.user-selection-window {
+.main-title {
+    font-size: 6rem;
+   /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;  */
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    letter-spacing: 2rem;
+    /* text-shadow: 1px 1px bisque; */
+    text-shadow: 2px 2px royalblue;
+}
+
+.user-interface-window {
     display: flex;
     flex-direction: column;
     background-color: black;
