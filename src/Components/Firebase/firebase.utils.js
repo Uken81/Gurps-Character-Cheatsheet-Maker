@@ -1,71 +1,102 @@
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from "firebase/analytics";
 import { GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged } from "firebase/auth";
-import {getFirestore} from 'firebase/firestore/lite'
+import { getFirestore, addDoc, collection, getDocs } from 'firebase/firestore/lite';
+import { doc, setDoc, query, where, getDoc } from "firebase/firestore/lite";
+import { useEffect } from 'react';
+import { Firestore, onSnapshot } from 'firebase/firestore';
+
+
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDcJVMjeS_l2T6JSruAYVmMjvjXWB7l-vE",
-    authDomain: "gccm-ea7b4.firebaseapp.com",
-    projectId: "gccm-ea7b4",
-    storageBucket: "gccm-ea7b4.appspot.com",
-    messagingSenderId: "370036300661",
-    appId: "1:370036300661:web:8f9795dc6aa8c08b2ad13c",
-    measurementId: "G-R683EBXEQL"
+    apiKey: "AIzaSyDAz2HJffqgqAjIbnXvc5GxHc7_10-sV0A",
+    authDomain: "gccm-35118.firebaseapp.com",
+    projectId: "gccm-35118",
+    storageBucket: "gccm-35118.appspot.com",
+    messagingSenderId: "1094311800122",
+    appId: "1:1094311800122:web:d737cd2d1e7f44ea053403",
+    measurementId: "G-56GHWXS27L"
 };
 
-const app = initializeApp(firebaseConfig);
-const firestore = getFirestore(app);
-const analytics = getAnalytics(app);
+const firebaseApp = initializeApp(firebaseConfig);
 
+const db = getFirestore(firebaseApp);
+const usersCollectionRef = collection(db, 'users');
+
+const createUserProfileDocument = async (userAuth, aditionalData) => {
+    if (!userAuth) return;
+    const userRef = doc(db, `users/${userAuth.uid}`);
+    console.log(userAuth.uid);
+    const docSnap = await getDoc(userRef);
+    
+    if (!docSnap.exists()) {
+        const { displayName, email } = userAuth;
+        const createdAt = new Date();
+       
+    
+        try {
+          await setDoc(userRef,  {
+            displayName,
+            email,
+            createdAt,
+            // ...additionalData
+          });
+        } catch (error) {
+          console.log('error creating user', error.message);
+        }
+      }
+      console.log('test');
+      console.log(userRef);
+      console.log(docSnap.exists());
+      console.log(docSnap.data());
+      console.log(userAuth.uid);
+      return userRef;
+    
+    }
+    
 const provider = new GoogleAuthProvider();
-
-// firebase.auth().useDeviceLanguage();
-
-
 provider.setCustomParameters({
-    'login_hint': 'user@example.com'
-  });
+    prompt: 'select_account'
+});
 
-  const auth = getAuth();
-  
-  const google = ()=> {
-    signInWithPopup(auth, provider)
-    .then((result) => {
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      // ...
-    }).catch((error) => {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.email;
-      // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
-      // ...
-    });
-  }
-
-  const user = auth.currentUser;
-
-  if (user !== null) {
-    user.providerData.forEach((profile) => {
-      console.log("Sign-in provider: " + profile.providerId);
-      console.log("  Provider-specific UID: " + profile.uid);
-      console.log("  Name: " + profile.displayName);
-      console.log("  Email: " + profile.email);
-      console.log("  Photo URL: " + profile.photoURL);
-      console.log(user);
-    });
-  } else {
-      console.log('no user');
-      console.log(user);
-  }
+const auth = getAuth();
 
 
-export {signInWithPopup, google}
-  
+    const google = async () => {
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+                // ...
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                // ...
+            });
+    }
+
+    const sendCharacterList = (list, currentUser) => {
+      if (currentUser !== null) {
+        console.log('setting character list')
+        const userRef = doc(db, `users/${currentUser.uid}`);
+        setDoc(userRef, {
+          list
+          });
+    }
+   
+
+    console.log('characters');
+    console.log(currentUser);
+    
+    }
+
+    export { signInWithPopup, google, auth, usersCollectionRef, db, firebaseApp, createUserProfileDocument, sendCharacterList }
