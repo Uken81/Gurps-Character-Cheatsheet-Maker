@@ -33,8 +33,9 @@ const Header = ({ currentUser, setCurrentUser, characterName, setCharacterName }
     const handleAddCharacter = (event) => {
         event.preventDefault();
         const form = newCharacter.current;
-        let value = form['new-character'].value;
 
+        let value = form['new-character'].value;
+        console.log("****value: ", value);
         setCharacterName( value );
         setForminput('');
     }

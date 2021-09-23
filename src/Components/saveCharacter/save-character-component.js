@@ -2,7 +2,13 @@ import { useEffect } from "react/cjs/react.development";
 import { storeCharacterObject, loadCharactersAttributes } from "../Firebase/firebase.utils";
 import AdvantagesArray from '../../Attribute Objects/Advantages/Advantages.js';
 
-const SaveCharacter = ({ characterName, selectedAdvantagesList, selectedDisadvantagesList, currentUser, usersChoiceReference, setUsersChoiceReference, setSelectedAdvantagesList }) => {
+const SaveCharacter = ({ 
+    characterName, 
+    selectedAdvantagesList, 
+    selectedDisadvantagesList, 
+    currentUser, usersChoiceReference, setUsersChoiceReference, setSelectedAdvantagesList,
+    saveCharacterHandler
+ }) => {
 
     const saveCharacter = async () => {
         let arr = [];
@@ -29,16 +35,8 @@ const SaveCharacter = ({ characterName, selectedAdvantagesList, selectedDisadvan
 
     const loadCharacter = async () => {
         let demo = await loadCharactersAttributes(currentUser);
-        // console.log(demo);
-        // const arr = AdvantagesArray.filter(i => demo.includes('Abso'));
-
-        let arr = AdvantagesArray.filter(function(item) {
-            
-            return demo.includes(item); 
-          })
-
-       
-          console.log(arr);
+        let arr;
+        await arr.push(demo[0]);
     }
 
 
@@ -48,7 +46,7 @@ const SaveCharacter = ({ characterName, selectedAdvantagesList, selectedDisadvan
 
     return (
         <div>
-            <button onClick={saveCharacter}>Save Character</button>
+            <button onClick={saveCharacterHandler}>Save Character</button>
             <button onClick={con}>con obj</button>
             <button onClick={loadCharacter}>load</button>
         </div>
