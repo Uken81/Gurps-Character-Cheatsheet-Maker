@@ -10,15 +10,18 @@ import SearchBar from './Components/SearchBar/SearchBar';
 import PrintPDF from './Components/Print PDF/printPDF';
 import CopyToClipboard from './Components/CopyToClipboard/CopyToClipboard';
 import Header from './Components/Header/Header.component';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { auth, createUserProfileDocument, firebaseApp, usersCollectionRef } from './Components/Firebase/firebase.utils';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth, createUserProfileDocument, readBack } from './Components/Firebase/firebase.utils';
+import SaveCharacter from './Components/saveCharacter/save-character-component';
 
 
 
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(null);
-  const [usersCharacterInformation, setUsersCharacterInformation] = useState({});
+  const [currentUser, setCurrentUser] = useState('');
+  const [usersCharacterObject, setUsersCharacterObject] = useState([]);
+  const [usersChoiceReference, setUsersChoiceReference] = useState([]);
+  const [characterName, setCharacterName] = useState('');
   const [characterList, setCharacterList] = useState([]);
 
   const [isChoosingAdvantages, setIsChoosingAdvantages] = useState(true);
@@ -32,7 +35,7 @@ function App() {
       if (userAuth) {
         setCurrentUser(userAuth);
         console.log(`${userAuth.displayName} has logged in`);
-
+        
       } 
       else {
         setCurrentUser(userAuth);
@@ -43,10 +46,28 @@ function App() {
       }
     })
   },[]);
-
+const arr1 = ['1', '2', '3'];
      
-const tryit = () => {
-  console.log(currentUser.email);
+const read = () => {
+  // console.log(usersChoiceReference);
+  readBack(currentUser);
+  
+  
+}
+
+// const createUserChoiceReference = () => {
+//   let arr = [];
+//   selectedAdvantagesList.map((element) => {
+//     arr.push(element.title);
+    
+//     setUsersChoiceReference(arr);
+//     console.log('arr: ' + arr);
+//     console.log(usersChoiceReference);
+//   })
+// }
+
+const reference = () => {
+  console.log(usersChoiceReference);
 }
 
 
@@ -56,11 +77,11 @@ const tryit = () => {
         <Header
           currentUser={currentUser}
           setCurrentUser={setCurrentUser}
-          characterList={characterList}
-          setCharacterList={setCharacterList}
+          characterName={characterName}
+          setCharacterName={setCharacterName}
         />
-        <button onClick={() => tryit()}>try</button>
-
+        <button onClick={() => read()}>read</button>
+       <button onClick={reference}>ucr</button>
         <h1 className="main-title">G.C.C.M</h1>
         <SearchBar
           isChoosingAdvantages={isChoosingAdvantages}
@@ -81,6 +102,17 @@ const tryit = () => {
         />
       </div>
       <div className='results-window' id='results'>
+        <SaveCharacter  
+        usersCharacterObject={usersCharacterObject}
+        setUsersCharacterObject={setUsersCharacterObject}
+        characterName={characterName}
+        selectedAdvantagesList={selectedAdvantagesList}
+        setSelectedAdvantagesList={setSelectedAdvantagesList}
+        selectedDisadvantagesList={selectedDisadvantagesList}
+        currentUser={currentUser}
+        usersChoiceReference={usersChoiceReference}
+        setUsersChoiceReference={setUsersChoiceReference}
+        />
         <CopyToClipboard />
         <PrintPDF
           selectedAdvantagesList={selectedAdvantagesList}

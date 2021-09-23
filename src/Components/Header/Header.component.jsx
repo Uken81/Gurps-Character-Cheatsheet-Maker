@@ -1,18 +1,15 @@
-
-import { doc, setDoc } from "firebase/firestore";
-import { getAuth, signOut } from "firebase/auth";
-import { add, db, snap, auth, usersCollectionRef, sendCharacterList } from "../Firebase/firebase.utils";
+import { signOut } from "firebase/auth";
+import { auth } from "../Firebase/firebase.utils";
 import { SignInButton } from "../SignInAndSignUp/signinButtons";
 
 import './header.styles.scss';
-import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { useRef, useState } from "react";
 
-const Header = ({ currentUser, setCurrentUser, characterList, setCharacterList }) => {
+
+const Header = ({ currentUser, setCurrentUser, characterName, setCharacterName }) => {
     const [formInput, setForminput] = useState('');
 
     const signout = () => {
-        // const auth = getAuth();
         signOut(auth).then(() => {
             console.log(currentUser + ' signed out');
         }).catch((error) => {
@@ -21,16 +18,16 @@ const Header = ({ currentUser, setCurrentUser, characterList, setCharacterList }
     }
 
     function test() {
-        console.log('character: ' + characterList);
+        console.log('character: ' + characterName.value);
     }
 
 
-        const handleInput = () => {
-            const form = newCharacter.current;
-            let value = form['new-character'].value;
-            setForminput(value);
-          }
-    
+    const handleInput = () => {
+        const form = newCharacter.current;
+        let value = form['new-character'].value;
+        setForminput(value);
+    }
+
 
     const newCharacter = useRef(null);
     const handleAddCharacter = (event) => {
@@ -38,15 +35,13 @@ const Header = ({ currentUser, setCurrentUser, characterList, setCharacterList }
         const form = newCharacter.current;
         let value = form['new-character'].value;
 
-        setCharacterList((prev) => {
-            return [...prev, value]
-        });   
-        setForminput('');     
+        setCharacterName( value );
+        setForminput('');
     }
 
     // useEffect(() => {
     //     sendCharacterList(characterList, currentUser);
-       
+
     // }, [characterList, currentUser]);
 
 
@@ -58,7 +53,7 @@ const Header = ({ currentUser, setCurrentUser, characterList, setCharacterList }
                     <label>
                         Create New Character
                         <input
-                            name='new-character'                           
+                            name='new-character'
                             label='new-character'
                             type='text'
                             value={formInput}

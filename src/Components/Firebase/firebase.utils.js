@@ -1,13 +1,7 @@
 import { initializeApp } from 'firebase/app';
-import { getAnalytics } from "firebase/analytics";
-import { GoogleAuthProvider, getAuth, signInWithPopup, onAuthStateChanged } from "firebase/auth";
-import { getFirestore, addDoc, collection, getDocs } from 'firebase/firestore/lite';
-import { doc, setDoc, query, where, getDoc } from "firebase/firestore/lite";
-import { useEffect } from 'react';
-import { Firestore, onSnapshot } from 'firebase/firestore';
-
-
-
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import { getFirestore, collection } from 'firebase/firestore';
+import { doc, setDoc, getDoc } from "firebase/firestore";
 
 const firebaseConfig = {
     apiKey: "AIzaSyDAz2HJffqgqAjIbnXvc5GxHc7_10-sV0A",
@@ -84,12 +78,13 @@ const auth = getAuth();
             });
     }
 
-    const sendCharacterList = (list, currentUser) => {
+    const storeCharacterObject = (test, currentUser) => {
       if (currentUser !== null) {
         console.log('setting character list')
+        
         const userRef = doc(db, `users/${currentUser.uid}`);
         setDoc(userRef, {
-          list
+          test
           });
     }
    
@@ -99,4 +94,34 @@ const auth = getAuth();
     
     }
 
-    export { signInWithPopup, google, auth, usersCollectionRef, db, firebaseApp, createUserProfileDocument, sendCharacterList }
+    const readBack = async (currentUser) => {
+      const docRef = doc(db, `users/${currentUser.uid}`);
+      const docSnap = await getDoc(docRef);
+      
+      if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    }
+
+    const loadCharactersAttributes = async (currentUser)  => {
+      const docRef = doc(db, `users/${currentUser.uid}`);
+      const docSnap2 = await getDoc(docRef);
+      
+       
+        console.log('exists');
+        
+        const docy = docSnap2.data();
+        let newArr = [];
+
+        // console.log(docy);
+        newArr.push(docy);
+        // console.log({newArr});
+     
+      return newArr;
+    }
+
+  
+    export { signInWithPopup, google, auth, usersCollectionRef, db, firebaseApp, createUserProfileDocument, storeCharacterObject, readBack, loadCharactersAttributes }
