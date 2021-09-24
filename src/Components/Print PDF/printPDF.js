@@ -5,9 +5,10 @@ import ComponentToPrint from '../../Display Results/ComponentToPrint';
 
 
 const PrintPDF = (props) => {
-  const componentRef = useRef();
+  // const componentRef = useRef();
   const selectedAdvantagesList = props.selectedAdvantagesList;
   const selectedDisadvantagesList = props.selectedDisadvantagesList;
+  const componentRef = props.componentRef;
 
   return (
     <div>
@@ -17,11 +18,11 @@ const PrintPDF = (props) => {
           content={() => componentRef.current}
         />
       </div>
-      <ComponentToPrint
+      {/* <ComponentToPrint
         selectedAdvantagesList={selectedAdvantagesList}
         selectedDisadvantagesList={selectedDisadvantagesList}
         ref={componentRef}
-      />
+      /> */}
     </div>
   );
 };

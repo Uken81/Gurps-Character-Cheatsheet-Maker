@@ -5,26 +5,6 @@
     /* padding: 0% 2%; */
 }
 
-.button-container {
-    display: flex;
-    justify-content: center;
-    background-color: black;
-}
-
-.tool-button {
-    /* display: none; */
-    /* background-color: white; */
-    background-color: black;
-    /* color: black; */
-    color: white;
-    padding: 2rem;
-    width: 10rem;
-    margin: 2%;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 10%;
-}
-
 .results-container {
     background-color: blanchedalmond;
     font-size: 1.5rem;

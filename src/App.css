@@ -42,3 +42,21 @@ h3 {
 button:hover {
     cursor: pointer;
 }
+
+.toolbar-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    background-color: black;
+}
+
+.tool-button {
+    background-color: black;
+    color: white;
+    padding: 2rem;
+    width: 10rem;
+    margin: 10%;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 10%;
+}

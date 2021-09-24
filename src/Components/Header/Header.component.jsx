@@ -17,11 +17,6 @@ const Header = ({ currentUser, setCurrentUser, characterName, setCharacterName }
         });
     }
 
-    function test() {
-        console.log('character: ' + characterName.value);
-    }
-
-
     const handleInput = () => {
         const form = newCharacter.current;
         let value = form['new-character'].value;
@@ -48,7 +43,6 @@ const Header = ({ currentUser, setCurrentUser, characterName, setCharacterName }
 
     return (
         <div className="header">
-            <button onClick={test}>TEST</button>
             <div className="form">
                 <form className='new-character-form' ref={newCharacter}>
                     <label>

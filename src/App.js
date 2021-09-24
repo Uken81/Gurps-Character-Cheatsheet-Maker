@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import "./App.css";
 import "./Display Results/DisplayResults.styles.css";
@@ -16,9 +16,11 @@ import {
   createUserProfileDocument,
   addNewCharacterForUser,
   getMatchingCharactersForUser,
-  readBack,
 } from "./Components/Firebase/firebase.utils";
 import SaveCharacter from "./Components/saveCharacter/save-character-component";
+import AdvantagesArray from "./Attribute Objects/Advantages/Advantages.js";
+import DisadvantagesArray from "./Attribute Objects/Disadvantages/Disadvantages";
+import ComponentToPrint from "./Display Results/ComponentToPrint";
 
 function App() {
   const [currentUser, setCurrentUser] = useState("");
@@ -49,27 +51,6 @@ function App() {
       };
     });
   }, []);
-  const arr1 = ["1", "2", "3"];
-
-  const read = () => {
-    // console.log(usersChoiceReference);
-    readBack(currentUser);
-  };
-
-  // const createUserChoiceReference = () => {
-  //   let arr = [];
-  //   selectedAdvantagesList.map((element) => {
-  //     arr.push(element.title);
-
-  //     setUsersChoiceReference(arr);
-  //     console.log('arr: ' + arr);
-  //     console.log(usersChoiceReference);
-  //   })
-  // }
-
-  const reference = () => {
-    console.log(usersChoiceReference);
-  };
 
   const saveCharacterHandler = async () => {
     console.log("****saveCharacterHandler Called");
@@ -90,7 +71,29 @@ function App() {
   const getRecord = async () => {
     const records = await getMatchingCharactersForUser(currentUser.uid, 'Ironman');
     console.log("records: ", records);
+    return records;
   }
+
+  const test = async () => {
+    const newRecord = await getRecord();
+    const characterName = newRecord.map((item) => item.name);
+
+    const advantagesRecord = newRecord.flatMap((item) => item.advantages);
+    const characterAdvantages = AdvantagesArray.filter((advantage) => advantagesRecord.includes(advantage.title));
+
+    const disadvantagesRecord = newRecord.flatMap((item) => item.disadvantages);
+    const characterDisadvantages = DisadvantagesArray.filter((disadvantage) => disadvantagesRecord.includes(disadvantage.title));
+
+    setSelectedAdvantagesList(characterAdvantages);
+    setSelectedDisadvantagesList(characterDisadvantages);
+
+    console.log('character name: ' + characterName);
+    console.log('character advantages' + JSON.stringify(characterAdvantages));
+    console.log('character disadvantages' + characterDisadvantages);
+    // console.log(JSON.stringify(characterAdvantages));
+  }
+
+  const componentRef = useRef();
 
   return (
     <div className="App">
@@ -100,11 +103,10 @@ function App() {
           setCurrentUser={setCurrentUser}
           characterName={characterName}
           setCharacterName={setCharacterName}
-        />{" "}
-        <button onClick={() => read()}> read </button>{" "}
-        <button onClick={reference}> ucr </button>{" "}
-        <h1 className="main-title"> G.C.C.M </h1>{" "}
+        />
+        <h1 className="main-title"> G.C.C.M </h1>
         <button type="button" onClick={getRecord}>Get Record with name Ironman</button>
+        <button onClick={test} >Read Character Record</button>
         <SearchBar
           isChoosingAdvantages={isChoosingAdvantages}
           setSelectedAdvantagesList={setSelectedAdvantagesList}
@@ -119,27 +121,35 @@ function App() {
           setSelectedAdvantagesList={setSelectedAdvantagesList}
           selectedDisadvantagesList={selectedDisadvantagesList}
           setSelectedDisadvantagesList={setSelectedDisadvantagesList}
-        />{" "}
-      </div>{" "}
+        />
+      </div>
+      <div className="toolbar-container">
+          {currentUser && <SaveCharacter
+            saveCharacterHandler={saveCharacterHandler}
+            usersCharacterObject={usersCharacterObject}
+            setUsersCharacterObject={setUsersCharacterObject}
+            characterName={characterName}
+            selectedAdvantagesList={selectedAdvantagesList}
+            setSelectedAdvantagesList={setSelectedAdvantagesList}
+            selectedDisadvantagesList={selectedDisadvantagesList}
+            currentUser={currentUser}
+            usersChoiceReference={usersChoiceReference}
+            setUsersChoiceReference={setUsersChoiceReference}
+          />}
+          <CopyToClipboard />
+          <PrintPDF
+            selectedAdvantagesList={selectedAdvantagesList}
+            selectedDisadvantagesList={selectedDisadvantagesList}
+            componentRef={componentRef}
+          />
+        </div>
       <div className="results-window" id="results">
-        <SaveCharacter
-          saveCharacterHandler={saveCharacterHandler}
-          usersCharacterObject={usersCharacterObject}
-          setUsersCharacterObject={setUsersCharacterObject}
-          characterName={characterName}
-          selectedAdvantagesList={selectedAdvantagesList}
-          setSelectedAdvantagesList={setSelectedAdvantagesList}
-          selectedDisadvantagesList={selectedDisadvantagesList}
-          currentUser={currentUser}
-          usersChoiceReference={usersChoiceReference}
-          setUsersChoiceReference={setUsersChoiceReference}
-        />{" "}
-        <CopyToClipboard />
-        <PrintPDF
+        <ComponentToPrint
           selectedAdvantagesList={selectedAdvantagesList}
           selectedDisadvantagesList={selectedDisadvantagesList}
-        />{" "}
-      </div>{" "}
+          ref={componentRef}
+        />
+      </div>
     </div>
   );
 }
