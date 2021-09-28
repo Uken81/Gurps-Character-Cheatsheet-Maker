@@ -86,35 +86,6 @@ const storeCharacterObject = (advantages, currentUser) => {
 
 }
 
-// const readBack = async(currentUser) => {
-//     const docRef = doc(db, `users/${currentUser.uid}`);
-//     const docSnap = await getDoc(docRef);
-
-//     if (docSnap.exists()) {
-//         console.log("Document data:", docSnap.data());
-//     } else {
-//         // doc.data() will be undefined in this case
-//         console.log("No such document!");
-//     }
-// }
-
-// const loadCharactersAttributes = async(currentUser) => {
-//     const docRef = doc(db, `users/${currentUser.uid}`);
-//     const docSnap2 = await getDoc(docRef);
-
-//     console.log('exists');
-
-//     const docy = docSnap2.data();
-
-//     // let newArr = [];
-
-//     console.log(docy);
-//     // newArr.push(docy);
-//     // console.log({newArr});
-
-//     // return newArr;
-// }
-
 const addNewCharacterForUser = async(userId, newCharacter) => {
     const userCharactersRef = collection(db, 'users', userId, "characters");
     // const charactersRef = collection(userRef, "characters");
@@ -138,6 +109,16 @@ const getMatchingCharactersForUser = async(userId, characterName) => {
       console.log("**** Something Went wrong: ", error);
     }
 }
+
+const getUsersCharactersList = async(userId) => {
+    const userCharactersRef = collection(db, 'users', userId, "characters");
+    const charactersList = await getDocs(userCharactersRef);
+    const usersCharactersList = [];
+
+    charactersList.forEach(doc => usersCharactersList.push(doc.data().name));
+    return usersCharactersList;
+}
+
 export {
     signInWithPopup,
     google,
@@ -149,5 +130,5 @@ export {
     storeCharacterObject,
     addNewCharacterForUser,
     getMatchingCharactersForUser,
-    
+    getUsersCharactersList
 }

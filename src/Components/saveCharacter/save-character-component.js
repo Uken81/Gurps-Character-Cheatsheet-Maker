@@ -1,14 +1,30 @@
-import { useEffect } from "react/cjs/react.development";
-import { storeCharacterObject, loadCharactersAttributes } from "../Firebase/firebase.utils";
-import AdvantagesArray from '../../Attribute Objects/Advantages/Advantages.js';
+import { addNewCharacterForUser } from "../Firebase/firebase.utils";
 
-const SaveCharacter = ({
-    characterName,
-    selectedAdvantagesList,
-    selectedDisadvantagesList,
-    currentUser, usersChoiceReference, setUsersChoiceReference, setSelectedAdvantagesList,
-    saveCharacterHandler
-}) => {
+const SaveCharacter = (selectedAdvantagesList, selectedDisadvantagesList, characterName, currentUser) =>{
+    const saveCharacterHandler = async () => {
+        console.log("****saveCharacterHandler Called");
+        console.log("****selectedAdvantagesList: ", selectedAdvantagesList);
+        console.log("****selectedDisadvantagesList: ", selectedDisadvantagesList);
+        console.log("****characterName: ", characterName);
+
+        // const newCharacter = {
+        //   name: characterName,
+        //   advantages: selectedAdvantagesList.map(({ title }) => title),
+        //   disadvantages: selectedDisadvantagesList.map(({ title }) => title),
+        // };
+        // const currentlyLoggedInUserId = currentUser.uid;
+        // console.log("**** New Character for " + currentlyLoggedInUserId + " is ", newCharacter);
+        // const newCharacterRef = await addNewCharacterForUser(currentlyLoggedInUserId, newCharacter);
+        // console.log("**** newCharacterRef: ", newCharacterRef);
+      };
+
+
+//     characterName,
+//     selectedAdvantagesList,
+//     selectedDisadvantagesList,
+//     currentUser, usersChoiceReference, setUsersChoiceReference, setSelectedAdvantagesList,
+//     saveCharacterHandler
+// }) => {
 
     // const saveCharacter = async () => {
     //     let arr = [];

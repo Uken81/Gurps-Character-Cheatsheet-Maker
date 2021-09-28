@@ -4,9 +4,10 @@ import { SignInButton } from "../SignInAndSignUp/signinButtons";
 
 import './header.styles.scss';
 import { useRef, useState } from "react";
+import LoadCharacter from "../LoadCharacter/LoadCharacter";
 
 
-const Header = ({ currentUser, setCurrentUser, characterName, setCharacterName }) => {
+const Header = ({ currentUser, setCurrentUser, characterName, setCharacterName, setSelectedAdvantagesList, setSelectedDisadvantagesList }) => {
     const [formInput, setForminput] = useState('');
 
     const signout = () => {
@@ -58,12 +59,17 @@ const Header = ({ currentUser, setCurrentUser, characterName, setCharacterName }
                     </label>
 
                 </form>
+                
             </div>
             <div className="sign-in-and-out">
                 {currentUser === null && <SignInButton />}
                 {currentUser !== null && <button className="signout" onClick={() => signout()}>SIGN OUT</button>}
             </div>
-
+            <LoadCharacter 
+            currentUser={currentUser} 
+            setSelectedAdvantagesList={setSelectedAdvantagesList}
+            setSelectedDisadvantagesList={setSelectedDisadvantagesList}
+            />
         </div>
     );
 }
