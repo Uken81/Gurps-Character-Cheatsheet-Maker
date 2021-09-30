@@ -4,6 +4,10 @@
     margin: 0;
 }
 
+.header {
+    background-color: black;
+}
+
 h1 {
     font-size: 3rem;
     text-align: center;
@@ -16,6 +20,10 @@ h1 {
     letter-spacing: 2rem;
     /* text-shadow: 1px 1px bisque; */
     text-shadow: 2px 2px royalblue;
+}
+
+input {
+    min-width: 300px;
 }
 
 .user-interface-window {

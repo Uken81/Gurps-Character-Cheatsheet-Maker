@@ -1,5 +1,4 @@
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import 'bootstrap/dist/css/bootstrap.css';
 import DropdownItem from '@restart/ui/esm/DropdownItem';
 import { getMatchingCharactersForUser, getUsersCharactersList } from '../Firebase/firebase.utils';
 import { useEffect, useState } from 'react';
@@ -33,72 +32,70 @@ const LoadCharacter = (props) => {
 
     const handleClick = (character) => {
         setCharacterToLoad(character);
-        console.log(characterToLoad);       
+        console.log(characterToLoad);
     }
-let records;
-   const getRecord = async(character) => {
-character = characterToLoad;
-    if (characterToLoad !== '') {
-        records = await getMatchingCharactersForUser(currentUser.uid, character);
-        console.log("records: ", records);
-    }
-        
-        
-        return records; 
-   }
-
-
-   const repopulateCharacterAttributes = async () => {
-    const newRecord = await getRecord();
-    if (characterToLoad !== '') {
-        const characterName = newRecord.map((item) => item.name);
-        console.log('character name: ' + characterName);
-    }
-   
-
-    const advantagesRecord = newRecord.flatMap((item) => item.advantages);
-    const characterAdvantages = AdvantagesArray.filter((advantage) => advantagesRecord.includes(advantage.title));
-
-    const disadvantagesRecord = newRecord.flatMap((item) => item.disadvantages);
-    const characterDisadvantages = DisadvantagesArray.filter((disadvantage) => disadvantagesRecord.includes(disadvantage.title));
-
-    setSelectedAdvantagesList(characterAdvantages);
-    setSelectedDisadvantagesList(characterDisadvantages);
-
-    
-    console.log('character advantages' + JSON.stringify(characterAdvantages));
-    console.log('character disadvantages' + characterDisadvantages);
-    
-  }
-
-  useEffect(()=> {
-    async function got() {
+    let records;
+    const getRecord = async (character) => {
+        character = characterToLoad;
         if (characterToLoad !== '') {
-            console.log('rec');
-            console.log(characterToLoad)
-            await getRecord(characterToLoad);
-            await repopulateCharacterAttributes();
+            records = await getMatchingCharactersForUser(currentUser.uid, character);
+            console.log("records: ", records);
         }
-        
+        return records;
     }
-    got();    
-   
-  },[characterToLoad])
+
+
+    const repopulateCharacterAttributes = async () => {
+        const newRecord = await getRecord();
+        if (characterToLoad !== '') {
+            const characterName = newRecord.map((item) => item.name);
+            console.log('character name: ' + characterName);
+        }
+
+
+        const advantagesRecord = newRecord.flatMap((item) => item.advantages);
+        const characterAdvantages = AdvantagesArray.filter((advantage) => advantagesRecord.includes(advantage.title));
+
+        const disadvantagesRecord = newRecord.flatMap((item) => item.disadvantages);
+        const characterDisadvantages = DisadvantagesArray.filter((disadvantage) => disadvantagesRecord.includes(disadvantage.title));
+
+        setSelectedAdvantagesList(characterAdvantages);
+        setSelectedDisadvantagesList(characterDisadvantages);
+
+
+        console.log('character advantages' + JSON.stringify(characterAdvantages));
+        console.log('character disadvantages' + characterDisadvantages);
+
+    }
+
+    useEffect(() => {
+        const loadSelectedCharactersStats = async () => {
+            if (characterToLoad !== '') {
+                console.log('rec');
+                console.log(characterToLoad)
+                await getRecord(characterToLoad);
+                await repopulateCharacterAttributes();
+            }
+
+        }
+        loadSelectedCharactersStats();
+
+    }, [characterToLoad])
 
 
 
-const con = () => {
-  
-    console.log(characterToLoad);
-} 
+    const con = () => {
+
+        console.log(characterToLoad);
+    }
 
 
     return (
-        <DropdownButton id="dropdown-item-button" title="LOAD CHARACTER">
+        <DropdownButton align="end" id="dropdown-item-button" title="LOAD CHARACTER">
             {dropdownList !== [] && dropdownList.map(character => (
                 <DropdownItem
                     key={dropdownList.indexOf(character)}
-                    onClick={()=> handleClick(character)}
+                    onClick={() => handleClick(character)}
                 >
                     {character}
                 </DropdownItem>

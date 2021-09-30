@@ -2,7 +2,6 @@ import { useState } from "react";
 
 import './sign-in.styles.scss';
 
-import { signInWithPopup } from "@firebase/auth";
 import { google } from "../../Firebase/firebase.utils";
 
 

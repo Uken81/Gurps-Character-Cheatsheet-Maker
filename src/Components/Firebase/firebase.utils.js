@@ -52,8 +52,11 @@ provider.setCustomParameters({prompt: 'select_account'});
 
 const auth = getAuth();
 
+
+
 const google = async() => {
     signInWithPopup(auth, provider).then((result) => {
+      
         // This gives you a Google Access Token. You can use it to access the Google
         // API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -61,6 +64,7 @@ const google = async() => {
         // The signed-in user info.
         const user = result.user;
         // ...
+      
     }).catch((error) => {
         // Handle Errors here.
         const errorCode = error.code;
@@ -73,12 +77,12 @@ const google = async() => {
     });
 }
 
-const storeCharacterObject = (advantages, currentUser) => {
+const storeCharacterObject = async(advantages, currentUser) => {
     if (currentUser !== null) {
         console.log('setting character list')
 
         const userRef = doc(db, `users/${currentUser.uid}`);
-        setDoc(userRef, {advantages});
+        await setDoc(userRef, {advantages});
     }
 
     console.log('characters');
