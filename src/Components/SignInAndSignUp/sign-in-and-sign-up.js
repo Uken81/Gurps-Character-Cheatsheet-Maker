@@ -2,6 +2,7 @@ import SignIn from "./SignIn/sign-in-component";
 
 import './sign-in-and-sign-up.scss';
 import Header from "../Header/Header.component";
+import SignUp from "./SignUp/sign-up";
 
 
 const signInAndSignUp = () => (
@@ -9,6 +10,7 @@ const signInAndSignUp = () => (
         <Header />
            <div className='forms'>
            <SignIn />
+           <SignUp />
            </div>
     </div>
 )

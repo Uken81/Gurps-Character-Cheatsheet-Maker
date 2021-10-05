@@ -1,20 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import './sign-in.styles.scss';
 
 import { google } from "../../Firebase/firebase.utils";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 
 const SignIn = () => {
-    const [email, setEmail] = useState('');
+    const [inputs, setInputs] = useState({});
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
 
-    const handleSubmit = event => {
+    const handleChange = e => setInputs(prevState => ({ ...prevState, [e.target.name]: e.target.value }));
+
+    const auth = getAuth();
+    const handleSubmit = async event => {
         event.preventDefault();
-        setEmail('');
-        setPassword('');
+        signInWithEmailAndPassword(auth, email, password)
+
+        setInputs({ email: '', password: ''});
     }
 
+    useEffect(()=> {
+        setEmail(inputs.email);
+        setPassword(inputs.password);
+    },[inputs.email, inputs.password]);
+
+    const con = () => {
+        console.log('inputs: ', inputs);
+        console.log('email: ', email);
+        console.log('pw: ', password);
+    }
 
     return (
         <div className="sign-in">
@@ -26,9 +42,8 @@ const SignIn = () => {
                     Email:
                     <input
                         name='email'
-                        type='email'
-                        label='email'
-                        // handleChange={handleChange}
+                        type='email'                       
+                        onChange={handleChange}
                         value={email}
                         required
                     />
@@ -37,16 +52,16 @@ const SignIn = () => {
                     Password:
                     <input
                         name='password'
-                        value={password}
-                        label='password'
                         type='password'
-                        // handleChange={handleChange}
+                        onChange={handleChange}
+                        value={password}
                         required
                     />
                 </label>
                 <div className="buttons">
-                    <button className="submit">SIGN IN</button>
+                    <button className="submit" onClick={handleSubmit}>SIGN IN</button>
                     <button className="google-sign-in" onClick={() => google()}>SIGN IN WITH GOOGLE</button>
+                    <button onClick={con}>test</button>
                 </div>
             </form>
         </div>

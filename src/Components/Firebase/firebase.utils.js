@@ -77,6 +77,9 @@ const google = async() => {
     });
 }
 
+
+
+
 const storeCharacterObject = async(advantages, currentUser) => {
     if (currentUser !== null) {
         console.log('setting character list')
@@ -134,5 +137,5 @@ export {
     storeCharacterObject,
     addNewCharacterForUser,
     getMatchingCharactersForUser,
-    getUsersCharactersList
+    getUsersCharactersList,
 }

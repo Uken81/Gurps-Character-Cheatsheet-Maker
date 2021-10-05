@@ -15,13 +15,7 @@ import CopyToClipboard from "./Components/CopyToClipboard/CopyToClipboard";
 import { useHistory } from "react-router";
 
 import { onAuthStateChanged } from "firebase/auth";
-import {
-  auth,
-  createUserProfileDocument,
-} from "./Components/Firebase/firebase.utils";
-
-
-
+import { auth, createUserProfileDocument } from "./Components/Firebase/firebase.utils";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
@@ -35,7 +29,7 @@ function App() {
   const [selectedDisadvantagesList, setSelectedDisadvantagesList] = useState([]);
 
   const history = useHistory();
- useEffect(() => {
+  useEffect(() => {
     console.log('app');
     let unsubscribeFromAuth = null;
     unsubscribeFromAuth = onAuthStateChanged(auth, async (userAuth) => {
@@ -52,17 +46,18 @@ function App() {
         unsubscribeFromAuth();
       };
     });
-  },[currentUser]);
+  }, [currentUser]);
 
+  const newCharacter = useRef(null);
   const handleInput = () => {
     const form = newCharacter.current;
     let value = form['new-character'].value;
     setForminput(value);
-}
+  }
 
 
-const newCharacter = useRef(null);
-const handleAddCharacter = (event) => {
+  
+  const handleAddCharacter = (event) => {
     event.preventDefault();
     const form = newCharacter.current;
 
@@ -70,35 +65,33 @@ const handleAddCharacter = (event) => {
     console.log("****value: ", value);
     setCharacterName(value);
     setForminput('');
-}
+  }
 
   const componentRef = useRef();
 
   return (
     <div className="App">
-        <Header
-          currentUser={currentUser}
-          setSelectedAdvantagesList={setSelectedAdvantagesList}
-          setSelectedDisadvantagesList={setSelectedDisadvantagesList}
-          selectedAdvantagesList={selectedAdvantagesList}
-        />
-      <div className="user-interface-window">     
+      <Header
+        currentUser={currentUser}
+        setSelectedAdvantagesList={setSelectedAdvantagesList}
+        setSelectedDisadvantagesList={setSelectedDisadvantagesList}
+        selectedAdvantagesList={selectedAdvantagesList}
+      />
+      <div className="user-interface-window">
         <h1 className="main-title"> G.C.C.M </h1>
         <div className="form">
-                <form className='new-character-form'ref={newCharacter}>
-                  
-                        <input
-                            name='new-character'
-                            label='new-character'
-                            type='text'
-                            placeholder='Enter New Character Name...' 
-                            value={formInput}
-                            onChange={handleInput}
-                        />
-                        <button onClick={handleAddCharacter}>Submit</button>
-                    
-                </form>
-            </div>
+          <form className='new-character-form' ref={newCharacter}>
+            <input
+              name='new-character'
+              label='new-character'
+              type='text'
+              placeholder='Enter New Character Name...'
+              value={formInput}
+              onChange={handleInput}
+            />
+            <button onClick={handleAddCharacter}>Submit</button>
+          </form>
+        </div>
         <SearchBar
           isChoosingAdvantages={isChoosingAdvantages}
           characterName={characterName}
@@ -117,25 +110,25 @@ const handleAddCharacter = (event) => {
         />
       </div>
       <div className="toolbar-container">
-          {currentUser && <SaveCharacter
-            // saveCharacterHandler={saveCharacterHandler}
-            usersCharacterObject={usersCharacterObject}
-            setUsersCharacterObject={setUsersCharacterObject}
-            characterName={characterName}
-            selectedAdvantagesList={selectedAdvantagesList}
-            setSelectedAdvantagesList={setSelectedAdvantagesList}
-            selectedDisadvantagesList={selectedDisadvantagesList}
-            currentUser={currentUser}
-            usersChoiceReference={usersChoiceReference}
-            setUsersChoiceReference={setUsersChoiceReference}
-          />}
-          <CopyToClipboard />
-          <PrintPDF
-            selectedAdvantagesList={selectedAdvantagesList}
-            selectedDisadvantagesList={selectedDisadvantagesList}
-            componentRef={componentRef}
-          />
-        </div>
+        {currentUser && <SaveCharacter
+          // saveCharacterHandler={saveCharacterHandler}
+          usersCharacterObject={usersCharacterObject}
+          setUsersCharacterObject={setUsersCharacterObject}
+          characterName={characterName}
+          selectedAdvantagesList={selectedAdvantagesList}
+          setSelectedAdvantagesList={setSelectedAdvantagesList}
+          selectedDisadvantagesList={selectedDisadvantagesList}
+          currentUser={currentUser}
+          usersChoiceReference={usersChoiceReference}
+          setUsersChoiceReference={setUsersChoiceReference}
+        />}
+        <CopyToClipboard />
+        <PrintPDF
+          selectedAdvantagesList={selectedAdvantagesList}
+          selectedDisadvantagesList={selectedDisadvantagesList}
+          componentRef={componentRef}
+        />
+      </div>
       <div className="results-window" id="results">
         <ComponentToPrint
           selectedAdvantagesList={selectedAdvantagesList}
