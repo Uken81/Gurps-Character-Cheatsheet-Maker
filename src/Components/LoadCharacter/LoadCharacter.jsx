@@ -5,9 +5,12 @@ import { useEffect, useState } from 'react';
 
 import AdvantagesArray from "../../Attribute Objects/Advantages/Advantages";
 import DisadvantagesArray from "../../Attribute Objects/Disadvantages/Disadvantages";
+import { useContext } from 'react';
+import { UserContext } from '../../context';
 
 const LoadCharacter = (props) => {
-    const currentUser = props.currentUser;
+    const { user } = useContext(UserContext);
+
     const setSelectedAdvantagesList = props.setSelectedAdvantagesList;
     const setSelectedDisadvantagesList = props.setSelectedDisadvantagesList;
 
@@ -17,18 +20,17 @@ const LoadCharacter = (props) => {
     useEffect(() => {
         console.log('list');
         const mapUsersCharacterList = async () => {
-            if (currentUser) {
+            if (user) {
                 let tempArr = []
-                const record = await getUsersCharactersList(currentUser.uid);
+                const record = await getUsersCharactersList(user.uid);
                 record.forEach(element => {
                     tempArr.push(element);
                 })
                 setDropdownList(tempArr)
-                // return tempArr;
             }
         }
         mapUsersCharacterList();
-    }, [currentUser]);
+    }, [user]);
 
     const handleClick = (character) => {
         setCharacterToLoad(character);
@@ -38,7 +40,7 @@ const LoadCharacter = (props) => {
     const getRecord = async (character) => {
         character = characterToLoad;
         if (characterToLoad !== '') {
-            records = await getMatchingCharactersForUser(currentUser.uid, character);
+            records = await getMatchingCharactersForUser(user.uid, character);
             console.log("records: ", records);
         }
         return records;
@@ -82,14 +84,6 @@ const LoadCharacter = (props) => {
 
     }, [characterToLoad])
 
-
-
-    const con = () => {
-
-        console.log(characterToLoad);
-    }
-
-
     return (
         <DropdownButton align="end" id="dropdown-item-button" title="LOAD CHARACTER">
             {dropdownList !== [] && dropdownList.map(character => (
@@ -100,8 +94,6 @@ const LoadCharacter = (props) => {
                     {character}
                 </DropdownItem>
             ))}
-            {/* <button onClick={rec}>rec</button> */}
-            <button onClick={con}>con</button>
         </DropdownButton>
     );
 }

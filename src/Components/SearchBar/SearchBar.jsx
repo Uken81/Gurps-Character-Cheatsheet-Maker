@@ -3,7 +3,7 @@ import Select from 'react-select';
 import AdvantagesArray from '../../Attribute Objects/Advantages/Advantages';
 import DisadvantagesArray from '../../Attribute Objects/Disadvantages/Disadvantages';
 
-import './SearchBar.styles.css'
+import './SearchBar.styles.css';
 
 const SearchBar = (props) => {
     const [advantageOptions, setAdvantageOptions] = useState([]);

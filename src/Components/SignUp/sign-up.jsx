@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+
+import '../../Pages/SignInAndSignUp/sign-in-and-sign-up.scss';
 
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
@@ -15,8 +17,12 @@ const SignUp = () => {
 
     const handleSubmit = async event => {
         event.preventDefault();
-        // console.log('event: ', event.email);
-        createUserWithEmailAndPassword(auth, email, password)
+        if (password !== confirmPassword) {
+            alert("passwords don't match");
+            return;
+          }
+      
+        await createUserWithEmailAndPassword(auth, email, password)
 
         setInputs({ displayName: '', email: '', password: '', confirmPassword: '' });
 
@@ -29,15 +35,9 @@ const SignUp = () => {
         setConfirmPassword(inputs.confirmPassword);
     },[inputs.confirmPassword, inputs.displayName, inputs.email, inputs.password]);
 
-    const con = () => {
-        console.log('inputs: ', inputs);
-        console.log('email: ', email);
-        console.log('pw: ', password);
-    }
-
     return (
         <div className='sign-up'>
-            <h2 className='title'>I do not have an account</h2>
+            <h1>I do not have an account</h1>
             <span>Sign up with your email and password</span>
             <form className='sign-up-form' onSubmit={handleSubmit}>
                 <label>
@@ -86,7 +86,6 @@ const SignUp = () => {
                 </label>
 
                 <button type='submit'>SIGN UP</button>
-                <button onClick={con}>con</button>
             </form>
         </div>
     );

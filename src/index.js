@@ -4,20 +4,10 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
 
-import { Route, Switch } from 'react-router-dom';
-import signInAndSignUp from './Components/SignInAndSignUp/sign-in-and-sign-up';
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Switch>
-      <Route exact path='/' component={App}/>
-      <Route path='/sign-in-and-sign-up' component={signInAndSignUp} />
-      <App />
-    </Switch>
-    
-  </BrowserRouter>,
+  <App />,
   document.getElementById('root')
 );
 

@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 
-import './sign-in.styles.scss';
+import '../../Pages/SignInAndSignUp/sign-in-and-sign-up.scss';
 
-import { google } from "../../Firebase/firebase.utils";
+import { google } from "../Firebase/firebase.utils";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-
 
 const SignIn = () => {
     const [inputs, setInputs] = useState({});
@@ -18,31 +17,25 @@ const SignIn = () => {
         event.preventDefault();
         signInWithEmailAndPassword(auth, email, password)
 
-        setInputs({ email: '', password: ''});
+        setInputs({ email: '', password: '' });
     }
 
-    useEffect(()=> {
+    useEffect(() => {
         setEmail(inputs.email);
         setPassword(inputs.password);
-    },[inputs.email, inputs.password]);
-
-    const con = () => {
-        console.log('inputs: ', inputs);
-        console.log('email: ', email);
-        console.log('pw: ', password);
-    }
+    }, [inputs.email, inputs.password]);
 
     return (
         <div className="sign-in">
             <h1>I already have an account</h1>
             <span>Sign in with your email and password</span>
 
-            <form onSubmit={handleSubmit}>
+            <form className="sign-in-form" onSubmit={handleSubmit}>
                 <label>
                     Email:
                     <input
                         name='email'
-                        type='email'                       
+                        type='email'
                         onChange={handleChange}
                         value={email}
                         required
@@ -61,11 +54,9 @@ const SignIn = () => {
                 <div className="buttons">
                     <button className="submit" onClick={handleSubmit}>SIGN IN</button>
                     <button className="google-sign-in" onClick={() => google()}>SIGN IN WITH GOOGLE</button>
-                    <button onClick={con}>test</button>
                 </div>
             </form>
         </div>
-
     );
 }
 
