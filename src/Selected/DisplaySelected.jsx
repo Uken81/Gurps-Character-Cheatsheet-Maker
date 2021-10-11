@@ -1,5 +1,5 @@
-import SelectedAdvantages from "./Selected/SelectedAdvantages"
-import SelectedDisadvantages from "../Selected/Selected/SelectedDisadvantages";
+import SelectedAdvantages from "./Selected Atributes/SelectedAdvantages"
+import SelectedDisadvantages from "./Selected Atributes/SelectedDisadvantages";
 
 import './displaySelected.styles.css';
 
@@ -9,14 +9,18 @@ const DisplaySelected = (props) => {
 
     return (
         <div className='selected-window'>
-            <h1>Selected Advantages</h1>
-            <SelectedAdvantages
-                selectedAdvantagesList={selectedAdvantagesList}
-            />
-            <h1>Selected Disadvantages</h1>
-            <SelectedDisadvantages
-                selectedDisadvantagesList={selectedDisadvantagesList}
-            />
+            <div className="selected-list">
+                <h1 style={{color: 'seagreen'}}>Selected Advantages</h1>
+                <SelectedAdvantages
+                    selectedAdvantagesList={selectedAdvantagesList}
+                />
+            </div>
+            <div className="selected-list">
+                <h1 style={{color: 'red'}}>Selected Disadvantages</h1>
+                <SelectedDisadvantages
+                    selectedDisadvantagesList={selectedDisadvantagesList}
+                />
+            </div>
         </div>
     );
 }

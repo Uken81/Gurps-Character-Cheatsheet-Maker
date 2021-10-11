@@ -1,64 +1,26 @@
-import { useEffect, useState } from 'react';
-
-import './App.css';
-
-import ToggleAdvantageDisadvantage from './Components/ToggleAdvantageDisadvantage/ToggleAdvantageDisadvantage';
-import DisplaySelected from './Selected/DisplaySelected';
-import SearchBar from './Components/SearchBar/SearchBar';
-
-import PrintPDF from './Components/Print PDF/printPDF';
-import CopyToClipboard from './Components/CopyToClipboard/CopyToClipboard';
-
+import { BrowserRouter } from "react-router-dom";
+import { Route, Switch } from 'react-router-dom';
+import HomePage from "./Pages/Home Page/HomePage";
+import signInAndSignUp from "./Pages/SignInAndSignUp/sign-in-and-sign-up";
+import { useState } from "react";
+import { UserContext } from "./context";
+import { useMemo } from "react";
 
 function App() {
-  const [isChoosingAdvantages, setIsChoosingAdvantages] = useState(true);
-  const [selectedAdvantagesList, setSelectedAdvantagesList] = useState([]);
-  const [selectedDisadvantagesList, setSelectedDisadvantagesList] = useState([]);
+  const [user, setUser] = useState(null);
 
-  //Would this effect be better placed in Display Results? If so should it be in a seperate component?
-  useEffect(() => {
-    const displayResultsWindow = () => {
-      const resultsWindow = document.getElementById('results');
-      if (selectedAdvantagesList.length || selectedDisadvantagesList.length > 0) {
-        resultsWindow.style.display = 'block';
-      } else {
-        resultsWindow.style.display = 'none';
-      }
-    }
-    displayResultsWindow();
-  }, [selectedAdvantagesList, selectedDisadvantagesList]);
-
+  const value = useMemo(() => ({ user, setUser }), [user, setUser]);
 
   return (
-    <div className="App">
-      <div className='user-selection-window'>
-        <ToggleAdvantageDisadvantage
-          isChoosingAdvantages={isChoosingAdvantages}
-          setIsChoosingAdvantages={setIsChoosingAdvantages}
-        />
-
-        <SearchBar
-          isChoosingAdvantages={isChoosingAdvantages}
-          setSelectedAdvantagesList={setSelectedAdvantagesList}
-          setSelectedDisadvantagesList={setSelectedDisadvantagesList}
-        />
-
-        <DisplaySelected
-          selectedAdvantagesList={selectedAdvantagesList}
-          setSelectedAdvantagesList={setSelectedAdvantagesList}
-          selectedDisadvantagesList={selectedDisadvantagesList}
-          setSelectedDisadvantagesList={setSelectedDisadvantagesList}
-        />
-      </div>
-      <div className='results-window' id='results'>
-        <CopyToClipboard />
-        <PrintPDF
-          selectedAdvantagesList={selectedAdvantagesList}
-          selectedDisadvantagesList={selectedDisadvantagesList}
-        />
-      </div>
-    </div>
-  );
+    <BrowserRouter>
+      <Switch>
+        <UserContext.Provider value={value}>
+          <Route exact path='/' component={HomePage} />
+          <Route path='/sign-in-and-sign-up' component={signInAndSignUp} />
+        </UserContext.Provider>
+      </Switch>
+    </BrowserRouter >
+  )
 }
 
 export default App;

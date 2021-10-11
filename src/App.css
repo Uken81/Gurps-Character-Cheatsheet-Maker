@@ -1,33 +1,9 @@
 * {
     list-style: none;
+    text-decoration: none;
+    margin: 0;
 }
 
-h1 {
-    font-size: 3rem;
-    text-align: center;
-}
-
-.user-selection-window {
-    display: flex;
-    flex-direction: column;
-    background-color: black;
-    color: whitesmoke;
-    list-style: none;
-    align-items: center;
-}
-
-h2 {
-    font-size: 4rem;
-    text-align: center;
-    text-shadow: whitesmoke 5px 2px;
-}
-
-h3 {
-    font-size: 6rem;
-    text-align: center;
-    text-shadow: darkgray 3px 2px;
-}
-
-button:hover {
-    cursor: pointer;
+.user-interface-window {
+    height: 90vh;
 }

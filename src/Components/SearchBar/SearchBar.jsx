@@ -3,13 +3,14 @@ import Select from 'react-select';
 import AdvantagesArray from '../../Attribute Objects/Advantages/Advantages';
 import DisadvantagesArray from '../../Attribute Objects/Disadvantages/Disadvantages';
 
-import './SearchBar.styles.css'
+import './SearchBar.styles.css';
 
 const SearchBar = (props) => {
     const [advantageOptions, setAdvantageOptions] = useState([]);
     const [disadvantageOptions, setDisadvantageOptions] = useState([]);
 
     const isChoosingAdvantages = props.isChoosingAdvantages;
+    const characterName = props.characterName;
     const setSelectedAdvantagesList = props.setSelectedAdvantagesList;
     const setSelectedDisadvantagesList = props.setSelectedDisadvantagesList;
 
@@ -42,7 +43,10 @@ const SearchBar = (props) => {
 
     return (  
         <div className='searchbar-container'>
-            <h1>Select your Characters {isChoosingAdvantages ? 'Advantages' : 'Disadvantages'}</h1>
+           {characterName === '' && 
+           <h1>Select your Characters {isChoosingAdvantages ? 'ADVANTAGES' : 'DISADVANTAGES'}</h1>}
+           {characterName !== '' && 
+           <h1>SELECT {characterName.toUpperCase()}'S {isChoosingAdvantages ? 'ADVANTAGES' : 'DISADVANTAGES'}</h1>}
             <Select
                 className='searchBar'
                 options={isChoosingAdvantages ? advantageOptions : disadvantageOptions}

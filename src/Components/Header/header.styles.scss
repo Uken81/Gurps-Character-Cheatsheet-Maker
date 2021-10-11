@@ -1,0 +1,16 @@
+.header {
+  // align-self: flex-end;
+  display: flex;
+  justify-content: flex-end;
+  background-color: black;
+
+  #sign-out {
+    height: 50px;
+    width: 50px;
+    background-image: url("../../Assets/Images/depositphotos_66251761-stock-photo-logout-circular-icon-on-white.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: none;
+    margin-right: 1%;
+  }
+}

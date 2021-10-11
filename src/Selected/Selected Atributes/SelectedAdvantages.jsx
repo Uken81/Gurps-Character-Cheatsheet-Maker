@@ -3,11 +3,12 @@ const SelectedAdvantages = (props) => {
 
     return (
         <ul>
-            {selectedAdvantagesList.map(({title}) => {
+            {selectedAdvantagesList.map(({ title }) => {
                 return (
                     <li
-                        className='selected'
+                        className='selected-advantages'
                         key={`${title}-selected`}
+                        style={{color: 'seagreen'}}
                     >
                         {title}
                     </li>

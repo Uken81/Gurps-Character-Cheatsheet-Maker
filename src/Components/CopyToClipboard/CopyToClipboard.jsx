@@ -26,7 +26,7 @@ const CopyToClipboard = () => {
     }
 
     return (
-        <div className='button-container'>
+        <div className="button-container">
             <button className='tool-button' onClick={copyToClipboard}>Copy To Clipboard</button>
         </div>
 
