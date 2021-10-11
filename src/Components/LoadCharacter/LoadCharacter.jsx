@@ -11,6 +11,7 @@ import { UserContext } from '../../context';
 const LoadCharacter = (props) => {
     const { user } = useContext(UserContext);
 
+    const setCharacterName = props.setCharacterName;
     const setSelectedAdvantagesList = props.setSelectedAdvantagesList;
     const setSelectedDisadvantagesList = props.setSelectedDisadvantagesList;
 
@@ -18,7 +19,6 @@ const LoadCharacter = (props) => {
     const [characterToLoad, setCharacterToLoad] = useState('');
 
     useEffect(() => {
-        console.log('list');
         const mapUsersCharacterList = async () => {
             if (user) {
                 let tempArr = []
@@ -34,7 +34,7 @@ const LoadCharacter = (props) => {
 
     const handleClick = (character) => {
         setCharacterToLoad(character);
-        console.log(characterToLoad);
+        console.log('Loading ', character);
     }
     let records;
     const getRecord = async (character) => {
@@ -49,11 +49,9 @@ const LoadCharacter = (props) => {
 
     const repopulateCharacterAttributes = async () => {
         const newRecord = await getRecord();
-        if (characterToLoad !== '') {
-            const characterName = newRecord.map((item) => item.name);
-            console.log('character name: ' + characterName);
-        }
 
+        const characterNameRecord = newRecord.flatMap((item) => item.name);
+        const characterName = characterNameRecord[0];
 
         const advantagesRecord = newRecord.flatMap((item) => item.advantages);
         const characterAdvantages = AdvantagesArray.filter((advantage) => advantagesRecord.includes(advantage.title));
@@ -63,11 +61,7 @@ const LoadCharacter = (props) => {
 
         setSelectedAdvantagesList(characterAdvantages);
         setSelectedDisadvantagesList(characterDisadvantages);
-
-
-        console.log('character advantages' + JSON.stringify(characterAdvantages));
-        console.log('character disadvantages' + characterDisadvantages);
-
+        setCharacterName(characterName);
     }
 
     useEffect(() => {
@@ -82,6 +76,7 @@ const LoadCharacter = (props) => {
         }
         loadSelectedCharactersStats();
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [characterToLoad])
 
     return (

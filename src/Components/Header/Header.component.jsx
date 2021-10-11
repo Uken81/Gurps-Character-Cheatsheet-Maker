@@ -3,7 +3,6 @@ import { auth } from "../Firebase/firebase.utils";
 import { BackFromSignIn, SignInButton } from "../SignInButtons/signinButtons";
 
 import './header.styles.scss';
-import { useEffect } from "react";
 import LoadCharacter from "../LoadCharacter/LoadCharacter";
 import { useLocation } from "react-router";
 import { useContext } from "react";
@@ -27,29 +26,18 @@ const Header = (props) => {
 
     }
 
-    useEffect(() => {
-        console.log('location: ', location.pathname)
-    }, [location.pathname])
-
     return (
         <div className="header">
-            <div className="sign-in-page">
+          
                 {(location.pathname !== '/sign-in-and-sign-up' & !user) &&
                     <SignInButton />}
-                {user && <button className="signout" onClick={() => signout()}></button>}
-            </div>
+                {user && <button  id='sign-out' onClick={() => signout()}></button>}
+            
 
-            {user &&
-                <div className="load-character">
-                    <LoadCharacter
-                        user={user}
-                        setSelectedAdvantagesList={setSelectedAdvantagesList}
-                        setSelectedDisadvantagesList={setSelectedDisadvantagesList}
-                    />
-                </div>
-            }
+        
             {(location.pathname === '/sign-in-and-sign-up') &&
                 <BackFromSignIn />}
+           
         </div>
     );
 }

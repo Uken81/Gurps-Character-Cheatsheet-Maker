@@ -4,4 +4,6 @@
     margin: 0;
 }
 
-
+.user-interface-window {
+    height: 90vh;
+}

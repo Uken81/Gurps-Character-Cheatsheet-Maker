@@ -2,7 +2,7 @@ import './sign-in-and-sign-up';
 
 import Header from "../../Components/Header/Header.component";
 import SignIn from "../../Components/SignIn/sign-in-component";
-import SignUp from "../../Components/SignUp/sign-up";
+import SignUp from "../../Components/SignUp/sign-up-component";
 
 const signInAndSignUp = () => (
     <div className="sign-in-and-sign-up">

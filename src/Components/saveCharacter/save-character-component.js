@@ -9,23 +9,33 @@ const SaveCharacter = (props) => {
     const selectedDisadvantagesList = props.selectedDisadvantagesList;
     const characterName = props.characterName;
 
+    
     const saveCharacterHandler = async () => {
-        console.log("****saveCharacterHandler Called");
-        console.log("****selectedAdvantagesList: ", selectedAdvantagesList);
-        console.log("****selectedDisadvantagesList: ", selectedDisadvantagesList);
-        console.log("****characterName: ", characterName);
-        let newCharacter;
+        if ((selectedAdvantagesList.length > 0 || selectedDisadvantagesList.length > 0) & (characterName !== "")) {
+            console.log("****saveCharacterHandler Called");
+            console.log("****selectedAdvantagesList: ", selectedAdvantagesList);
+            console.log("****selectedDisadvantagesList: ", selectedDisadvantagesList);
+            console.log(`****${characterName} has been saved`);
 
-        newCharacter = {
-            name: characterName,
-            advantages: selectedAdvantagesList.map(({ title }) => title),
-            disadvantages: selectedDisadvantagesList.map(({ title }) => title)
-        };
-
-        const currentlyLoggedInUserId = user.uid;
-        console.log("**** New Character for " + currentlyLoggedInUserId + " is ", newCharacter);
-        const newCharacterRef = await addNewCharacterForUser(currentlyLoggedInUserId, newCharacter);
-        console.log("**** newCharacterRef: ", newCharacterRef);
+            let newCharacter;
+            newCharacter = {
+                name: characterName,
+                advantages: selectedAdvantagesList.map(({ title }) => title),
+                disadvantages: selectedDisadvantagesList.map(({ title }) => title)
+            };
+    
+            const currentlyLoggedInUserId = user.uid;
+            console.log("**** New Character for " + currentlyLoggedInUserId + " is ", newCharacter);
+            const newCharacterRef = await addNewCharacterForUser(currentlyLoggedInUserId, newCharacter);
+            console.log("**** newCharacterRef: ", newCharacterRef);
+            window.location.reload();
+        } else if (characterName !== '') {
+            console.log('save fail');            
+            alert('You must select at least one Advantage or Disadvantage')
+        } else {
+            console.log('save fail');
+            alert('You must select a name for your character in order to save')
+        }  
     };
 
     return (

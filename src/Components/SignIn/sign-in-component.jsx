@@ -15,7 +15,7 @@ const SignIn = () => {
     const auth = getAuth();
     const handleSubmit = async event => {
         event.preventDefault();
-        signInWithEmailAndPassword(auth, email, password)
+        await signInWithEmailAndPassword(auth, email, password)
 
         setInputs({ email: '', password: '' });
     }
@@ -30,27 +30,25 @@ const SignIn = () => {
             <h1>I already have an account</h1>
             <span>Sign in with your email and password</span>
 
-            <form className="sign-in-form" onSubmit={handleSubmit}>
-                <label>
-                    Email:
+            <form className="sign-in-form" onSubmit={handleSubmit}>           
                     <input
                         name='email'
                         type='email'
                         onChange={handleChange}
+                        placeholder='Email'
                         value={email}
                         required
                     />
-                </label>
-                <label>
-                    Password:
+       
                     <input
                         name='password'
                         type='password'
                         onChange={handleChange}
+                        placeholder='Password'
                         value={password}
                         required
                     />
-                </label>
+           
                 <div className="buttons">
                     <button className="submit" onClick={handleSubmit}>SIGN IN</button>
                     <button className="google-sign-in" onClick={() => google()}>SIGN IN WITH GOOGLE</button>

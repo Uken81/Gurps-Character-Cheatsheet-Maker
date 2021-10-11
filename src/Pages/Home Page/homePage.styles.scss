@@ -46,6 +46,11 @@ button:hover {
     justify-content: center;
     flex-direction: row;
     background-color: black;
+
+     .save-load-characters{
+         display: flex;
+         flex-direction: row;
+     }
 }
 
 .tool-button {

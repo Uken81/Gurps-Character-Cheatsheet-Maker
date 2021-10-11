@@ -4,7 +4,7 @@ import {getFirestore, collection} from 'firebase/firestore';
 import {doc, setDoc, getDoc, getDocs, addDoc, where, query} from "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDAz2HJffqgqAjIbnXvc5GxHc7_10-sV0A",
+    apiKey: process.env.REACT_APP_SECRET_KEY,
     authDomain: "gccm-35118.firebaseapp.com",
     projectId: "gccm-35118",
     storageBucket: "gccm-35118.appspot.com",
@@ -18,11 +18,10 @@ const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
 const usersCollectionRef = collection(db, 'users');
 
-const createUserProfileDocument = async(userAuth, aditionalData) => {
+const createUserProfileDocument = async(userAuth) => {
     if (!userAuth) 
         return;
     const userRef = doc(db, `users/${userAuth.uid}`);
-    console.log(userAuth.uid);
     const docSnap = await getDoc(userRef);
 
     if (!docSnap.exists()) {
@@ -32,17 +31,16 @@ const createUserProfileDocument = async(userAuth, aditionalData) => {
         try {
             await setDoc(userRef, {
                 displayName, email, createdAt,
-                // ...additionalData
             });
         } catch (error) {
             console.log('error creating user', error.message);
         }
     }
-    console.log('test');
-    console.log(userRef);
-    console.log(docSnap.exists());
-    console.log(docSnap.data());
-    console.log(userAuth.uid);
+    console.log('CreateUserProfileDocument/FireBase.Utils');
+    console.log('userRef: ',userRef);
+    console.log('docSnap exist: ',docSnap.exists());
+    console.log('docData: ',docSnap.data());
+    console.log('UID: ',userAuth.uid);
     return userRef;
 
 }
@@ -95,10 +93,11 @@ const storeCharacterObject = async(advantages, currentUser) => {
 
 const addNewCharacterForUser = async(userId, newCharacter) => {
     const userCharactersRef = collection(db, 'users', userId, "characters");
-    // const charactersRef = collection(userRef, "characters");
+
     try {
       const newCharacterRef = await addDoc(userCharactersRef, newCharacter);
       return newCharacterRef;
+
     } catch(error) {
       console.log("**** Something Went wrong: ", error);
     }
@@ -112,6 +111,7 @@ const getMatchingCharactersForUser = async(userId, characterName) => {
       const matchingCharacters = [];
       matchingCharactersSnapshot.forEach(doc => matchingCharacters.push(doc.data()));
       return matchingCharacters;
+      
     } catch(error) {
       console.log("**** Something Went wrong: ", error);
     }
