@@ -7,20 +7,19 @@ import "../../Display Results/DisplayResults.styles.css";
 import "./homePage.styles.scss";
 
 import Header from "../../Components/Header/Header.component";
-import ToggleAdvantageDisadvantage from "../../Components/ToggleAdvantageDisadvantage/ToggleAdvantageDisadvantage";
 import DisplaySelected from "../../Selected/DisplaySelected";
 import SearchBar from "../../Components/SearchBar/SearchBar";
-import SaveCharacter from "../../Components/SaveCharacter/save-character-component";
+import SaveCharacter from "../../Components/Toolbar/saveCharacter/save-character-component";
 import ComponentToPrint from "../../Display Results/ComponentToPrint";
 
-import PrintPDF from "../../Components/Print PDF/printPDF";
-import CopyToClipboard from "../../Components/CopyToClipboard/CopyToClipboard";
+import PrintPDF from "../../Components/Toolbar/Print PDF/printPDF";
+import CopyToClipboard from "../../Components/Toolbar/CopyToClipboard/CopyToClipboard";
 import { useHistory } from "react-router";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, createUserProfileDocument } from "../../Components/Firebase/firebase.utils";
 import { UserContext } from "../../context";
-import LoadCharacter from "../../Components/LoadCharacter/LoadCharacter";
+import LoadCharacter from "../../Components/Toolbar/LoadCharacter/LoadCharacter";
 
 
 const HomePage = () => {
@@ -28,7 +27,6 @@ const HomePage = () => {
   const [characterName, setCharacterName] = useState("");
   const [formInput, setForminput] = useState('');
 
-  const [isChoosingAdvantages, setIsChoosingAdvantages] = useState(true);
   const [selectedAdvantagesList, setSelectedAdvantagesList] = useState([]);
   const [selectedDisadvantagesList, setSelectedDisadvantagesList] = useState([]);
   
@@ -76,14 +74,13 @@ const HomePage = () => {
   return (
     <div className="App">
       <Header
-        setSelectedAdvantagesList={setSelectedAdvantagesList}
-        setSelectedDisadvantagesList={setSelectedDisadvantagesList}
+        // setSelectedAdvantagesList={setSelectedAdvantagesList}
+        // setSelectedDisadvantagesList={setSelectedDisadvantagesList}
       />
 
       <div className="user-interface-window">
         <h1 className="main-title"> G.C.C.M </h1>
         {/* <button onClick={con}>cony</button> */}
-
 
         <div className="form">
           <form className='new-character-form' ref={newCharacter}>
@@ -98,18 +95,15 @@ const HomePage = () => {
             <button onClick={handleAddCharacter}>Submit</button>
           </form>
         </div>
-
+       
         <SearchBar
-          isChoosingAdvantages={isChoosingAdvantages}
+          // isChoosingAdvantages={isChoosingAdvantages}
+          // setIsChoosingAdvantages={setIsChoosingAdvantages}
           characterName={characterName}
           setSelectedAdvantagesList={setSelectedAdvantagesList}
           setSelectedDisadvantagesList={setSelectedDisadvantagesList}
         />
 
-        <ToggleAdvantageDisadvantage
-          isChoosingAdvantages={isChoosingAdvantages}
-          setIsChoosingAdvantages={setIsChoosingAdvantages}
-        />
         <DisplaySelected
           selectedAdvantagesList={selectedAdvantagesList}
           setSelectedAdvantagesList={setSelectedAdvantagesList}

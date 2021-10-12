@@ -1,0 +1,31 @@
+.toggle-window {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  margin-top: 5%;
+
+  p {
+    margin-right: 10px;
+  }
+}
+
+.toggle-buttons {
+  font-weight: bold;
+  width: 10rem;
+  height: 2rem;
+  border: 2.5px outset white;
+  border-radius: 2%;
+//   margin-top: 3%;
+}
+
+/* .toggle-disadvantage-section {
+    padding-left: 10%;
+} */
+
+/* #toggle-advantage {
+    background-color: whitesmoke;
+}
+
+#toggle-disadvantage {
+    background-color: darkgray;
+} */

@@ -1,4 +1,4 @@
-import './Toggle.styles.css';
+import './Toggle.styles.scss';
 
 const ToggleAdvantageDisadvantage = (props) => {
     const isChoosingAdvantages = props.isChoosingAdvantages;
@@ -9,8 +9,8 @@ const ToggleAdvantageDisadvantage = (props) => {
 
     return (
         <div className='toggle-window'>
+          <p>CHOOSE FROM</p>
             <div className='toggle-advantage-section'>
-                <p>CHOOSE FROM</p>
                 <button
                     className='toggle-buttons'
                     id='toggle-advantage'
@@ -21,7 +21,6 @@ const ToggleAdvantageDisadvantage = (props) => {
                 </button >
             </div>
             <div className='toggle-disadvantage-section'>
-                <p>CHOOSE FROM</p>
                 <button
                     className='toggle-buttons'
                     id='toggle-disadvantage'

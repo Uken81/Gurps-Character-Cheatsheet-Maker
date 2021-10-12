@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { UserContext } from "../../context";
-import { addNewCharacterForUser } from "../Firebase/firebase.utils";
+import { UserContext } from "../../../context";
+import { addNewCharacterForUser } from "../../Firebase/firebase.utils";
 
 const SaveCharacter = (props) => {
     const {user} = useContext(UserContext);

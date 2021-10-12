@@ -1,12 +1,14 @@
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import DropdownItem from '@restart/ui/esm/DropdownItem';
-import { getMatchingCharactersForUser, getUsersCharactersList } from '../Firebase/firebase.utils';
+import { getMatchingCharactersForUser, getUsersCharactersList } from '../../Firebase/firebase.utils';
 import { useEffect, useState } from 'react';
 
-import AdvantagesArray from "../../Attribute Objects/Advantages/Advantages";
-import DisadvantagesArray from "../../Attribute Objects/Disadvantages/Disadvantages";
+import './loadCharacter.styles.scss';
+
+import AdvantagesArray from "../../../Attribute Objects/Advantages/Advantages";
+import DisadvantagesArray from "../../../Attribute Objects/Disadvantages/Disadvantages";
 import { useContext } from 'react';
-import { UserContext } from '../../context';
+import { UserContext } from '../../../context';
 
 const LoadCharacter = (props) => {
     const { user } = useContext(UserContext);
@@ -80,9 +82,11 @@ const LoadCharacter = (props) => {
     }, [characterToLoad])
 
     return (
-        <DropdownButton align="end" id="dropdown-item-button" title="LOAD CHARACTER">
+        <DropdownButton className="dropdown-button" id="dropdown-item-button" title={`LOAD CHARACTER`}>
             {dropdownList !== [] && dropdownList.map(character => (
-                <DropdownItem
+                <DropdownItem 
+                    // as="button"
+                    className="dropdown-link"
                     key={dropdownList.indexOf(character)}
                     onClick={() => handleClick(character)}
                 >
