@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import '../../Pages/SignInAndSignUp/sign-in-and-sign-up.scss';
+import '../../../Pages/SignInAndSignUp/sign-in-and-sign-up.scss';
 
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useHistory } from "react-router";

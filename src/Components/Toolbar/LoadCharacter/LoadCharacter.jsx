@@ -32,7 +32,7 @@ const LoadCharacter = (props) => {
             }
         }
         mapUsersCharacterList();
-    }, [user]);
+    });
 
     const handleClick = (character) => {
         setCharacterToLoad(character);

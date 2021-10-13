@@ -1,6 +1,6 @@
 import { signOut } from "firebase/auth";
 import { auth } from "../Firebase/firebase.utils";
-import { BackFromSignIn, SignInButton } from "../SignInButtons/signinButtons";
+import { BackFromSignIn, SignInButton } from "../SignInAndSignUp/SignInButtons/signinButtons";
 
 import './header.styles.scss';
 
@@ -23,9 +23,9 @@ const Header = () => {
 
     return (
         <div className="header">
-            {location.pathname !== '/sign-in-and-sign-up' & !user ? <SignInButton /> : <BackFromSignIn />}
-                
-            {user && <button id='sign-out' onClick={() => signout()}></button>}  
+            {location.pathname !== '/sign-in-and-sign-up' & !user ? <SignInButton /> : null}
+            {user && <button id='sign-out' onClick={signout}></button>}
+            {location.pathname === '/sign-in-and-sign-up' && <BackFromSignIn />}
         </div>
     );
 }

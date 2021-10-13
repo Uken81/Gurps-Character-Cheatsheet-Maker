@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
-import '../../Pages/SignInAndSignUp/sign-in-and-sign-up.scss';
+import '../../../Pages/SignInAndSignUp/sign-in-and-sign-up.scss';
 
-import { google } from "../Firebase/firebase.utils";
+import { google } from "../../Firebase/firebase.utils";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const SignIn = () => {

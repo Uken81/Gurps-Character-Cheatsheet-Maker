@@ -4,14 +4,16 @@ import AdvantagesArray from '../../Attribute Objects/Advantages/Advantages';
 import DisadvantagesArray from '../../Attribute Objects/Disadvantages/Disadvantages';
 import ToggleAdvantageDisadvantage from '../ToggleAdvantageDisadvantage/ToggleAdvantageDisadvantage';
 
-import './SearchBar.styles.css';
+import './SearchBar.styles.scss';
 
 const SearchBar = (props) => {
     const [advantageOptions, setAdvantageOptions] = useState([]);
     const [disadvantageOptions, setDisadvantageOptions] = useState([]);
-    const [isChoosingAdvantages, setIsChoosingAdvantages] = useState(true);
 
-    // const isChoosingAdvantages = props.isChoosingAdvantages;
+    const selectInputValue = props.selectInputValue;
+    const setSelectInputValue = props.setSelectInputValue;
+    const isChoosingAdvantages = props.isChoosingAdvantages;
+    const setIsChoosingAdvantages = props.setIsChoosingAdvantages;
     const characterName = props.characterName;
     const setSelectedAdvantagesList = props.setSelectedAdvantagesList;
     const setSelectedDisadvantagesList = props.setSelectedDisadvantagesList;
@@ -26,9 +28,8 @@ const SearchBar = (props) => {
         createSearchOptions();
     }, []);
 
-
-
     const handleChange = (event) => {
+        setSelectInputValue(event.value)
         let adsArr = [];
         let disadsArr = [];
         console.log(event);
@@ -45,17 +46,19 @@ const SearchBar = (props) => {
 
     return (
         <div className='searchbar-container'>
-            {characterName === '' &&
-                <h1>Select your Characters {isChoosingAdvantages ? 'ADVANTAGES' : 'DISADVANTAGES'}</h1>}
+            {characterName === '' ?
+                <h1>Select your Characters {isChoosingAdvantages ? 'Advantages' : 'Disadvantages'}</h1>
+                :
+                <h1>SELECT {characterName.toUpperCase()}'S {isChoosingAdvantages ? 'Advantages' : 'Disadvantages'}</h1>}
             <ToggleAdvantageDisadvantage
                 isChoosingAdvantages={isChoosingAdvantages}
                 setIsChoosingAdvantages={setIsChoosingAdvantages}
             />
-            {characterName !== '' &&
-                <h1>SELECT {characterName.toUpperCase()}'S {isChoosingAdvantages ? 'ADVANTAGES' : 'DISADVANTAGES'}</h1>}
+
             <Select
                 className='searchBar'
                 options={isChoosingAdvantages ? advantageOptions : disadvantageOptions}
+                value={selectInputValue}
                 isMulti
                 onChange={handleChange}
                 formatOptionLabel={formatOptionLabel}

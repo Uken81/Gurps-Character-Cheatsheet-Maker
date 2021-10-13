@@ -8,7 +8,6 @@ const SaveCharacter = (props) => {
     const selectedAdvantagesList = props.selectedAdvantagesList;
     const selectedDisadvantagesList = props.selectedDisadvantagesList;
     const characterName = props.characterName;
-
     
     const saveCharacterHandler = async () => {
         if ((selectedAdvantagesList.length > 0 || selectedDisadvantagesList.length > 0) & (characterName !== "")) {
@@ -28,7 +27,7 @@ const SaveCharacter = (props) => {
             console.log("**** New Character for " + currentlyLoggedInUserId + " is ", newCharacter);
             const newCharacterRef = await addNewCharacterForUser(currentlyLoggedInUserId, newCharacter);
             console.log("**** newCharacterRef: ", newCharacterRef);
-            window.location.reload();
+
         } else if (characterName !== '') {
             console.log('save fail');            
             alert('You must select at least one Advantage or Disadvantage')

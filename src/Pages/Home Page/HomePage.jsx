@@ -20,16 +20,19 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth, createUserProfileDocument } from "../../Components/Firebase/firebase.utils";
 import { UserContext } from "../../context";
 import LoadCharacter from "../../Components/Toolbar/LoadCharacter/LoadCharacter";
+import ResetCharacter from "../../Components/Toolbar/ResetCharacter/ResetCharacter";
 
 
 const HomePage = () => {
   const { user, setUser } = useContext(UserContext);
   const [characterName, setCharacterName] = useState("");
   const [formInput, setForminput] = useState('');
+  const [selectInputValue, setSelectInputValue] = useState([]);
 
+  const [isChoosingAdvantages, setIsChoosingAdvantages] = useState(true);
   const [selectedAdvantagesList, setSelectedAdvantagesList] = useState([]);
   const [selectedDisadvantagesList, setSelectedDisadvantagesList] = useState([]);
-  
+
   const history = useHistory();
   useEffect(() => {
     let unsubscribeFromAuth = null;
@@ -73,32 +76,17 @@ const HomePage = () => {
 
   return (
     <div className="App">
-      <Header
-        // setSelectedAdvantagesList={setSelectedAdvantagesList}
-        // setSelectedDisadvantagesList={setSelectedDisadvantagesList}
-      />
+      <Header />
 
       <div className="user-interface-window">
         <h1 className="main-title"> G.C.C.M </h1>
         {/* <button onClick={con}>cony</button> */}
 
-        <div className="form">
-          <form className='new-character-form' ref={newCharacter}>
-            <input
-              name='new-character'
-              label='new-character'
-              type='text'
-              placeholder='Enter New Character Name...'
-              value={formInput}
-              onChange={handleInput}
-            />
-            <button onClick={handleAddCharacter}>Submit</button>
-          </form>
-        </div>
-       
         <SearchBar
-          // isChoosingAdvantages={isChoosingAdvantages}
-          // setIsChoosingAdvantages={setIsChoosingAdvantages}
+          selectInputValue={selectInputValue}
+          setSelectInputValue={setSelectInputValue}
+          isChoosingAdvantages={isChoosingAdvantages}
+          setIsChoosingAdvantages={setIsChoosingAdvantages}
           characterName={characterName}
           setSelectedAdvantagesList={setSelectedAdvantagesList}
           setSelectedDisadvantagesList={setSelectedDisadvantagesList}
@@ -112,6 +100,12 @@ const HomePage = () => {
         />
 
         <div className="toolbar-container">
+          <ResetCharacter
+            setSelectInputValue={setSelectInputValue}
+            setCharacterName={setCharacterName}
+            setSelectedAdvantagesList={setSelectedAdvantagesList}
+            setSelectedDisadvantagesList={setSelectedDisadvantagesList}
+          />
           {user && <div className="save-load-characters">
             <LoadCharacter
               user={user}
@@ -135,6 +129,19 @@ const HomePage = () => {
             selectedDisadvantagesList={selectedDisadvantagesList}
             componentRef={componentRef}
           />
+        </div>
+        <div className="form">
+          <form className='new-character-form' ref={newCharacter}>
+            <input
+              name='new-character'
+              label='new-character'
+              type='text'
+              placeholder='Enter New Character Name...'
+              value={formInput}
+              onChange={handleInput}
+            />
+            <button onClick={handleAddCharacter}>Submit</button>
+          </form>
         </div>
       </div>
       <div className="results-window" id="results">
