@@ -14,6 +14,7 @@ const LoadCharacter = (props) => {
     const { user } = useContext(UserContext);
 
     const setCharacterName = props.setCharacterName;
+    const setCurrentCharacterId = props.setCurrentCharacterId;
     const setSelectedAdvantagesList = props.setSelectedAdvantagesList;
     const setSelectedDisadvantagesList = props.setSelectedDisadvantagesList;
 
@@ -36,24 +37,23 @@ const LoadCharacter = (props) => {
 
     const handleClick = (character) => {
         setCharacterToLoad(character);
-        console.log('Loading ', character);
     }
+
     let records;
     const getRecord = async (character) => {
         character = characterToLoad;
         if (characterToLoad !== '') {
             records = await getMatchingCharactersForUser(user.uid, character);
-            console.log("records: ", records);
         }
         return records;
     }
-
 
     const repopulateCharacterAttributes = async () => {
         const newRecord = await getRecord();
 
         const characterNameRecord = newRecord.flatMap((item) => item.name);
         const characterName = characterNameRecord[0];
+        console.log('****Loading ', characterName);
 
         const advantagesRecord = newRecord.flatMap((item) => item.advantages);
         const characterAdvantages = AdvantagesArray.filter((advantage) => advantagesRecord.includes(advantage.title));
@@ -64,17 +64,24 @@ const LoadCharacter = (props) => {
         setSelectedAdvantagesList(characterAdvantages);
         setSelectedDisadvantagesList(characterDisadvantages);
         setCharacterName(characterName);
+        console.log(`****${characterName} successfully loaded`);
+    }
+
+    const repopulateCurrentCharacterId = async () => {
+        const newRecord = await getRecord();
+        const characterId = await newRecord[0].id;
+
+        await setCurrentCharacterId(characterId);
     }
 
     useEffect(() => {
+
         const loadSelectedCharactersStats = async () => {
             if (characterToLoad !== '') {
-                console.log('rec');
-                console.log(characterToLoad)
                 await getRecord(characterToLoad);
                 await repopulateCharacterAttributes();
+                await repopulateCurrentCharacterId();
             }
-
         }
         loadSelectedCharactersStats();
 
@@ -84,7 +91,7 @@ const LoadCharacter = (props) => {
     return (
         <DropdownButton className="dropdown-button" id="dropdown-item-button" title={`LOAD CHARACTER`}>
             {dropdownList !== [] && dropdownList.map(character => (
-                <DropdownItem 
+                <DropdownItem
                     // as="button"
                     className="dropdown-link"
                     key={dropdownList.indexOf(character)}

@@ -1,6 +1,6 @@
 import {initializeApp} from 'firebase/app';
 import {GoogleAuthProvider, getAuth, signInWithPopup} from "firebase/auth";
-import {getFirestore, collection} from 'firebase/firestore';
+import {getFirestore, collection, deleteDoc} from 'firebase/firestore';
 import {doc, setDoc, getDoc, getDocs, addDoc, where, query} from "firebase/firestore";
 
 const firebaseConfig = {
@@ -50,8 +50,6 @@ provider.setCustomParameters({prompt: 'select_account'});
 
 const auth = getAuth();
 
-
-
 const google = async() => {
     signInWithPopup(auth, provider).then((result) => {
       
@@ -75,22 +73,6 @@ const google = async() => {
     });
 }
 
-
-
-
-const storeCharacterObject = async(advantages, currentUser) => {
-    if (currentUser !== null) {
-        console.log('setting character list')
-
-        const userRef = doc(db, `users/${currentUser.uid}`);
-        await setDoc(userRef, {advantages});
-    }
-
-    console.log('characters');
-    console.log(currentUser);
-
-}
-
 const addNewCharacterForUser = async(userId, newCharacter) => {
     const userCharactersRef = collection(db, 'users', userId, "characters");
 
@@ -103,7 +85,7 @@ const addNewCharacterForUser = async(userId, newCharacter) => {
     }
 }
 
-const getMatchingCharactersForUser = async(userId, characterName) => {
+const getMatchingCharactersForUser = async (userId, characterName) => {
   const userCharactersRef = collection(db, 'users', userId, "characters");
   const q = query(userCharactersRef, where("name", "==", characterName));
     try {
@@ -126,6 +108,17 @@ const getUsersCharactersList = async(userId) => {
     return usersCharactersList;
 }
 
+const GetCharacterToDelete = async (userId, currentCharacterId) => {
+    const userCharactersRef = collection(db, 'users', userId, "characters");
+    console.log('userCharacterRef: ', userCharactersRef);
+
+    const docRef = doc(userCharactersRef, currentCharacterId );
+
+    console.log('docRef: ', docRef);
+
+    await deleteDoc(docRef);
+}
+
 export {
     signInWithPopup,
     google,
@@ -134,8 +127,9 @@ export {
     db,
     firebaseApp,
     createUserProfileDocument,
-    storeCharacterObject,
+    // storeCharacterObject,
     addNewCharacterForUser,
     getMatchingCharactersForUser,
     getUsersCharactersList,
+    GetCharacterToDelete
 }

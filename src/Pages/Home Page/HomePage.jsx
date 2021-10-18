@@ -21,11 +21,15 @@ import { auth, createUserProfileDocument } from "../../Components/Firebase/fireb
 import { UserContext } from "../../context";
 import LoadCharacter from "../../Components/Toolbar/LoadCharacter/LoadCharacter";
 import ResetCharacter from "../../Components/Toolbar/ResetCharacter/ResetCharacter";
+import DeleteCharacter from "../../Components/DeleteCharacter/DeleteCharacter";
 
 
 const HomePage = () => {
   const { user, setUser } = useContext(UserContext);
   const [characterName, setCharacterName] = useState("");
+
+  const [currentCharacterId, setCurrentCharacterId]  = useState('');
+
   const [formInput, setForminput] = useState('');
   const [selectInputValue, setSelectInputValue] = useState([]);
 
@@ -74,13 +78,17 @@ const HomePage = () => {
 
   const componentRef = useRef();
 
+  const con = () => {
+    console.log('currentCharacterId', currentCharacterId);
+  }
+
   return (
     <div className="App">
       <Header />
 
       <div className="user-interface-window">
         <h1 className="main-title"> G.C.C.M </h1>
-        {/* <button onClick={con}>cony</button> */}
+        <button onClick={con}>cony</button>
 
         <SearchBar
           selectInputValue={selectInputValue}
@@ -106,20 +114,26 @@ const HomePage = () => {
             setSelectedAdvantagesList={setSelectedAdvantagesList}
             setSelectedDisadvantagesList={setSelectedDisadvantagesList}
           />
-          {user && <div className="save-load-characters">
+          {user && <div className="save-load-delete-characters">
             <LoadCharacter
               user={user}
               setCharacterName={setCharacterName}
+              setCurrentCharacterId={setCurrentCharacterId}
               setSelectedAdvantagesList={setSelectedAdvantagesList}
               setSelectedDisadvantagesList={setSelectedDisadvantagesList}
             />
 
             <SaveCharacter
               characterName={characterName}
+              setCurrentCharacterId={setCurrentCharacterId}
               selectedAdvantagesList={selectedAdvantagesList}
               setSelectedAdvantagesList={setSelectedAdvantagesList}
               selectedDisadvantagesList={selectedDisadvantagesList}
               setSelectedDisadvantagesList={setSelectedDisadvantagesList}
+            />
+
+            <DeleteCharacter 
+            currentCharacterId={currentCharacterId}
             />
           </div>}
           <CopyToClipboard />
