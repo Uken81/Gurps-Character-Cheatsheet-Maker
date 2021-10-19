@@ -21,14 +21,15 @@ import { auth, createUserProfileDocument } from "../../Components/Firebase/fireb
 import { UserContext } from "../../context";
 import LoadCharacter from "../../Components/Toolbar/LoadCharacter/LoadCharacter";
 import ResetCharacter from "../../Components/Toolbar/ResetCharacter/ResetCharacter";
-import DeleteCharacter from "../../Components/DeleteCharacter/DeleteCharacter";
+import DeleteCharacter from "../../Components/Toolbar/DeleteCharacter/DeleteCharacter";
+import EditCharacter from "../../Components/Toolbar/EditCharacter/EditCharacter";
 
 
 const HomePage = () => {
   const { user, setUser } = useContext(UserContext);
   const [characterName, setCharacterName] = useState("");
 
-  const [currentCharacterId, setCurrentCharacterId]  = useState('');
+  const [currentCharacterId, setCurrentCharacterId] = useState('');
 
   const [formInput, setForminput] = useState('');
   const [selectInputValue, setSelectInputValue] = useState([]);
@@ -132,8 +133,14 @@ const HomePage = () => {
               setSelectedDisadvantagesList={setSelectedDisadvantagesList}
             />
 
-            <DeleteCharacter 
-            currentCharacterId={currentCharacterId}
+            <EditCharacter
+              setSelectedAdvantagesList={setSelectedAdvantagesList}
+              setSelectedDisadvantagesList={setSelectedDisadvantagesList}
+              currentCharacterId={currentCharacterId}
+            />
+
+            <DeleteCharacter
+              currentCharacterId={currentCharacterId}
             />
           </div>}
           <CopyToClipboard />

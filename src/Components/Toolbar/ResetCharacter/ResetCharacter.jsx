@@ -4,7 +4,7 @@ const ResetCharacter = (props) => {
     const setSelectedAdvantagesList = props.setSelectedAdvantagesList;
     const setSelectedDisadvantagesList = props.setSelectedDisadvantagesList;
 
-    const handleClick = () => {
+    const HandleCharacterReset = () => {
         setSelectInputValue([]);
         setCharacterName('');
         setSelectedAdvantagesList([]);
@@ -13,7 +13,7 @@ const ResetCharacter = (props) => {
 
     return (
         <div className="button-container">
-            <button className="tool-button" onClick={handleClick}>Reset Character</button>
+            <button className="tool-button" onClick={HandleCharacterReset}>Reset Character</button>
         </div>
     );
 }

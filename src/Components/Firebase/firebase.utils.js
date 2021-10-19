@@ -16,7 +16,7 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 
 const db = getFirestore(firebaseApp);
-const usersCollectionRef = collection(db, 'users');
+// const usersCollectionRef = collection(db, 'users');
 
 const createUserProfileDocument = async(userAuth) => {
     if (!userAuth) 
@@ -108,28 +108,27 @@ const getUsersCharactersList = async(userId) => {
     return usersCharactersList;
 }
 
-const GetCharacterToDelete = async (userId, currentCharacterId) => {
+const GetCharacterReference = async (userId, currentCharacterId) => {
     const userCharactersRef = collection(db, 'users', userId, "characters");
     console.log('userCharacterRef: ', userCharactersRef);
 
-    const docRef = doc(userCharactersRef, currentCharacterId );
+    const docRef = doc(userCharactersRef, currentCharacterId);
 
     console.log('docRef: ', docRef);
 
-    await deleteDoc(docRef);
+    return docRef;
 }
 
 export {
     signInWithPopup,
     google,
     auth,
-    usersCollectionRef,
+    // usersCollectionRef,
     db,
     firebaseApp,
     createUserProfileDocument,
-    // storeCharacterObject,
     addNewCharacterForUser,
     getMatchingCharactersForUser,
     getUsersCharactersList,
-    GetCharacterToDelete
+    GetCharacterReference
 }

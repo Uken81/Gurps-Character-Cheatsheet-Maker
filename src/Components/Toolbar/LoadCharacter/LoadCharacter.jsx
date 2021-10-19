@@ -69,7 +69,11 @@ const LoadCharacter = (props) => {
 
     const repopulateCurrentCharacterId = async () => {
         const newRecord = await getRecord();
-        const characterId = await newRecord[0].id;
+        let characterId = '';
+        await newRecord.forEach((element)=> {
+            characterId = element.id;
+        });
+        console.log('characterId: ', characterId);
 
         await setCurrentCharacterId(characterId);
     }
@@ -92,7 +96,6 @@ const LoadCharacter = (props) => {
         <DropdownButton className="dropdown-button" id="dropdown-item-button" title={`LOAD CHARACTER`}>
             {dropdownList !== [] && dropdownList.map(character => (
                 <DropdownItem
-                    // as="button"
                     className="dropdown-link"
                     key={dropdownList.indexOf(character)}
                     onClick={() => handleClick(character)}
