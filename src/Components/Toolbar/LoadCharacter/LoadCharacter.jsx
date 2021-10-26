@@ -8,15 +8,18 @@ import './loadCharacter.styles.scss';
 import AdvantagesArray from "../../../Attribute Objects/Advantages/Advantages";
 import DisadvantagesArray from "../../../Attribute Objects/Disadvantages/Disadvantages";
 import { useContext } from 'react';
-import { UserContext } from '../../../context';
+import { SelectedAdvantagesContext, SelectedDisadvantagesContext, UserContext } from '../../../context';
 
 const LoadCharacter = (props) => {
     const { user } = useContext(UserContext);
+    const { setSelectedAdvantagesList } = useContext(SelectedAdvantagesContext);
+    const { setSelectedDisadvantagesList } = useContext(SelectedDisadvantagesContext);
+
 
     const setCharacterName = props.setCharacterName;
     const setCurrentCharacterId = props.setCurrentCharacterId;
-    const setSelectedAdvantagesList = props.setSelectedAdvantagesList;
-    const setSelectedDisadvantagesList = props.setSelectedDisadvantagesList;
+    // const setSelectedAdvantagesList = props.setSelectedAdvantagesList;
+    // const setSelectedDisadvantagesList = props.setSelectedDisadvantagesList;
 
     const [dropdownList, setDropdownList] = useState([]);
     const [characterToLoad, setCharacterToLoad] = useState('');
@@ -70,7 +73,7 @@ const LoadCharacter = (props) => {
     const repopulateCurrentCharacterId = async () => {
         const newRecord = await getRecord();
         let characterId = '';
-        await newRecord.forEach((element)=> {
+        await newRecord.forEach((element) => {
             characterId = element.id;
         });
         console.log('characterId: ', characterId);

@@ -2,10 +2,12 @@ import SelectedAdvantages from "./Selected Atributes/SelectedAdvantages"
 import SelectedDisadvantages from "./Selected Atributes/SelectedDisadvantages";
 
 import './displaySelected.styles.css';
+import { useContext } from "react";
+import { SelectedAdvantagesContext, SelectedDisadvantagesContext } from "../context";
 
-const DisplaySelected = (props) => {
-    const selectedAdvantagesList = props.selectedAdvantagesList;
-    const selectedDisadvantagesList = props.selectedDisadvantagesList;
+const DisplaySelected = () => {
+    const {selectedAdvantagesList} = useContext(SelectedAdvantagesContext);
+    const {selectedDisadvantagesList} = useContext(SelectedDisadvantagesContext);
 
     return (
         <div className='selected-window'>

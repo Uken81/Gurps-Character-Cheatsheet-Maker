@@ -13,10 +13,6 @@ const DeleteCharacter = (props) => {
         await deleteDoc(docRef);
         console.log('****Current character has been removed from database');
     }
-    // const deleteCharacter = async () => {
-    //     await GetCharacterToDelete(user.uid, currentCharacterId);
-    //     console.log('****Current character has been removed from database');
-    // }
   
     return (
         <div className='button-container'>

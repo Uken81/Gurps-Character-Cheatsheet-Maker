@@ -10,6 +10,7 @@ import { UserContext } from "../../context";
 
 const Header = () => {
     const { user } = useContext(UserContext);
+    console.log('user' , user);
 
     const location = useLocation();
 
@@ -23,9 +24,10 @@ const Header = () => {
 
     return (
         <div className="header">
-            {location.pathname !== '/sign-in-and-sign-up' & !user ? <SignInButton /> : null}
+            {location.pathname !== ('/sign-in-and-sign-up' || '/guest-page') & user !== null ? <SignInButton /> : null}
             {user && <button id='sign-out' onClick={signout}></button>}
-            {location.pathname === '/sign-in-and-sign-up' && <BackFromSignIn />}
+            {location.pathname === '/sign-in-and-sign-up' || '/guest-page' ? <BackFromSignIn /> : null}
+            
         </div>
     );
 }

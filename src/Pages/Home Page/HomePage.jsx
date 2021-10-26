@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 
 import "../../App";
 
@@ -14,51 +14,52 @@ import ComponentToPrint from "../../Display Results/ComponentToPrint";
 
 import PrintPDF from "../../Components/Toolbar/Print PDF/printPDF";
 import CopyToClipboard from "../../Components/Toolbar/CopyToClipboard/CopyToClipboard";
-import { useHistory } from "react-router";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, createUserProfileDocument } from "../../Components/Firebase/firebase.utils";
-import { UserContext } from "../../context";
+import { CharacterNameContext, UserContext} from "../../context";
 import LoadCharacter from "../../Components/Toolbar/LoadCharacter/LoadCharacter";
 import ResetCharacter from "../../Components/Toolbar/ResetCharacter/ResetCharacter";
 import DeleteCharacter from "../../Components/Toolbar/DeleteCharacter/DeleteCharacter";
 import EditCharacter from "../../Components/Toolbar/EditCharacter/EditCharacter";
 
 
-const HomePage = () => {
-  const { user, setUser } = useContext(UserContext);
-  const [characterName, setCharacterName] = useState("");
-
+const HomePage = (props) => {
+  const { user } = useContext(UserContext);
+  // const {selectedAdvantagesList, setSelectedAdvantagesList} = useContext(SelectedAdvantagesContext);
+  // const {selectedDisadvantagesList, setSelectedDisadvantagesList} = useContext(SelectedDisadvantagesContext);
+  const {setCharacterName} = useContext(CharacterNameContext);
+  
   const [currentCharacterId, setCurrentCharacterId] = useState('');
-
   const [formInput, setForminput] = useState('');
-  const [selectInputValue, setSelectInputValue] = useState([]);
+ 
 
-  const [isChoosingAdvantages, setIsChoosingAdvantages] = useState(true);
-  const [selectedAdvantagesList, setSelectedAdvantagesList] = useState([]);
-  const [selectedDisadvantagesList, setSelectedDisadvantagesList] = useState([]);
 
-  const history = useHistory();
-  useEffect(() => {
-    let unsubscribeFromAuth = null;
-    unsubscribeFromAuth = onAuthStateChanged(auth, async (userAuth) => {
-      await createUserProfileDocument(userAuth);
-      if (userAuth) {
-        setUser(userAuth);
-        console.log('OnAuthStateChange/HomePage')
-        console.log(`${userAuth.email} has logged in`);
-        console.log('****User: ', user)
-        history.push("/");
-      } else {
-        setUser(userAuth);
-        console.log("User has logged out");
-      }
-      return () => {
-        unsubscribeFromAuth();
-      };
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  // const [isChoosingAdvantages, setIsChoosingAdvantages] = useState(true);
+  // const [selectedAdvantagesList, setSelectedAdvantagesList] = useState([]);
+  // const [selectedDisadvantagesList, setSelectedDisadvantagesList] = useState([]);
+
+  // const history = useHistory();
+  // useEffect(() => {
+  //   let unsubscribeFromAuth = null;
+  //   unsubscribeFromAuth = onAuthStateChanged(auth, async (userAuth) => {
+  //     await createUserProfileDocument(userAuth);
+  //     if (userAuth) {
+  //       setUser(userAuth);
+  //       console.log('OnAuthStateChange/HomePage')
+  //       console.log(`${userAuth.email} has logged in`);
+  //       console.log('****User: ', user)
+  //       history.push("/");
+  //     } else {
+  //       setUser(userAuth);
+  //       console.log("User has logged out");
+  //     }
+  //     return () => {
+  //       unsubscribeFromAuth();
+  //     };
+  //   });
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [user]);
 
   const newCharacter = useRef(null);
   const handleInput = () => {
@@ -77,11 +78,10 @@ const HomePage = () => {
     setForminput('');
   }
 
-  const componentRef = useRef();
 
-  const con = () => {
-    console.log('currentCharacterId', currentCharacterId);
-  }
+  // const con = () => {
+  //   console.log('componenRef: ', componentRef);
+  // }
 
   return (
     <div className="App">
@@ -89,68 +89,38 @@ const HomePage = () => {
 
       <div className="user-interface-window">
         <h1 className="main-title"> G.C.C.M </h1>
-        <button onClick={con}>cony</button>
+        {/* <button onClick={con}>cony</button> */}
+        <div className='container'>
+          <div className="toolbar-container">
 
-        <SearchBar
-          selectInputValue={selectInputValue}
-          setSelectInputValue={setSelectInputValue}
-          isChoosingAdvantages={isChoosingAdvantages}
-          setIsChoosingAdvantages={setIsChoosingAdvantages}
-          characterName={characterName}
-          setSelectedAdvantagesList={setSelectedAdvantagesList}
-          setSelectedDisadvantagesList={setSelectedDisadvantagesList}
-        />
+            <span className='toolbar-header'>Character Toolbar</span>
+            {user && <div className="toolbar-characters">
+              <ResetCharacter />
 
-        <DisplaySelected
-          selectedAdvantagesList={selectedAdvantagesList}
-          setSelectedAdvantagesList={setSelectedAdvantagesList}
-          selectedDisadvantagesList={selectedDisadvantagesList}
-          setSelectedDisadvantagesList={setSelectedDisadvantagesList}
-        />
+              <LoadCharacter
+                setCharacterName={setCharacterName}
+                setCurrentCharacterId={setCurrentCharacterId}
+              />
 
-        <div className="toolbar-container">
-          <ResetCharacter
-            setSelectInputValue={setSelectInputValue}
-            setCharacterName={setCharacterName}
-            setSelectedAdvantagesList={setSelectedAdvantagesList}
-            setSelectedDisadvantagesList={setSelectedDisadvantagesList}
-          />
-          {user && <div className="save-load-delete-characters">
-            <LoadCharacter
-              user={user}
-              setCharacterName={setCharacterName}
-              setCurrentCharacterId={setCurrentCharacterId}
-              setSelectedAdvantagesList={setSelectedAdvantagesList}
-              setSelectedDisadvantagesList={setSelectedDisadvantagesList}
-            />
+              <SaveCharacter
+                setCurrentCharacterId={setCurrentCharacterId}
+              />
 
-            <SaveCharacter
-              characterName={characterName}
-              setCurrentCharacterId={setCurrentCharacterId}
-              selectedAdvantagesList={selectedAdvantagesList}
-              setSelectedAdvantagesList={setSelectedAdvantagesList}
-              selectedDisadvantagesList={selectedDisadvantagesList}
-              setSelectedDisadvantagesList={setSelectedDisadvantagesList}
-            />
+              <DeleteCharacter
+                currentCharacterId={currentCharacterId}
+              />
+            </div>}
+            <CopyToClipboard />
+            <PrintPDF />
+          </div>
 
-            <EditCharacter
-              setSelectedAdvantagesList={setSelectedAdvantagesList}
-              setSelectedDisadvantagesList={setSelectedDisadvantagesList}
-              currentCharacterId={currentCharacterId}
-            />
+          <div className="main-interface">
+            <SearchBar />
 
-            <DeleteCharacter
-              currentCharacterId={currentCharacterId}
-            />
-          </div>}
-          <CopyToClipboard />
-
-          <PrintPDF
-            selectedAdvantagesList={selectedAdvantagesList}
-            selectedDisadvantagesList={selectedDisadvantagesList}
-            componentRef={componentRef}
-          />
+            <DisplaySelected />
+          </div>
         </div>
+
         <div className="form">
           <form className='new-character-form' ref={newCharacter}>
             <input
@@ -166,11 +136,7 @@ const HomePage = () => {
         </div>
       </div>
       <div className="results-window" id="results">
-        <ComponentToPrint
-          selectedAdvantagesList={selectedAdvantagesList}
-          selectedDisadvantagesList={selectedDisadvantagesList}
-          ref={componentRef}
-        />
+        <ComponentToPrint />
       </div>
     </div>
   );

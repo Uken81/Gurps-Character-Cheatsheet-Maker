@@ -1,22 +1,33 @@
+import { useContext } from 'react';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
 import AdvantagesArray from '../../Attribute Objects/Advantages/Advantages';
 import DisadvantagesArray from '../../Attribute Objects/Disadvantages/Disadvantages';
+import { CharacterNameContext, 
+         SelectedAdvantagesContext, 
+         SelectedDisadvantagesContext, 
+         SelectInputValueContext } from '../../context';
 import ToggleAdvantageDisadvantage from '../ToggleAdvantageDisadvantage/ToggleAdvantageDisadvantage';
 
 import './SearchBar.styles.scss';
 
 const SearchBar = (props) => {
+    const [isChoosingAdvantages, setIsChoosingAdvantages] = useState(true);
     const [advantageOptions, setAdvantageOptions] = useState([]);
     const [disadvantageOptions, setDisadvantageOptions] = useState([]);
 
-    const selectInputValue = props.selectInputValue;
-    const setSelectInputValue = props.setSelectInputValue;
-    const isChoosingAdvantages = props.isChoosingAdvantages;
-    const setIsChoosingAdvantages = props.setIsChoosingAdvantages;
-    const characterName = props.characterName;
-    const setSelectedAdvantagesList = props.setSelectedAdvantagesList;
-    const setSelectedDisadvantagesList = props.setSelectedDisadvantagesList;
+    const {setSelectedAdvantagesList} = useContext(SelectedAdvantagesContext);
+    const {setSelectedDisadvantagesList} = useContext(SelectedDisadvantagesContext);
+    const {selectInput, setSelectInput} = useContext(SelectInputValueContext);
+    const {characterName} = useContext(CharacterNameContext);
+
+    // const selectInputValue = props.selectInputValue;
+    // const setSelectInputValue = props.setSelectInputValue;
+    // const isChoosingAdvantages = props.isChoosingAdvantages;
+    // const setIsChoosingAdvantages = props.setIsChoosingAdvantages;
+    // const characterName = props.characterName;
+    // const setSelectedAdvantagesList = props.setSelectedAdvantagesList;
+    // const setSelectedDisadvantagesList = props.setSelectedDisadvantagesList;
 
     useEffect(() => {
         const createSearchOptions = () => {
@@ -29,7 +40,7 @@ const SearchBar = (props) => {
     }, []);
 
     const handleChange = (event) => {
-        setSelectInputValue(event.value)
+        setSelectInput(event.value)
         let adsArr = [];
         let disadsArr = [];
         console.log(event);
@@ -58,7 +69,7 @@ const SearchBar = (props) => {
             <Select
                 className='searchBar'
                 options={isChoosingAdvantages ? advantageOptions : disadvantageOptions}
-                value={selectInputValue}
+                value={selectInput}
                 isMulti
                 onChange={handleChange}
                 formatOptionLabel={formatOptionLabel}

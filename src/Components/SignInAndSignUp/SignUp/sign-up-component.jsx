@@ -30,7 +30,7 @@ const SignUp = () => {
             await createUserWithEmailAndPassword(auth, email, password);
 
             setInputs({ displayName: '', email: '', password: '', confirmPassword: '' });
-            history.push("/");
+            history.push('/home-page');
         } catch (error) {
             console.error('error code: ', error.code);
             const errorCode = error.code;

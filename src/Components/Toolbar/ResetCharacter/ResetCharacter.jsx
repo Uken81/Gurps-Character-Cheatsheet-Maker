@@ -1,11 +1,14 @@
-const ResetCharacter = (props) => {
-    const setSelectInputValue = props.setSelectInputValue;
-    const setCharacterName = props.setCharacterName;
-    const setSelectedAdvantagesList = props.setSelectedAdvantagesList;
-    const setSelectedDisadvantagesList = props.setSelectedDisadvantagesList;
+import { useContext } from "react";
+import { CharacterNameContext, SelectedAdvantagesContext, SelectedDisadvantagesContext, SelectInputValueContext } from "../../../context";
+
+const ResetCharacter = () => {
+    const {setSelectInput} = useContext(SelectInputValueContext);
+    const {setCharacterName} = useContext(CharacterNameContext);
+    const {setSelectedAdvantagesList} = useContext(SelectedAdvantagesContext);
+    const {setSelectedDisadvantagesList} = useContext(SelectedDisadvantagesContext);
 
     const HandleCharacterReset = () => {
-        setSelectInputValue([]);
+        setSelectInput([]);
         setCharacterName('');
         setSelectedAdvantagesList([]);
         setSelectedDisadvantagesList([]);

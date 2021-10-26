@@ -1,13 +1,14 @@
+import { useContext } from 'react';
 import ReactToPrint from 'react-to-print';
+import { ComponentRefContext } from '../../../context';
 
-const PrintPDF = (props) => {
-  const componentRef = props.componentRef;
-
+const PrintPDF = () => {
+  const { componentRef } = useContext(ComponentRefContext);
   return (
     <div>
       <div className="button-container">
         <ReactToPrint
-          trigger={() => <button className='tool-button'>Print this out!</button>}
+          trigger={() => <button className='tool-button'>Download PDF</button>}
           content={() => componentRef.current}
         />
       </div>
