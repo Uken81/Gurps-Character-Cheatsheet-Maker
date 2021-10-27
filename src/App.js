@@ -6,6 +6,7 @@ import { useState } from "react";
 import {
   CharacterNameContext,
   ComponentRefContext,
+  CurrentCharacterIdContext,
   SelectedAdvantagesContext,
   SelectedDisadvantagesContext,
   SelectInputValueContext,
@@ -14,33 +15,51 @@ import {
 import { useMemo } from "react";
 import LandingPage from "./Pages/LandingPage/landingPage";
 import GuestPage from "./Pages/GuestPage/GuestPage";
+import ManageCharacters from "./Pages/ManageCharactersPage/ManageCharactersPage";
+import CreateOrManage from "./Pages/CreateOrManagePage/CreateOrManagePage";
+import CreateNewCharacterPage from "./Pages/CreateNewCharacterPage/CreateNewCharacterPage";
 
 function App() {
-  const [user, setUser] = useState(null);
-  const [selectedAdvantagesList, setSelectedAdvantagesList] = useState([]);
-  const [selectedDisadvantagesList, setSelectedDisadvantagesList] = useState([]);
-  const [selectInput, setSelectInput] = useState([]);
-  const [characterName, setCharacterName] = useState('');
-
   const [componentRef, setComponentRef] = useState(null);
-  const componentRefValue = useMemo(() => ({ componentRef, setComponentRef }), [componentRef, setComponentRef]);
+  const componentRefValue = useMemo(
+    () => ({ componentRef, setComponentRef }),
+    [componentRef, setComponentRef]
+  );
 
+  const [user, setUser] = useState(null);
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
 
-  const selectInputValue = useMemo(() => ({ selectInput, setSelectInput }), [selectInput]);
+  const [selectInput, setSelectInput] = useState([]);
+  const selectInputValue = useMemo(
+    () => ({ selectInput, setSelectInput }),
+    [selectInput]
+  );
 
-  const characterNameValue = useMemo(() => ({ characterName, setCharacterName }), [characterName]);
+  const [characterName, setCharacterName] = useState("");
+  const characterNameValue = useMemo(
+    () => ({ characterName, setCharacterName }),
+    [characterName]
+  );
 
+  const [currentCharacterId, setCurrentCharacterId] = useState("");
+  const currentCharacterIdValue = useMemo(
+    () => ({ currentCharacterId, setCurrentCharacterId }),
+    [currentCharacterId]
+  );
+
+  const [selectedAdvantagesList, setSelectedAdvantagesList] = useState([]);
   const selectedAdvantagesValue = useMemo(
     () => ({ selectedAdvantagesList, setSelectedAdvantagesList }),
     [selectedAdvantagesList]
   );
 
+  const [selectedDisadvantagesList, setSelectedDisadvantagesList] = useState(
+    []
+  );
   const selectedDisadvantagesValue = useMemo(
     () => ({ selectedDisadvantagesList, setSelectedDisadvantagesList }),
     [selectedDisadvantagesList]
   );
-
 
   return (
     <BrowserRouter>
@@ -48,14 +67,25 @@ function App() {
         <UserContext.Provider value={userValue}>
           <Route exact path="/" component={LandingPage} />
           <Route path="/sign-in-and-sign-up" component={signInAndSignUp} />
+          <Route path="/create-or-manage" component={CreateOrManage} />
           <SelectedAdvantagesContext.Provider value={selectedAdvantagesValue}>
-            <SelectedDisadvantagesContext.Provider value={selectedDisadvantagesValue}>
-              <SelectInputValueContext.Provider value={selectInputValue} >
+            <SelectedDisadvantagesContext.Provider
+              value={selectedDisadvantagesValue}
+            >
+              <SelectInputValueContext.Provider value={selectInputValue}>
                 <CharacterNameContext.Provider value={characterNameValue}>
-                  <ComponentRefContext.Provider value={componentRefValue}>
-                    <Route path="/home-page" component={HomePage} />
-                    <Route path="/guest-page" component={GuestPage} />
-                  </ComponentRefContext.Provider>
+                  <CurrentCharacterIdContext.Provider
+                    value={currentCharacterIdValue}
+                  >
+                    <ComponentRefContext.Provider value={componentRefValue}>
+                      <Route path="/home-page" component={HomePage} />
+                      <Route path="/guest-page" component={GuestPage} />
+                      <Route
+                        path="/create-new-character-page"
+                        component={CreateNewCharacterPage}
+                      />
+                    </ComponentRefContext.Provider>
+                  </CurrentCharacterIdContext.Provider>
                 </CharacterNameContext.Provider>
               </SelectInputValueContext.Provider>
             </SelectedDisadvantagesContext.Provider>

@@ -10,47 +10,54 @@ import { useHistory } from "react-router";
 import { onAuthStateChanged } from "firebase/auth";
 
 const SignIn = () => {
-    const { user, setUser } = useContext(UserContext);
+    // const { user, setUser } = useContext(UserContext);
     const [inputs, setInputs] = useState({});
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
 
     const handleChange = e => setInputs(prevState => ({ ...prevState, [e.target.name]: e.target.value }));
 
+    // const history = useHistory();
+    // useEffect(() => {
+    //   let unsubscribeFromAuth = null;
+    //   unsubscribeFromAuth = onAuthStateChanged(auth, async (userAuth) => {
+    //     await createUserProfileDocument(userAuth);
+    //     if (userAuth) {
+    //       setUser(userAuth);
+    //       console.log('OnAuthStateChange/HomePage')
+    //       console.log(`${userAuth.email} has logged in`);
+    //       console.log('****User: ', user)
+    //       history.push("/home-page");
+    //     } else {
+    //       setUser(userAuth);
+    //       console.log("User has logged out");
+    //     }
+    //     return () => {
+    //       unsubscribeFromAuth();
+    //     };
+    //   });
+    //   // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [user]);
     const history = useHistory();
-    useEffect(() => {
-      let unsubscribeFromAuth = null;
-      unsubscribeFromAuth = onAuthStateChanged(auth, async (userAuth) => {
-        await createUserProfileDocument(userAuth);
-        if (userAuth) {
-          setUser(userAuth);
-          console.log('OnAuthStateChange/HomePage')
-          console.log(`${userAuth.email} has logged in`);
-          console.log('****User: ', user)
-          history.push("/home-page");
-        } else {
-          setUser(userAuth);
-          console.log("User has logged out");
-        }
-        return () => {
-          unsubscribeFromAuth();
-        };
-      });
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [user]);
 
     const auth = getAuth();
     const handleSubmit = async event => {
         event.preventDefault();
         await signInWithEmailAndPassword(auth, email, password)
-
+        console.log('****signin');
         setInputs({ email: '', password: '' });
+        history.push("/create-or-manage");
     }
 
     useEffect(() => {
         setEmail(inputs.email);
         setPassword(inputs.password);
     }, [inputs.email, inputs.password]);
+
+    const googleSignIn = async ()=> {
+        await google();
+        history.push("/create-or-manage");
+    }
 
     return (
         <div className="sign-in">
@@ -78,7 +85,7 @@ const SignIn = () => {
            
                 <div className="buttons">
                     <button className="submit" onClick={handleSubmit}>SIGN IN</button>
-                    <button className="google-sign-in" onClick={() => google()}>SIGN IN WITH GOOGLE</button>
+                    <button className="google-sign-in" onClick={googleSignIn}>SIGN IN WITH GOOGLE</button>
                 </div>
             </form>
         </div>

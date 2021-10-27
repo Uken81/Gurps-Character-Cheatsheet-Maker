@@ -61,7 +61,7 @@ input {
       float: left;
 
   
-      .toolbar-characters {
+      .toolbar-characters, .toolbar-print-options {
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;

@@ -1,19 +1,17 @@
 import { setDoc } from "@firebase/firestore";
 import { useContext, useEffect, useState } from "react";
-import { CharacterNameContext, SelectedAdvantagesContext, SelectedDisadvantagesContext, UserContext } from "../../../context";
+import { CharacterNameContext, CurrentCharacterIdContext, SelectedAdvantagesContext, SelectedDisadvantagesContext, UserContext } from "../../../context";
 import { addNewCharacterForUser, getUsersCharactersList } from "../../Firebase/firebase.utils";
 
-const SaveCharacter = (props) => {
+const SaveCharacter = () => {
     const { user } = useContext(UserContext);
     const { characterName } = useContext(CharacterNameContext);
+    const { setCurrentCharacterId } = useContext(CurrentCharacterIdContext);
     const { selectedAdvantagesList } = useContext(SelectedAdvantagesContext);
     const { selectedDisadvantagesList } = useContext(SelectedDisadvantagesContext);
 
     const [nameIsDuplicate, setNameIsDuplicate] = useState(false);
 
-    // const selectedAdvantagesList = props.selectedAdvantagesList;
-    // const selectedDisadvantagesList = props.selectedDisadvantagesList;
-    const setCurrentCharacterId = props.setCurrentCharacterId;
     const currentlyLoggedInUserId = user.uid;
 
     useEffect(()=> {

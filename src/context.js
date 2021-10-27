@@ -6,5 +6,6 @@ export const SelectInputValueContext = createContext(null);
 export const CharacterNameContext = createContext(null);
 export const SelectedAdvantagesContext = createContext(null);
 export const SelectedDisadvantagesContext = createContext(null);
+export const CurrentCharacterIdContext = createContext(null);
 
 

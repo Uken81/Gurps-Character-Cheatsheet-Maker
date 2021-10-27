@@ -1,4 +1,5 @@
 import { useContext, useRef, useState } from "react";
+import { useEffect } from "react";
 
 import "../../App";
 
@@ -14,42 +15,34 @@ import ComponentToPrint from "../../Display Results/ComponentToPrint";
 
 import PrintPDF from "../../Components/Toolbar/Print PDF/printPDF";
 import CopyToClipboard from "../../Components/Toolbar/CopyToClipboard/CopyToClipboard";
+import { useHistory } from "react-router";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, createUserProfileDocument } from "../../Components/Firebase/firebase.utils";
-import { CharacterNameContext, UserContext} from "../../context";
+import { CharacterNameContext, UserContext } from "../../context";
+
 import LoadCharacter from "../../Components/Toolbar/LoadCharacter/LoadCharacter";
 import ResetCharacter from "../../Components/Toolbar/ResetCharacter/ResetCharacter";
 import DeleteCharacter from "../../Components/Toolbar/DeleteCharacter/DeleteCharacter";
 import EditCharacter from "../../Components/Toolbar/EditCharacter/EditCharacter";
 
 
-const HomePage = (props) => {
-  const { user } = useContext(UserContext);
-  // const {selectedAdvantagesList, setSelectedAdvantagesList} = useContext(SelectedAdvantagesContext);
-  // const {selectedDisadvantagesList, setSelectedDisadvantagesList} = useContext(SelectedDisadvantagesContext);
-  const {setCharacterName} = useContext(CharacterNameContext);
-  
+const HomePage = () => {
+  const { user, setUser } = useContext(UserContext);
+  const { setCharacterName } = useContext(CharacterNameContext);
+
   const [currentCharacterId, setCurrentCharacterId] = useState('');
   const [formInput, setForminput] = useState('');
- 
 
-
-  // const [isChoosingAdvantages, setIsChoosingAdvantages] = useState(true);
-  // const [selectedAdvantagesList, setSelectedAdvantagesList] = useState([]);
-  // const [selectedDisadvantagesList, setSelectedDisadvantagesList] = useState([]);
-
-  // const history = useHistory();
   // useEffect(() => {
   //   let unsubscribeFromAuth = null;
-  //   unsubscribeFromAuth = onAuthStateChanged(auth, async (userAuth) => {
+    // unsubscribeFromAuth = onAuthStateChanged(auth, async (userAuth) => {
   //     await createUserProfileDocument(userAuth);
   //     if (userAuth) {
   //       setUser(userAuth);
   //       console.log('OnAuthStateChange/HomePage')
   //       console.log(`${userAuth.email} has logged in`);
   //       console.log('****User: ', user)
-  //       history.push("/");
   //     } else {
   //       setUser(userAuth);
   //       console.log("User has logged out");
@@ -61,22 +54,22 @@ const HomePage = (props) => {
   //   // eslint-disable-next-line react-hooks/exhaustive-deps
   // }, [user]);
 
-  const newCharacter = useRef(null);
-  const handleInput = () => {
-    const form = newCharacter.current;
-    let value = form['new-character'].value;
-    setForminput(value);
-  }
+  // const newCharacter = useRef(null);
+  // const handleInput = () => {
+  //   const form = newCharacter.current;
+  //   let value = form['new-character'].value;
+  //   setForminput(value);
+  // }
 
-  const handleAddCharacter = (event) => {
-    event.preventDefault();
-    const form = newCharacter.current;
+  // const handleAddCharacter = (event) => {
+  //   event.preventDefault();
+  //   const form = newCharacter.current;
 
-    let value = form['new-character'].value;
-    console.log("****value: ", value);
-    setCharacterName(value);
-    setForminput('');
-  }
+  //   let value = form['new-character'].value;
+  //   console.log("****value: ", value);
+  //   setCharacterName(value);
+  //   setForminput('');
+  // }
 
 
   // const con = () => {
@@ -111,6 +104,7 @@ const HomePage = (props) => {
               />
             </div>}
             <CopyToClipboard />
+
             <PrintPDF />
           </div>
 
@@ -120,20 +114,7 @@ const HomePage = (props) => {
             <DisplaySelected />
           </div>
         </div>
-
-        <div className="form">
-          <form className='new-character-form' ref={newCharacter}>
-            <input
-              name='new-character'
-              label='new-character'
-              type='text'
-              placeholder='Enter New Character Name...'
-              value={formInput}
-              onChange={handleInput}
-            />
-            <button onClick={handleAddCharacter}>Submit</button>
-          </form>
-        </div>
+     
       </div>
       <div className="results-window" id="results">
         <ComponentToPrint />

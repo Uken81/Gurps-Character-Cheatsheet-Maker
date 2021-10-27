@@ -1,7 +1,8 @@
 import {initializeApp} from 'firebase/app';
 import {GoogleAuthProvider, getAuth, signInWithPopup} from "firebase/auth";
-import {getFirestore, collection, deleteDoc} from 'firebase/firestore';
+import {getFirestore, collection} from 'firebase/firestore';
 import {doc, setDoc, getDoc, getDocs, addDoc, where, query} from "firebase/firestore";
+
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_SECRET_KEY,
@@ -49,6 +50,7 @@ const provider = new GoogleAuthProvider();
 provider.setCustomParameters({prompt: 'select_account'});
 
 const auth = getAuth();
+
 
 const google = async() => {
     signInWithPopup(auth, provider).then((result) => {
@@ -123,7 +125,6 @@ export {
     signInWithPopup,
     google,
     auth,
-    // usersCollectionRef,
     db,
     firebaseApp,
     createUserProfileDocument,

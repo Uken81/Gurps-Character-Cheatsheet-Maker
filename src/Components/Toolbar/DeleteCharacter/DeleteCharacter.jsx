@@ -1,12 +1,11 @@
 import { deleteDoc } from "firebase/firestore";
 import { useContext } from "react";
-import { UserContext } from "../../../context";
+import { CurrentCharacterIdContext, UserContext } from "../../../context";
 import { GetCharacterReference } from "../../Firebase/firebase.utils";
 
 const DeleteCharacter = (props) => {
     const { user } = useContext(UserContext);
-
-    const currentCharacterId = props.currentCharacterId;
+    const { currentCharacterId } = useContext(CurrentCharacterIdContext);
 
     const deleteCharacter = async () => {
         const docRef = await GetCharacterReference(user.uid, currentCharacterId);

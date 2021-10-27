@@ -4,7 +4,7 @@ import { BackFromSignIn, SignInButton } from "../SignInAndSignUp/SignInButtons/s
 
 import './header.styles.scss';
 
-import { useLocation } from "react-router";
+import { useHistory, useLocation } from "react-router";
 import { useContext } from "react";
 import { UserContext } from "../../context";
 
@@ -13,10 +13,12 @@ const Header = () => {
     console.log('user' , user);
 
     const location = useLocation();
+    const history = useHistory();
 
     const signout = () => {
         signOut(auth).then(() => {
             console.log(user + ' signed out');
+            history.push("/");
         }).catch((error) => {
             console.log('error signing out user', error.message);
         });
