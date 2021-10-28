@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 import { auth, createUserProfileDocument } from '../../Components/Firebase/firebase.utils';
 import Header from '../../Components/Header/Header.component';
+import LoadCharacter from '../../Components/Toolbar/LoadCharacter/LoadCharacter';
 import { UserContext } from '../../context';
 
 const CreateOrManage = () => {
@@ -29,11 +30,12 @@ const CreateOrManage = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [user]);
     return (
-        <div className="manageCharacters">
+        <div className="create-or-manage-characters">
             <Header />
             <h1 className="main-title"> G.C.C.M </h1>
             <Link to='/create-new-character-page'><Button  size='lg' variant="outline-primary">Create New Character</Button></Link>
-            <Link to='/guest-page'><Button size='lg' variant="outline-primary">Manage Characters</Button></Link>
+            <LoadCharacter />
+            {/* <Button size='lg' variant="outline-primary">Manage Characters</Button> */}
         </div>
     );
 }

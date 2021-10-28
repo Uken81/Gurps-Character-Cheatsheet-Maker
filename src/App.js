@@ -18,6 +18,7 @@ import GuestPage from "./Pages/GuestPage/GuestPage";
 import ManageCharacters from "./Pages/ManageCharactersPage/ManageCharactersPage";
 import CreateOrManage from "./Pages/CreateOrManagePage/CreateOrManagePage";
 import CreateNewCharacterPage from "./Pages/CreateNewCharacterPage/CreateNewCharacterPage";
+import ManageCharactersPage from "./Pages/ManageCharactersPage/ManageCharactersPage";
 
 function App() {
   const [componentRef, setComponentRef] = useState(null);
@@ -67,7 +68,7 @@ function App() {
         <UserContext.Provider value={userValue}>
           <Route exact path="/" component={LandingPage} />
           <Route path="/sign-in-and-sign-up" component={signInAndSignUp} />
-          <Route path="/create-or-manage" component={CreateOrManage} />
+          
           <SelectedAdvantagesContext.Provider value={selectedAdvantagesValue}>
             <SelectedDisadvantagesContext.Provider
               value={selectedDisadvantagesValue}
@@ -77,6 +78,7 @@ function App() {
                   <CurrentCharacterIdContext.Provider
                     value={currentCharacterIdValue}
                   >
+                    <Route path="/create-or-manage" component={CreateOrManage} />
                     <ComponentRefContext.Provider value={componentRefValue}>
                       <Route path="/home-page" component={HomePage} />
                       <Route path="/guest-page" component={GuestPage} />
@@ -84,6 +86,7 @@ function App() {
                         path="/create-new-character-page"
                         component={CreateNewCharacterPage}
                       />
+                      <Route path="/manage-characters-page" component={ManageCharactersPage} />
                     </ComponentRefContext.Provider>
                   </CurrentCharacterIdContext.Provider>
                 </CharacterNameContext.Provider>
