@@ -30,7 +30,7 @@ const SignUp = () => {
             await createUserWithEmailAndPassword(auth, email, password);
 
             setInputs({ displayName: '', email: '', password: '', confirmPassword: '' });
-            history.push('/home-page');
+            history.push('/create-or-manage-page');
         } catch (error) {
             console.error('error code: ', error.code);
             const errorCode = error.code;
@@ -50,6 +50,7 @@ const SignUp = () => {
     }
 
     useEffect(() => {
+        console.log('***Test: sign-up-component');
         setDisplayName(inputs.displayName);
         setEmail(inputs.email);
         setPassword(inputs.password);

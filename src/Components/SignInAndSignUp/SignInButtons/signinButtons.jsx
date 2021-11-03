@@ -23,7 +23,7 @@ export const BackToLandingPage = () => {
 export const BackToCreateManage = () => {
     return (
         <div className="nav-link">
-            <Link to='/create-or-manage' >BACK</Link>
+            <Link to='/create-or-manage-page' >BACK</Link>
         </div>
     )
 }
@@ -31,7 +31,7 @@ export const BackToCreateManage = () => {
 export const ToEditCharacter = () => {
     return (
         <div className="button-container">
-            <button className="tool-button"><Link to='/edit-character' >Edit Character</Link></button>
+            <button className="tool-button"><Link to='/edit-character-page' >Edit Character</Link></button>
         </div>
     )
 }

@@ -11,6 +11,7 @@ import { UserContext } from '../../context';
 const CreateOrManage = () => {
     const { user, setUser } = useContext(UserContext);
     useEffect(() => {
+      console.log('***Test: createOrManagePage');
         let unsubscribeFromAuth = null;
         unsubscribeFromAuth = onAuthStateChanged(auth, async (userAuth) => {
           await createUserProfileDocument(userAuth);
@@ -29,13 +30,14 @@ const CreateOrManage = () => {
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [user]);
+      //******************removed user from dependency array*****************************
     return (
         <div className="create-or-manage-characters">
             <Header />
             <h1 className="main-title"> G.C.C.M </h1>
             <Link to='/create-new-character-page'><Button  size='lg' variant="outline-primary">Create New Character</Button></Link>
             <LoadCharacter />
-            {/* <Button size='lg' variant="outline-primary">Manage Characters</Button> */}
+            
         </div>
     );
 }

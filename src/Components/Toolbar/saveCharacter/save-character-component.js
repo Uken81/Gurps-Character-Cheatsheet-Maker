@@ -16,7 +16,7 @@ const SaveCharacter = () => {
 
     useEffect(()=> {
         const checkIfDuplicate = async () => {
-        
+            console.log('***Test: saveCharacter');
             const matchingName = await getUsersCharactersList(currentlyLoggedInUserId);
             setNameIsDuplicate(()=> matchingName.includes(characterName));
             console.log('duplicate?? ', nameIsDuplicate);           
@@ -25,7 +25,7 @@ const SaveCharacter = () => {
     })
 
     const saveCharacterHandler = async () => {
-        if ((selectedAdvantagesList.length > 0 || selectedDisadvantagesList.length > 0) & (characterName !== "" & !nameIsDuplicate)) {
+        if ((selectedAdvantagesList.length > 0 || selectedDisadvantagesList.length > 0)) {
             console.log("**** SaveCharacterHandler Called");
             console.log("**** SelectedAdvantagesList: ", selectedAdvantagesList);
             console.log("**** SelectedDisadvantagesList: ", selectedDisadvantagesList);

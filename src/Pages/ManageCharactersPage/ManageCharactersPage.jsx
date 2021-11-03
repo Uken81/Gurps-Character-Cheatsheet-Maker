@@ -13,8 +13,9 @@ import { ToEditCharacter } from "../../Components/SignInAndSignUp/SignInButtons/
 
 const ManageCharactersPage = () => {
     const { characterName } = useContext(CharacterNameContext);
+    
   return (
-    <div className="manage-characters-page">
+    <div className="manage-character-page">
       <Header />
       <div className="user-interface-window">
         <h1 className="main-title"> G.C.C.M </h1>

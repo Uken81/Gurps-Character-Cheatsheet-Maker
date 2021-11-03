@@ -1,52 +1,26 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import '../../../Pages/SignInAndSignUp/sign-in-and-sign-up.scss';
 
-import { createUserProfileDocument, google } from "../../Firebase/firebase.utils";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { UserContext } from "../../../context";
 import { useHistory } from "react-router";
-
-import { onAuthStateChanged } from "firebase/auth";
+import { google } from "../../Firebase/firebase.utils";
 
 const SignIn = () => {
-    // const { user, setUser } = useContext(UserContext);
     const [inputs, setInputs] = useState({});
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
 
     const handleChange = e => setInputs(prevState => ({ ...prevState, [e.target.name]: e.target.value }));
 
-    // const history = useHistory();
-    // useEffect(() => {
-    //   let unsubscribeFromAuth = null;
-    //   unsubscribeFromAuth = onAuthStateChanged(auth, async (userAuth) => {
-    //     await createUserProfileDocument(userAuth);
-    //     if (userAuth) {
-    //       setUser(userAuth);
-    //       console.log('OnAuthStateChange/HomePage')
-    //       console.log(`${userAuth.email} has logged in`);
-    //       console.log('****User: ', user)
-    //       history.push("/home-page");
-    //     } else {
-    //       setUser(userAuth);
-    //       console.log("User has logged out");
-    //     }
-    //     return () => {
-    //       unsubscribeFromAuth();
-    //     };
-    //   });
-    //   // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, [user]);
     const history = useHistory();
-
     const auth = getAuth();
     const handleSubmit = async event => {
         event.preventDefault();
         await signInWithEmailAndPassword(auth, email, password)
         console.log('****signin');
         setInputs({ email: '', password: '' });
-        history.push("/create-or-manage");
+        history.push("/create-or-manage-page");
     }
 
     useEffect(() => {
@@ -56,7 +30,7 @@ const SignIn = () => {
 
     const googleSignIn = async ()=> {
         await google();
-        history.push("/create-or-manage");
+        history.push("/create-or-manage-page");
     }
 
     return (

@@ -16,6 +16,7 @@ const ComponentToPrint = () => {
 
     useEffect(() => {
         const createReference = () => {
+            console.log('***Test: componentToPrint');
             setComponentRef(divRef);
             console.log('****creating reference');
         }

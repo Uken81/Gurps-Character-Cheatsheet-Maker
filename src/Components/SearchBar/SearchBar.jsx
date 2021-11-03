@@ -1,81 +1,132 @@
-import { useContext } from 'react';
-import { useEffect, useState } from 'react';
-import Select from 'react-select';
-import AdvantagesArray from '../../Attribute Objects/Advantages/Advantages';
-import DisadvantagesArray from '../../Attribute Objects/Disadvantages/Disadvantages';
-import { CharacterNameContext, 
-         SelectedAdvantagesContext, 
-         SelectedDisadvantagesContext, 
-         SelectInputValueContext } from '../../context';
-import ToggleAdvantageDisadvantage from '../ToggleAdvantageDisadvantage/ToggleAdvantageDisadvantage';
+import { useContext } from "react";
+import { useEffect, useState } from "react";
+import Select from "react-select";
+import AdvantagesArray from "../../Attribute Objects/Advantages/Advantages";
+import DisadvantagesArray from "../../Attribute Objects/Disadvantages/Disadvantages";
+import {
+  CharacterNameContext,
+  SelectedAdvantagesContext,
+  SelectedDisadvantagesContext,
+  SelectInputValueContext,
+} from "../../context";
+import ToggleAdvantageDisadvantage from "../ToggleAdvantageDisadvantage/ToggleAdvantageDisadvantage";
 
-import './SearchBar.styles.scss';
+import "./SearchBar.styles.scss";
 
-const SearchBar = (props) => {
-    const [isChoosingAdvantages, setIsChoosingAdvantages] = useState(true);
-    const [advantageOptions, setAdvantageOptions] = useState([]);
-    const [disadvantageOptions, setDisadvantageOptions] = useState([]);
+const SearchBar = () => {
+  const [isChoosingAdvantages, setIsChoosingAdvantages] = useState(true);
+  const [advantageOptions, setAdvantageOptions] = useState([]);
+  const [disadvantageOptions, setDisadvantageOptions] = useState([]);
 
-    const {setSelectedAdvantagesList} = useContext(SelectedAdvantagesContext);
-    const {setSelectedDisadvantagesList} = useContext(SelectedDisadvantagesContext);
-    const {selectInput, setSelectInput} = useContext(SelectInputValueContext);
-    const {characterName} = useContext(CharacterNameContext);
+  const { selectedAdvantagesList , setSelectedAdvantagesList } = useContext(SelectedAdvantagesContext);
+  const { selectedDisadvantagesList, setSelectedDisadvantagesList } = useContext(
+    SelectedDisadvantagesContext
+  );
+  const { selectInput, setSelectInput } = useContext(SelectInputValueContext);
+  const { characterName } = useContext(CharacterNameContext);
 
-    // const selectInputValue = props.selectInputValue;
-    // const setSelectInputValue = props.setSelectInputValue;
-    // const isChoosingAdvantages = props.isChoosingAdvantages;
-    // const setIsChoosingAdvantages = props.setIsChoosingAdvantages;
-    // const characterName = props.characterName;
-    // const setSelectedAdvantagesList = props.setSelectedAdvantagesList;
-    // const setSelectedDisadvantagesList = props.setSelectedDisadvantagesList;
+  useEffect(() => {
+    const createSearchOptions = () => {
+      console.log("***Test: createSearchOptions");
+      let adsArr = AdvantagesArray.map((opt) => ({
+        label: opt.title,
+        value: opt,
+        category: opt.type,
+      }));
+      let disadsArr = DisadvantagesArray.map((opt) => ({
+        label: opt.title,
+        value: opt,
+        category: opt.type,
+      }));
+      setAdvantageOptions(adsArr);
+      setDisadvantageOptions(disadsArr);
+    };
+    createSearchOptions();
+  }, []);
 
-    useEffect(() => {
-        const createSearchOptions = () => {
-            let adsArr = AdvantagesArray.map(opt => ({ label: opt.title, value: opt, category: opt.type }));
-            let disadsArr = DisadvantagesArray.map(opt => ({ label: opt.title, value: opt, category: opt.type }));
-            setAdvantageOptions(adsArr);
-            setDisadvantageOptions(disadsArr);
-        }
-        createSearchOptions();
-    }, []);
+  const handleChange = (event) => {
+    setSelectInput(event.value);
+    let adsArr = [];
+    let disadsArr = [];
+    console.log(event);
+    event.forEach((e) => {
+      e.value.type === "advantage"
+        ? adsArr.push(e.value)
+        : disadsArr.push(e.value);
+    });
+    setSelectedAdvantagesList(adsArr);
+    setSelectedDisadvantagesList(disadsArr);
+  };
 
-    const handleChange = (event) => {
-        setSelectInput(event.value)
-        let adsArr = [];
-        let disadsArr = [];
-        console.log(event);
-        event.forEach((e) => {
-            e.value.type === 'advantage' ? adsArr.push(e.value) : disadsArr.push(e.value);
-        });
-        setSelectedAdvantagesList(adsArr);
-        setSelectedDisadvantagesList(disadsArr);
-    }
+  const updateSelect = () => {
+    let adsArr = selectedAdvantagesList.map((adv) => ({
+      label: adv.title,
+      value: adv,
+      category: adv.type,
+    }));
 
-    const formatOptionLabel = ({ label, category }) => (
-        <div style={category === 'advantage' ? { color: 'green' } : { color: 'red', }}>{label}</div>
-    );
+    let disadsArr = selectedDisadvantagesList.map((disad) => ({
+      label: disad.title,
+      value: disad,
+      category: disad.type,
+    }));
+    // setAdvantageOptions(adsArr);
+    // setDisadvantageOptions(disadsArr);
+    let combinedArr = [...adsArr, ...disadsArr];
+    console.log('combined: ', combinedArr);
+    setSelectInput(combinedArr);
 
-    return (
-        <div className='searchbar-container'>
-            {characterName === '' ?
-                <h1>Select your Characters {isChoosingAdvantages ? 'Advantages' : 'Disadvantages'}</h1>
-                :
-                <h1>SELECT {characterName.toUpperCase()}'S {isChoosingAdvantages ? 'Advantages' : 'Disadvantages'}</h1>}
-            <ToggleAdvantageDisadvantage
-                isChoosingAdvantages={isChoosingAdvantages}
-                setIsChoosingAdvantages={setIsChoosingAdvantages}
-            />
 
-            <Select
-                className='searchBar'
-                options={isChoosingAdvantages ? advantageOptions : disadvantageOptions}
-                value={selectInput}
-                isMulti
-                onChange={handleChange}
-                formatOptionLabel={formatOptionLabel}
-            />
-        </div>
-    );
-}
+    console.log('ads options: ', advantageOptions);
+    console.log('selected ads: ', adsArr);
+    console.log('select input: ', selectInput);
+  };
+
+
+  
+
+  const con = () => {
+    console.log('con select: ', selectInput);
+  }
+
+  const formatOptionLabel = ({ label, category }) => (
+    <div
+      style={category === "advantage" ? { color: "green" } : { color: "red" }}
+    >
+      {label}
+    </div>
+  );
+
+  return (
+    <div className="searchbar-container">
+      {characterName === "" ? (
+        <h1>
+          Select your Characters{" "}
+          {isChoosingAdvantages ? "ADVANTAGES" : "DISADVANTAGES"}
+        </h1>
+      ) : (
+        <h1>
+          SELECT {characterName.toUpperCase()}'S{" "}
+          {isChoosingAdvantages ? "ADVANTAGES" : "DISADVANTAGES"}
+        </h1>
+      )}
+      <ToggleAdvantageDisadvantage
+        isChoosingAdvantages={isChoosingAdvantages}
+        setIsChoosingAdvantages={setIsChoosingAdvantages}
+      />
+
+      <Select
+        className="searchBar"
+        options={isChoosingAdvantages ? advantageOptions : disadvantageOptions}
+        value={selectInput}
+        isMulti
+        onChange={handleChange}
+        formatOptionLabel={formatOptionLabel}
+      />
+      <button onClick={updateSelect}>update select</button>
+      <button onClick={con}>con</button>
+    </div>
+  );
+};
 
 export default SearchBar;

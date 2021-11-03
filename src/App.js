@@ -19,6 +19,7 @@ import ManageCharacters from "./Pages/ManageCharactersPage/ManageCharactersPage"
 import CreateOrManage from "./Pages/CreateOrManagePage/CreateOrManagePage";
 import CreateNewCharacterPage from "./Pages/CreateNewCharacterPage/CreateNewCharacterPage";
 import ManageCharactersPage from "./Pages/ManageCharactersPage/ManageCharactersPage";
+import EditCharacterPage from "./Pages/EditCharacterPage/EditCharacterPage";
 
 function App() {
   const [componentRef, setComponentRef] = useState(null);
@@ -78,7 +79,8 @@ function App() {
                   <CurrentCharacterIdContext.Provider
                     value={currentCharacterIdValue}
                   >
-                    <Route path="/create-or-manage" component={CreateOrManage} />
+                    <Route path="/create-or-manage-page" component={CreateOrManage} />
+                    <Route path="/edit-character-page" component={EditCharacterPage} />
                     <ComponentRefContext.Provider value={componentRefValue}>
                       <Route path="/home-page" component={HomePage} />
                       <Route path="/guest-page" component={GuestPage} />
