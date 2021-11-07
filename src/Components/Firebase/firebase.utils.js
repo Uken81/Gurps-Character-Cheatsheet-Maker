@@ -13,11 +13,11 @@ import {
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_SECRET_KEY,
-  authDomain: "gccm-f330e.firebaseapp.com",
-  projectId: "gccm-f330e",
-  storageBucket: "gccm-f330e.appspot.com",
-  messagingSenderId: "149791425804",
-  appId: "1:149791425804:web:f709318c916a5481a3f529"
+  authDomain: "gccm-ab99e.firebaseapp.com",
+  projectId: "gccm-ab99e",
+  storageBucket: "gccm-ab99e.appspot.com",
+  messagingSenderId: "456039580012",
+  appId: "1:456039580012:web:c42af6f76a7a2803b63349"
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
@@ -54,7 +54,7 @@ const createUserProfileDocument = async (userAuth) => {
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
 
-const auth = getAuth();
+const auth = getAuth(firebaseApp);
 
 const google = async () => {
   signInWithPopup(auth, provider)

@@ -30,7 +30,11 @@ const CreateOrManage = () => {
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
       }, [user]);
-      //******************removed user from dependency array*****************************
+
+    // onAuthStateChanged(auth, (currentUser) => {
+    //   setUser(currentUser);
+    // });
+
     return (
         <div className="create-or-manage-characters">
             <Header />

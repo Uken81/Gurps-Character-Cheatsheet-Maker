@@ -48,7 +48,7 @@ const LoadCharacter = () => {
       }
     };
     mapUsersCharacterList();
-  });
+  },[user]);
 
   const handleClick = (character) => {
     setCharacterToLoad(character);

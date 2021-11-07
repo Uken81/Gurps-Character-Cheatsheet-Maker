@@ -58,31 +58,27 @@ const SearchBar = () => {
     setSelectedDisadvantagesList(disadsArr);
   };
 
-  const updateSelect = () => {
-    let adsArr = selectedAdvantagesList.map((adv) => ({
-      label: adv.title,
-      value: adv,
-      category: adv.type,
-    }));
-
-    let disadsArr = selectedDisadvantagesList.map((disad) => ({
-      label: disad.title,
-      value: disad,
-      category: disad.type,
-    }));
-    // setAdvantageOptions(adsArr);
-    // setDisadvantageOptions(disadsArr);
-    let combinedArr = [...adsArr, ...disadsArr];
-    console.log('combined: ', combinedArr);
-    setSelectInput(combinedArr);
-
-
-    console.log('ads options: ', advantageOptions);
-    console.log('selected ads: ', adsArr);
-    console.log('select input: ', selectInput);
-  };
-
-
+  useEffect(()=> {
+    const updateSelect = () => {
+      let adsArr = selectedAdvantagesList.map((adv) => ({
+        label: adv.title,
+        value: adv,
+        category: adv.type,
+      }));
+  
+      let disadsArr = selectedDisadvantagesList.map((disad) => ({
+        label: disad.title,
+        value: disad,
+        category: disad.type,
+      }));
+   
+      let combinedArr = [...adsArr, ...disadsArr];
+      console.log('combined: ', combinedArr);
+      setSelectInput(combinedArr);
+    };
+    updateSelect();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
   
 
   const con = () => {
@@ -123,8 +119,6 @@ const SearchBar = () => {
         onChange={handleChange}
         formatOptionLabel={formatOptionLabel}
       />
-      <button onClick={updateSelect}>update select</button>
-      <button onClick={con}>con</button>
     </div>
   );
 };

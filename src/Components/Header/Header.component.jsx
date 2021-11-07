@@ -10,7 +10,6 @@ import { UserContext } from "../../context";
 
 const Header = () => {
     const { user } = useContext(UserContext);
-    console.log('user' , user);
 
     const location = useLocation();
     const history = useHistory();

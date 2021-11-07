@@ -4,6 +4,7 @@ import '../../../Pages/SignInAndSignUp/sign-in-and-sign-up.scss';
 
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useHistory } from "react-router";
+import { auth } from "../../Firebase/firebase.utils";
 
 const SignUp = () => {
     const [inputs, setInputs] = useState({});
@@ -12,7 +13,7 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const auth = getAuth();
+    // const auth = getAuth();
     const history = useHistory();
 
     const handleChange = e => setInputs(prevState => ({ ...prevState, [e.target.name]: e.target.value }));
@@ -20,6 +21,16 @@ const SignUp = () => {
     const handleSubmit = async event => {
         event.preventDefault();
         
+        // try {
+        //     const user = await createUserWithEmailAndPassword(
+        //       auth,
+        //       email,
+        //       password
+        //     );
+        //     console.log(user);
+        //   } catch (error) {
+        //     console.log(error.message);
+        //   }
 
         if (password !== confirmPassword) {
             alert("passwords don't match");
