@@ -27,15 +27,14 @@ const SaveCharacter = () => {
 
   useEffect(() => {
     const checkIfDuplicate = async () => {
-      console.log("***Test: saveCharacter");
+      console.log("***Test: saveCharacter/checkIfDuplicate");
       const matchingName = await getUsersCharactersList(
         currentlyLoggedInUserId
       );
       setNameIsDuplicate(() => matchingName.includes(characterName));
-      console.log("duplicate?? ", nameIsDuplicate);
     };
     checkIfDuplicate();
-  });
+  },[characterName]);
 
   const saveCharacterHandler = async () => {
     if (
@@ -49,7 +48,6 @@ const SaveCharacter = () => {
       alert(
         "You already have a character with this name. Delete original character or change name"
       );
-      setNameIsDuplicate(false);
     } else if (characterName === "") {
       console.log("**** Save fail");
       alert("You must select a name for your character in order to save");
@@ -86,11 +84,16 @@ const SaveCharacter = () => {
       await setDoc(newCharacterRef, id, { merge: true });
     }
   };
-
+const con = () => {
+  console.log('duplicate?: ', nameIsDuplicate);
+}
   return (
     <div className="button-container">
       <button className="tool-button" onClick={saveCharacterHandler}>
         Save Character
+      </button>
+      <button className="tool-button" onClick={con}>
+        con
       </button>
     </div>
   );

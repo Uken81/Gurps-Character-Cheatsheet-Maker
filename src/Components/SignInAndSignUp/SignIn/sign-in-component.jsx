@@ -18,9 +18,16 @@ const SignIn = () => {
     const handleSubmit = async event => {
         event.preventDefault();
         await signInWithEmailAndPassword(auth, email, password)
-        console.log('****signin');
-        setInputs({ email: '', password: '' });
-        history.push("/create-or-manage-page");
+        .then(() => {
+            console.log('****signin');
+            setInputs({ email: '', password: '' });
+            history.push("/create-or-manage-page");
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            console.log('error code: ', errorCode);
+            alert('The email you have entered has not been found.');
+          });
     }
 
     useEffect(() => {

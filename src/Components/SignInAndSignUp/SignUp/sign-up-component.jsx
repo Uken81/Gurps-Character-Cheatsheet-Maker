@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import '../../../Pages/SignInAndSignUp/sign-in-and-sign-up.scss';
 
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useHistory } from "react-router";
 import { auth } from "../../Firebase/firebase.utils";
 
@@ -20,17 +20,6 @@ const SignUp = () => {
 
     const handleSubmit = async event => {
         event.preventDefault();
-        
-        // try {
-        //     const user = await createUserWithEmailAndPassword(
-        //       auth,
-        //       email,
-        //       password
-        //     );
-        //     console.log(user);
-        //   } catch (error) {
-        //     console.log(error.message);
-        //   }
 
         if (password !== confirmPassword) {
             alert("passwords don't match");
