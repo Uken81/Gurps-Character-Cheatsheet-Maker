@@ -1,6 +1,6 @@
 import { signOut } from "firebase/auth";
 import { auth } from "../Firebase/firebase.utils";
-import { BackToCreateManage, BackToLandingPage, SignInButton } from "../SignInAndSignUp/SignInButtons/signinButtons";
+import { BackToCreateManage, BackToLandingPage, SignInButton } from "./Navigation Links/navigationLinks";
 
 import './header.styles.scss';
 

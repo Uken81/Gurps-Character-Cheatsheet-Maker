@@ -67,13 +67,14 @@ function App() {
     <BrowserRouter>
       <Switch>
         <UserContext.Provider value={userValue}>
-          <Route exact path="/" component={LandingPage} />
+          
           <Route path="/sign-in-and-sign-up" component={signInAndSignUp} />
           
           <SelectedAdvantagesContext.Provider value={selectedAdvantagesValue}>
             <SelectedDisadvantagesContext.Provider
               value={selectedDisadvantagesValue}
             >
+              <Route exact path="/" component={LandingPage} />
               <SelectInputValueContext.Provider value={selectInputValue}>
                 <CharacterNameContext.Provider value={characterNameValue}>
                   <CurrentCharacterIdContext.Provider

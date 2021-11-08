@@ -9,7 +9,7 @@ import PrintPDF from "../../Components/Toolbar/Print PDF/printPDF";
 import DisplaySelected from "../../Selected/DisplaySelected";
 import { useContext } from "react";
 import { CharacterNameContext } from "../../context";
-import { ToEditCharacter } from "../../Components/SignInAndSignUp/SignInButtons/signinButtons";
+import { ToEditCharacter } from "../../Components/Header/Navigation Links/navigationLinks";
 
 const ManageCharactersPage = () => {
     const { characterName } = useContext(CharacterNameContext);
