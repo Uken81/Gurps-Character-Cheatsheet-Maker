@@ -1,18 +1,30 @@
 import { signOut } from "firebase/auth";
 import { auth } from "../Firebase/firebase.utils";
-import { BackToCreateManage, BackToLandingPage, SignInButton } from "./Navigation Links/navigationLinks";
+import { BackToCreateManage, BackToLandingPage } from "./Navigation Links/navigationLinks";
 
 import './header.styles.scss';
 
 import { useHistory, useLocation } from "react-router";
 import { useContext } from "react";
 import { UserContext } from "../../context";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Header = () => {
     const { user } = useContext(UserContext);
 
     const location = useLocation();
     const history = useHistory();
+
+    const [pathname, setPathName] = useState('');
+
+    useEffect(()=> {
+        const setPath = () => {
+            setPathName(location.pathname);
+        }
+        setPath();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[]);
 
     const signout = () => {
         signOut(auth).then(() => {
@@ -22,13 +34,15 @@ const Header = () => {
             console.log('error signing out user', error.message);
         });
     }
-
+    const con = ()=> {
+        console.log('loc: ', pathname);
+    }
+    
     return (
-        <div className="header">
-            {location.pathname !== ('/sign-in-and-sign-up' || '/guest-page') & user !== null ? <SignInButton /> : null}
-            {user && <button id='sign-out' onClick={signout}></button>}
-            {location.pathname === '/sign-in-and-sign-up' || '/guest-page' ? <BackToLandingPage /> : null}
-            {location.pathname === '/create-new-character-page' || '/manage-character-page' ? <BackToCreateManage /> : null}          
+        <div className="header">          
+            {['/sign-in-and-sign-up', '/guest-page'].includes(pathname)  ? <BackToLandingPage /> : null}
+            {['/create-new-character-page', '/manage-characters-page','/edit-character-page'].includes(pathname) ? <BackToCreateManage /> : null}
+            {user && <button id='sign-out' onClick={signout}></button>}               
         </div>
     );
 }

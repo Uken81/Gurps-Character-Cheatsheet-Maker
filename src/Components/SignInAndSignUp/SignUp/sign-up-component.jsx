@@ -13,7 +13,6 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    // const auth = getAuth();
     const history = useHistory();
 
     const handleChange = e => setInputs(prevState => ({ ...prevState, [e.target.name]: e.target.value }));
@@ -50,7 +49,7 @@ const SignUp = () => {
     }
 
     useEffect(() => {
-        console.log('***Test: sign-up-component');
+        console.log('***Test: sign-up-component/form onChange');
         setDisplayName(inputs.displayName);
         setEmail(inputs.email);
         setPassword(inputs.password);

@@ -4,7 +4,6 @@ import './navigationLinks.styles.scss';
 import '../../../Pages/Home Page/homePage.styles.scss'
 
 export const SignInButton = () => {
-
     return (
         <div className='nav-link'>
             <Link to='/sign-in-and-sign-up'>SIGN IN</Link>

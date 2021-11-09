@@ -3,7 +3,6 @@ import Header from "../../Components/Header/Header.component";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import EditCharacter from "../../Components/Toolbar/EditCharacter/EditCharacter";
 import LoadCharacter from "../../Components/Toolbar/LoadCharacter/LoadCharacter";
-import ResetCharacter from "../../Components/Toolbar/ResetCharacter/ResetCharacter";
 import { CharacterNameContext } from "../../context";
 import DisplaySelected from "../../Selected/DisplaySelected";
 
@@ -18,9 +17,7 @@ const EditCharacterPage = () => {
           <div className="toolbar-container">
             <span className="toolbar-header">Character Toolbar</span>
             <div className="toolbar-characters">
-              <ResetCharacter />
-              <LoadCharacter />
-              
+              <LoadCharacter />             
               <p>Reset Changes**replace</p>
               <EditCharacter />
             </div>

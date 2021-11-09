@@ -39,15 +39,16 @@ const createUserProfileDocument = async (userAuth) => {
         email,
         createdAt,
       });
+      console.log("CreateUserProfileDocument/FireBase.Utils");
+      console.log("userRef: ", userRef);
+      console.log("docSnap exist: ", docSnap.exists());
+      console.log("docData: ", docSnap.data());
+      console.log("UID: ", userAuth.uid);
     } catch (error) {
       console.log("error creating user", error.message);
     }
   }
-  console.log("CreateUserProfileDocument/FireBase.Utils");
-  console.log("userRef: ", userRef);
-  console.log("docSnap exist: ", docSnap.exists());
-  console.log("docData: ", docSnap.data());
-  console.log("UID: ", userAuth.uid);
+ 
   return userRef;
 };
 

@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { useHistory } from "react-router";
 import {
   CurrentCharacterIdContext,
   SelectedAdvantagesContext,
@@ -18,6 +19,7 @@ const EditCharacter = () => {
     SelectedDisadvantagesContext
   );
 
+const history = useHistory();
   const handleEdit = async () => {
     const characterRef = await GetCharacterReference(
       user.uid,
@@ -29,6 +31,7 @@ const EditCharacter = () => {
       selectedDisadvantagesList
     );
     console.log(characterRef);
+    history.push("/create-or-manage-page");
   };
 
   const con = () => {

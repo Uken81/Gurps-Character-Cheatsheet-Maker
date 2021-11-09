@@ -26,7 +26,13 @@ const SignIn = () => {
           .catch((error) => {
             const errorCode = error.code;
             console.log('error code: ', errorCode);
-            alert('The email you have entered has not been found.');
+            if (errorCode === 'auth/user-not-found') {
+                alert('The email you have entered has not been found.')
+            }
+
+            if (errorCode === 'auth/wrong-password') {
+                alert('Wrong password entered for this account.')
+            }
           });
     }
 
