@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 import './navigationLinks.styles.scss';
-import '../../../Pages/Home Page/homePage.styles.scss'
 
 export const SignInButton = () => {
     return (

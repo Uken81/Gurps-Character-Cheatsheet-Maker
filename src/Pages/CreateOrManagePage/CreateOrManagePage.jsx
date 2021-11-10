@@ -1,6 +1,9 @@
 import { onAuthStateChanged } from "@firebase/auth";
 import { useContext } from "react";
 import { useEffect } from "react";
+
+import "../page.styles.scss";
+
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import {
@@ -30,7 +33,7 @@ const CreateOrManage = () => {
       if (userAuth) {
         setUser(userAuth);
         console.log("OnAuthStateChange/HomePage");
-        console.log(`${userAuth.email} has logged in`);
+        // console.log(`${userAuth.email} has logged in`);
         console.log("****User: ", user);
       } else {
         setUser(userAuth);

@@ -84,16 +84,11 @@ const SaveCharacter = () => {
       await setDoc(newCharacterRef, id, { merge: true });
     }
   };
-const con = () => {
-  console.log('duplicate?: ', nameIsDuplicate);
-}
+
   return (
     <div className="button-container">
       <button className="tool-button" onClick={saveCharacterHandler}>
         Save Character
-      </button>
-      <button className="tool-button" onClick={con}>
-        con
       </button>
     </div>
   );

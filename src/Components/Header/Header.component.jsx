@@ -34,9 +34,6 @@ const Header = () => {
             console.log('error signing out user', error.message);
         });
     }
-    const con = ()=> {
-        console.log('loc: ', pathname);
-    }
     
     return (
         <div className="header">          

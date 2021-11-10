@@ -19,7 +19,7 @@ const EditCharacter = () => {
     SelectedDisadvantagesContext
   );
 
-const history = useHistory();
+  const history = useHistory();
   const handleEdit = async () => {
     const characterRef = await GetCharacterReference(
       user.uid,
@@ -34,16 +34,11 @@ const history = useHistory();
     history.push("/create-or-manage-page");
   };
 
-  const con = () => {
-    console.log(selectedAdvantagesList);
-  };
-
   return (
     <div className="button-container">
       <button className="tool-button" onClick={handleEdit}>
         Save Changes
       </button>
-      <button onClick={con}>con</button>
     </div>
   );
 };

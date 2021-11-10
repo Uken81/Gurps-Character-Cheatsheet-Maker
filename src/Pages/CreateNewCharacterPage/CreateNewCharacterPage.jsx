@@ -5,7 +5,7 @@ import { Form } from "react-bootstrap";
 
 import "../../App.css";
 import "../../Display Results/DisplayResults.styles.css";
-import "../Home Page/homePage.styles.scss";
+import "../page.styles.scss";
 
 import Header from "../../Components/Header/Header.component";
 import SearchBar from "../../Components/SearchBar/SearchBar";
