@@ -1,17 +1,24 @@
 import { deleteDoc } from "firebase/firestore";
 import { useContext } from "react";
+import { useHistory } from "react-router";
 import { CharacterNameContext, CurrentCharacterIdContext, UserContext } from "../../../context";
 import { GetCharacterReference } from "../../Firebase/firebase.utils";
 
-const DeleteCharacter = (props) => {
+const DeleteCharacter = () => {
     const { user } = useContext(UserContext);
     const { characterName } = useContext(CharacterNameContext);
     const { currentCharacterId } = useContext(CurrentCharacterIdContext);
 
+    const history = useHistory();
     const deleteCharacter = async () => {
         const docRef = await GetCharacterReference(user.uid, currentCharacterId);
-        await deleteDoc(docRef);
-        console.log('****Current character has been removed from database');
+        await deleteDoc(docRef)
+        .then(() => {
+            console.log('****Current character has been removed from database');
+            history.push("/create-or-manage-page");
+        }).catch(() => {
+            alert('Unable to delete character from database please try again later');
+        });      
     }
   
     return (
