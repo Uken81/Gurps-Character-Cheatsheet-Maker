@@ -18,10 +18,11 @@ const SearchBar = () => {
   const [advantageOptions, setAdvantageOptions] = useState([]);
   const [disadvantageOptions, setDisadvantageOptions] = useState([]);
 
-  const { selectedAdvantagesList , setSelectedAdvantagesList } = useContext(SelectedAdvantagesContext);
-  const { selectedDisadvantagesList, setSelectedDisadvantagesList } = useContext(
-    SelectedDisadvantagesContext
+  const { selectedAdvantagesList, setSelectedAdvantagesList } = useContext(
+    SelectedAdvantagesContext
   );
+  const { selectedDisadvantagesList, setSelectedDisadvantagesList } =
+    useContext(SelectedDisadvantagesContext);
   const { selectInput, setSelectInput } = useContext(SelectInputValueContext);
   const { characterName } = useContext(CharacterNameContext);
 
@@ -58,32 +59,27 @@ const SearchBar = () => {
     setSelectedDisadvantagesList(disadsArr);
   };
 
-  useEffect(()=> {
+  useEffect(() => {
     const updateSelect = () => {
       let adsArr = selectedAdvantagesList.map((adv) => ({
         label: adv.title,
         value: adv,
         category: adv.type,
       }));
-  
+
       let disadsArr = selectedDisadvantagesList.map((disad) => ({
         label: disad.title,
         value: disad,
         category: disad.type,
       }));
-   
+
       let combinedArr = [...adsArr, ...disadsArr];
-      console.log('combined: ', combinedArr);
+      console.log("combined: ", combinedArr);
       setSelectInput(combinedArr);
     };
     updateSelect();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
-  
-
-  const con = () => {
-    console.log('con select: ', selectInput);
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedAdvantagesList, selectedDisadvantagesList]);
 
   const formatOptionLabel = ({ label, category }) => (
     <div
@@ -110,7 +106,6 @@ const SearchBar = () => {
         isChoosingAdvantages={isChoosingAdvantages}
         setIsChoosingAdvantages={setIsChoosingAdvantages}
       />
-
       <Select
         className="searchBar"
         options={isChoosingAdvantages ? advantageOptions : disadvantageOptions}

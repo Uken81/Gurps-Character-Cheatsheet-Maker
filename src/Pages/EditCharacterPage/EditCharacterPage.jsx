@@ -2,14 +2,14 @@ import { useContext } from "react";
 import Header from "../../Components/Header/Header.component";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import EditCharacter from "../../Components/Toolbar/EditCharacter/EditCharacter";
-import LoadCharacter from "../../Components/Toolbar/LoadCharacter/LoadCharacter";
+import ResetChanges from "../../Components/Toolbar/ResetChanges/ResetChanges";
 import { CharacterNameContext } from "../../context";
 import DisplaySelected from "../../Selected/DisplaySelected";
 
 const EditCharacterPage = () => {
-    const { characterName } = useContext(CharacterNameContext);
-    return (  
-        <div className="edit-character-page">
+  const { characterName } = useContext(CharacterNameContext);
+  return (
+    <div className="edit-character-page">
       <Header />
       <div className="user-interface-window">
         <h1 className="main-title"> G.C.C.M </h1>
@@ -17,11 +17,9 @@ const EditCharacterPage = () => {
           <div className="toolbar-container">
             <span className="toolbar-header">Character Toolbar</span>
             <div className="toolbar-characters">
-              <LoadCharacter />             
-              <p>Reset Changes**replace</p>
+              <ResetChanges />
               <EditCharacter />
             </div>
-       
           </div>
           <div className="main-interface">
             <SearchBar />
@@ -32,8 +30,6 @@ const EditCharacterPage = () => {
       </div>
     </div>
   );
+};
 
-    
-}
- 
 export default EditCharacterPage;

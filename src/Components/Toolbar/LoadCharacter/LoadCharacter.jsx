@@ -1,13 +1,10 @@
 import DropdownButton from "react-bootstrap/DropdownButton";
 import DropdownItem from "react-bootstrap/DropdownItem";
-import Button from "react-bootstrap/Button";
 import {
   getMatchingCharactersForUser,
   getUsersCharactersList,
 } from "../../Firebase/firebase.utils";
 import { useEffect, useState } from "react";
-
-// import "./loadCharacter.styles.scss";
 
 import AdvantagesArray from "../../../Attribute Objects/Advantages/Advantages";
 import DisadvantagesArray from "../../../Attribute Objects/Disadvantages/Disadvantages";
@@ -17,7 +14,6 @@ import {
   CurrentCharacterIdContext,
   SelectedAdvantagesContext,
   SelectedDisadvantagesContext,
-  SelectInputValueContext,
   UserContext,
 } from "../../../context";
 import { useHistory, useLocation } from "react-router";
@@ -30,8 +26,6 @@ const LoadCharacter = () => {
   );
   const { setCurrentCharacterId } = useContext(CurrentCharacterIdContext);
   const { setCharacterName } = useContext(CharacterNameContext);
-
-  const { selectInput, setSelectInput } = useContext(SelectInputValueContext);
 
   const [dropdownList, setDropdownList] = useState([]);
   const [characterToLoad, setCharacterToLoad] = useState("");
@@ -48,15 +42,10 @@ const LoadCharacter = () => {
       }
     };
     mapUsersCharacterList();
-  },[user]);
+  }, [user]);
 
-  const handleClick = (character) => {
+  const handleLoad = (character) => {
     setCharacterToLoad(character);
-  };
-
-  const handleReset = (character) => {
-    setCharacterToLoad(character);
-    console.log('SI: ', selectInput);
   };
 
   let records;
@@ -90,8 +79,7 @@ const LoadCharacter = () => {
     setCharacterName(characterName);
 
     console.log(`****${characterName} successfully loaded`);
-    console.log('CD: ', characterDisadvantages);
-    console.log('select: ', selectInput);
+    console.log("CD: ", characterDisadvantages);
   };
 
   const repopulateCurrentCharacterId = async () => {
@@ -115,40 +103,34 @@ const LoadCharacter = () => {
         await getRecord(characterToLoad);
         await repopulateCharacterAttributes();
         await repopulateCurrentCharacterId();
-        if (location.pathname === '/create-or-manage-page') {
-          history.push("/manage-characters-page")
+
+        if (location.pathname === "/create-or-manage-page") {
+          history.push("/manage-characters-page");
         }
       }
     };
     loadSelectedCharactersStats();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [characterToLoad]);
 
   return (
     <div>
-      {location.pathname === "/create-or-manage-page" ? (
-        <DropdownButton
-          className="dropdown-button"
-          id="dropdown-item-button"
-          title={`LOAD CHARACTER`}
-        >
-          {dropdownList !== [] &&
-            dropdownList.map((character) => (
-              <DropdownItem
-                className="dropdown-link"
-                key={dropdownList.indexOf(character)}
-                onClick={() => handleClick(character)}
-              >
-                {character}
-              </DropdownItem>
-            ))}
-        </DropdownButton>
-      ) : (
-        <Button onClick={() => handleReset("Brendan")} size="lg">
-          Reset Changes
-        </Button>
-      )}
+      <DropdownButton
+        className="dropdown-button"
+        id="dropdown-item-button"
+        title={`LOAD CHARACTER`}
+      >
+        {dropdownList !== [] &&
+          dropdownList.map((character) => (
+            <DropdownItem
+              className="dropdown-link"
+              key={dropdownList.indexOf(character)}
+              onClick={() => handleLoad(character)}
+            >
+              {character}
+            </DropdownItem>
+          ))}
+      </DropdownButton>
     </div>
   );
 };
