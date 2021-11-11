@@ -6,6 +6,7 @@ import {
   CharacterNameContext,
   ComponentRefContext,
   CurrentCharacterIdContext,
+  IsChoosingAdvantagesContext,
   SelectedAdvantagesContext,
   SelectedDisadvantagesContext,
   SelectInputValueContext,
@@ -65,6 +66,15 @@ function App() {
     [currentCharacterId]
   );
 
+  const [IsChoosingAdvantages, setIsChoosingAdvantages] = useState(true);
+  const IsChoosingAdvantagesValue = useMemo(
+    () => ({
+      IsChoosingAdvantages,
+      setIsChoosingAdvantages,
+    }),
+    [IsChoosingAdvantages]
+  );
+
   const [selectedAdvantagesList, setSelectedAdvantagesList] = useState([]);
   const selectedAdvantagesValue = useMemo(
     () => ({
@@ -90,6 +100,7 @@ function App() {
       <Switch>
         <UserContext.Provider value={userValue}>
           <Route path="/sign-in-and-sign-up" component={signInAndSignUp} />{" "}
+          <IsChoosingAdvantagesContext.Provider value={IsChoosingAdvantagesValue}>
           <SelectedAdvantagesContext.Provider value={selectedAdvantagesValue}>
             <SelectedDisadvantagesContext.Provider
               value={selectedDisadvantagesValue}
@@ -124,6 +135,7 @@ function App() {
               </SelectInputValueContext.Provider>{" "}
             </SelectedDisadvantagesContext.Provider>{" "}
           </SelectedAdvantagesContext.Provider>{" "}
+          </IsChoosingAdvantagesContext.Provider>{" "}
         </UserContext.Provider>{" "}
       </Switch>{" "}
     </BrowserRouter>

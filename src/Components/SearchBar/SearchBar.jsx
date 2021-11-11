@@ -5,6 +5,7 @@ import AdvantagesArray from "../../Attribute Objects/Advantages/Advantages";
 import DisadvantagesArray from "../../Attribute Objects/Disadvantages/Disadvantages";
 import {
   CharacterNameContext,
+  IsChoosingAdvantagesContext,
   SelectedAdvantagesContext,
   SelectedDisadvantagesContext,
   SelectInputValueContext,
@@ -14,10 +15,10 @@ import ToggleAdvantageDisadvantage from "../ToggleAdvantageDisadvantage/ToggleAd
 import "./SearchBar.styles.scss";
 
 const SearchBar = () => {
-  const [isChoosingAdvantages, setIsChoosingAdvantages] = useState(true);
   const [advantageOptions, setAdvantageOptions] = useState([]);
   const [disadvantageOptions, setDisadvantageOptions] = useState([]);
 
+  const { IsChoosingAdvantages } = useContext(IsChoosingAdvantagesContext);
   const { selectedAdvantagesList, setSelectedAdvantagesList } = useContext(
     SelectedAdvantagesContext
   );
@@ -94,21 +95,18 @@ const SearchBar = () => {
       {characterName === "" ? (
         <h1>
           Select your Characters{" "}
-          {isChoosingAdvantages ? "ADVANTAGES" : "DISADVANTAGES"}
+          {IsChoosingAdvantages ? "ADVANTAGES" : "DISADVANTAGES"}
         </h1>
       ) : (
         <h1>
           SELECT {characterName.toUpperCase()}'S{" "}
-          {isChoosingAdvantages ? "ADVANTAGES" : "DISADVANTAGES"}
+          {IsChoosingAdvantages ? "ADVANTAGES" : "DISADVANTAGES"}
         </h1>
       )}
-      <ToggleAdvantageDisadvantage
-        isChoosingAdvantages={isChoosingAdvantages}
-        setIsChoosingAdvantages={setIsChoosingAdvantages}
-      />
+      <ToggleAdvantageDisadvantage />
       <Select
         className="searchBar"
-        options={isChoosingAdvantages ? advantageOptions : disadvantageOptions}
+        options={IsChoosingAdvantages ? advantageOptions : disadvantageOptions}
         value={selectInput}
         isMulti
         onChange={handleChange}

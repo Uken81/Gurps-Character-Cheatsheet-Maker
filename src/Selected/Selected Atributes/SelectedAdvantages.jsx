@@ -2,7 +2,7 @@ const SelectedAdvantages = (props) => {
     const selectedAdvantagesList = props.selectedAdvantagesList;
 
     return (
-        <ul>
+        <ul >
             {selectedAdvantagesList.map(({ title }) => {
                 return (
                     <li

@@ -1,8 +1,9 @@
+import { useContext } from 'react';
+import { IsChoosingAdvantagesContext } from '../../context';
 import './Toggle.styles.scss';
 
-const ToggleAdvantageDisadvantage = (props) => {
-    const isChoosingAdvantages = props.isChoosingAdvantages;
-    const setIsChoosingAdvantages = props.setIsChoosingAdvantages;
+const ToggleAdvantageDisadvantage = () => {
+    const { isChoosingAdvantages, setIsChoosingAdvantages } = useContext(IsChoosingAdvantagesContext);
 
     const toggledBackground = { backgroundColor: 'whitesmoke' };
     const untoggledBackground = { backgroundColor: 'darkgray' };
