@@ -56,16 +56,16 @@ provider.setCustomParameters({ prompt: "select_account" });
 
 const auth = getAuth(firebaseApp);
 
+
 const google = async () => {
-  signInWithPopup(auth, provider)
-    .then((result) => {
+  await signInWithPopup(auth, provider)
+    .then((result) => {      
       const user = result.user;
       console.log(`${user.email} has signed in with google pop-up.`);
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-
       console.log(errorCode);
      alert(errorMessage);
     });

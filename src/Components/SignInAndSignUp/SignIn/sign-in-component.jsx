@@ -13,6 +13,7 @@ const SignIn = (props) => {
   const [password, setPassword] = useState("");
 
   const setSignInOrUp = props.setSignInOrUp;
+  const setIsWaitingForPopup = props.setIsWaitingForPopup;
 
   const handleChange = (e) =>
     setInputs((prevState) => ({
@@ -50,18 +51,22 @@ const SignIn = (props) => {
   }, [inputs.email, inputs.password]);
 
   const googleSignIn = async () => {
-    await google();
-    history.push("/create-or-manage-page");
+    setIsWaitingForPopup(true);
+    
+    await google()
+    .then(() => {
+        history.push("/create-or-manage-page");     
+    }).catch((err) => {
+        alert('Google sign in is not working. Sign in with email and password or try again later.');
+    }); 
   };
 
-  const redirect = () => {
+  const redirectToSignup = () => {
       setSignInOrUp('sign-up');
   }
 
   return (
     <div className="sign-in">
-      {/* <h1>I already have an account</h1> */}
-      {/* <h3>Sign in with your email and password</h3> */}
       <Button variant="primary" onClick={googleSignIn}>
         SIGN IN WITH GOOGLE
       </Button>
@@ -92,7 +97,7 @@ const SignIn = (props) => {
         </Button>
       </Form>
       <div className="redirect-sign-up">
-          <p className='redirect-link' onClick={redirect}>Sign Up</p>
+          <p className='redirect-link' onClick={redirectToSignup}>Sign Up</p>
           <p>if you dont have an account yet</p>
       </div>
     </div>

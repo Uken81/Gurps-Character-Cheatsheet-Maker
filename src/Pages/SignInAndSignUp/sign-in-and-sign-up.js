@@ -6,18 +6,40 @@ import SignUp from "../../Components/SignInAndSignUp/SignUp/sign-up-component.js
 import { useState } from "react";
 
 const SignInAndSignUp = () => {
-    const [signInOrUp, setSignInOrUp] = useState('sign-in')
+  const [signInOrUp, setSignInOrUp] = useState("sign-in");
+  const [isWaitingForPopup, setIsWaitingForPopup] = useState(false);
 
-    return(
-<div className="sign-in-and-sign-up">
-    <Header />
-    <div className="form-container">
-      <h1 className="main-title"> G.C.C.M </h1>
-      {signInOrUp === 'sign-in' && <SignIn setSignInOrUp={setSignInOrUp} />}
-      {signInOrUp === 'sign-up' && <SignUp />}
-    </div>
-  </div>
-    )
+  if (!isWaitingForPopup) {
+    return (
+      <div className="sign-in-and-sign-up">
+        <Header />
+        <div className="form-container">
+          <h1 className="main-title"> G.C.C.M </h1>
+          {signInOrUp === "sign-in" && (
+            <SignIn
+              setSignInOrUp={setSignInOrUp}
+              isWaitingForPopup={isWaitingForPopup}
+              setIsWaitingForPopup={setIsWaitingForPopup}
+            />
+          )}
+          {signInOrUp === "sign-up" && <SignUp />}
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div
+        className="sign-in-and-sign-up"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <h1 className="main-title"> G.C.C.M </h1>
+      </div>
+    );
+  }
 };
 
 export default SignInAndSignUp;
