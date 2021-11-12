@@ -7,10 +7,12 @@ import { useHistory } from "react-router";
 import { google } from "../../Firebase/firebase.utils";
 import { Button, Form } from "react-bootstrap";
 
-const SignIn = () => {
+const SignIn = (props) => {
   const [inputs, setInputs] = useState({});
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const setSignInOrUp = props.setSignInOrUp;
 
   const handleChange = (e) =>
     setInputs((prevState) => ({
@@ -52,15 +54,20 @@ const SignIn = () => {
     history.push("/create-or-manage-page");
   };
 
+  const redirect = () => {
+      setSignInOrUp('sign-up');
+  }
+
   return (
     <div className="sign-in">
-      <h1>I already have an account</h1>
-      <span>Sign in with your email and password</span>
+      {/* <h1>I already have an account</h1> */}
+      {/* <h3>Sign in with your email and password</h3> */}
+      <Button variant="primary" onClick={googleSignIn}>
+        SIGN IN WITH GOOGLE
+      </Button>
+      <span>or</span>
       <Form onSubmit={handleSubmit}>
-        <Form.Group
-          className="sign-in-form"
-          controlId="sign-in-email"
-        >
+        <Form.Group className="sign-in-form" controlId="sign-in-email">
           <Form.Control
             type="email"
             name="email"
@@ -70,10 +77,7 @@ const SignIn = () => {
           />
         </Form.Group>
 
-        <Form.Group
-          className="sign-in-form"         
-          controlId="sign-in-password"
-        >
+        <Form.Group className="sign-in-form" controlId="sign-in-password">
           <Form.Control
             type="password"
             name="password"
@@ -83,13 +87,14 @@ const SignIn = () => {
           />
         </Form.Group>
 
-        <Button variant="primary" type='submit'>
+        <Button variant="primary" type="submit">
           SIGN IN
         </Button>
-        <Button variant="primary" onClick={googleSignIn}>
-          SIGN IN WITH GOOGLE
-        </Button>
       </Form>
+      <div className="redirect-sign-up">
+          <p className='redirect-link' onClick={redirect}>Sign Up</p>
+          <p>if you dont have an account yet</p>
+      </div>
     </div>
   );
 };

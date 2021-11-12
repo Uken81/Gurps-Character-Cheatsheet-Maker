@@ -75,8 +75,10 @@ const SignUp = () => {
 
   return (
     <div className="sign-up">
-      <h1>I do not have an account</h1>
-      <span>Sign up with your email and password</span>
+      <Button variant="primary" onClick={googleSignUp}>
+          SIGN UP WITH GOOGLE
+        </Button>
+        <span>or</span>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="sign-up-form" controlId="sign-up-email">
           <Form.Control
@@ -113,9 +115,7 @@ const SignUp = () => {
         <Button variant="primary" type="submit">
           SIGN UP
         </Button>
-        <Button variant="primary" onClick={googleSignUp}>
-          SIGN UP WITH GOOGLE
-        </Button>
+        
       </Form>
     </div>
   );

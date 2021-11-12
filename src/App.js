@@ -1,6 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import { Route, Switch } from "react-router-dom";
-import signInAndSignUp from "./Pages/SignInAndSignUp/sign-in-and-sign-up";
+import SignInAndSignUp from "./Pages/SignInAndSignUp/sign-in-and-sign-up";
 import { useState } from "react";
 import {
   CharacterNameContext,
@@ -99,7 +99,7 @@ function App() {
     <BrowserRouter>
       <Switch>
         <UserContext.Provider value={userValue}>
-          <Route path="/sign-in-and-sign-up" component={signInAndSignUp} />{" "}
+          <Route path="/sign-in-and-sign-up" component={SignInAndSignUp} />{" "}
           <IsChoosingAdvantagesContext.Provider value={IsChoosingAdvantagesValue}>
           <SelectedAdvantagesContext.Provider value={selectedAdvantagesValue}>
             <SelectedDisadvantagesContext.Provider
