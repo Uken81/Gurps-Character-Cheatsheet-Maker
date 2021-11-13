@@ -34,7 +34,7 @@ const SaveCharacter = () => {
       setNameIsDuplicate(() => matchingName.includes(characterName));
     };
     checkIfDuplicate();
-  },[characterName]);
+  },[characterName, currentlyLoggedInUserId]);
 
   const saveCharacterHandler = async () => {
     if (
