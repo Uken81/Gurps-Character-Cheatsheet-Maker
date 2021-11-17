@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { IsChoosingAdvantagesContext, SelectedAdvantagesContext, SelectedDisadvantagesContext } from "../context";
 
 const DisplaySelected = () => {
-    const { isChoosingAdvantages, setIsChoosingAdvantages } = useContext(IsChoosingAdvantagesContext);
+    const { setIsChoosingAdvantages } = useContext(IsChoosingAdvantagesContext);
     const {selectedAdvantagesList} = useContext(SelectedAdvantagesContext);
     const {selectedDisadvantagesList} = useContext(SelectedDisadvantagesContext);
 
