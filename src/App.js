@@ -100,41 +100,45 @@ function App() {
       <Switch>
         <UserContext.Provider value={userValue}>
           <Route path="/sign-in-and-sign-up" component={SignInAndSignUp} />{" "}
-          <IsChoosingAdvantagesContext.Provider value={IsChoosingAdvantagesValue}>
-          <SelectedAdvantagesContext.Provider value={selectedAdvantagesValue}>
-            <SelectedDisadvantagesContext.Provider
-              value={selectedDisadvantagesValue}
-            >
-              <Route exact path="/" component={LandingPage} />{" "}
-              <SelectInputValueContext.Provider value={selectInputValue}>
-                <CharacterNameContext.Provider value={characterNameValue}>
-                  <CurrentCharacterIdContext.Provider
-                    value={currentCharacterIdValue}
-                  >
-                    <Route
-                      path="/create-or-manage-page"
-                      component={CreateOrManage}
-                    />{" "}
-                    <Route
-                      path="/edit-character-page"
-                      component={EditCharacterPage}
-                    />{" "}
-                    <ComponentRefContext.Provider value={componentRefValue}>
-                      <Route path="/guest-page" component={GuestPage} />{" "}
+          <IsChoosingAdvantagesContext.Provider
+            value={IsChoosingAdvantagesValue}
+          >
+            <CharacterNameContext.Provider value={characterNameValue}>
+              <SelectedAdvantagesContext.Provider
+                value={selectedAdvantagesValue}
+              >
+                <SelectedDisadvantagesContext.Provider
+                  value={selectedDisadvantagesValue}
+                >
+                  <Route exact path="/" component={LandingPage} />{" "}
+                  <SelectInputValueContext.Provider value={selectInputValue}>
+                    <CurrentCharacterIdContext.Provider
+                      value={currentCharacterIdValue}
+                    >
                       <Route
-                        path="/create-new-character-page"
-                        component={CreateNewCharacterPage}
+                        path="/create-or-manage-page"
+                        component={CreateOrManage}
                       />{" "}
                       <Route
-                        path="/manage-characters-page"
-                        component={ManageCharactersPage}
+                        path="/edit-character-page"
+                        component={EditCharacterPage}
                       />{" "}
-                    </ComponentRefContext.Provider>{" "}
-                  </CurrentCharacterIdContext.Provider>{" "}
-                </CharacterNameContext.Provider>{" "}
-              </SelectInputValueContext.Provider>{" "}
-            </SelectedDisadvantagesContext.Provider>{" "}
-          </SelectedAdvantagesContext.Provider>{" "}
+                      <ComponentRefContext.Provider value={componentRefValue}>
+                        <Route path="/guest-page" component={GuestPage} />{" "}
+                        <Route
+                          path="/create-new-character-page"
+                          component={CreateNewCharacterPage}
+                        />{" "}
+                        <Route
+                          path="/manage-characters-page"
+                          component={ManageCharactersPage}
+                        />{" "}
+                      </ComponentRefContext.Provider>{" "}
+                    </CurrentCharacterIdContext.Provider>{" "}
+                  </SelectInputValueContext.Provider>{" "}
+                </SelectedDisadvantagesContext.Provider>{" "}
+              </SelectedAdvantagesContext.Provider>{" "}
+            </CharacterNameContext.Provider>{" "}
           </IsChoosingAdvantagesContext.Provider>{" "}
         </UserContext.Provider>{" "}
       </Switch>{" "}

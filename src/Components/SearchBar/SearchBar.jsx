@@ -84,7 +84,7 @@ const SearchBar = () => {
 
   const formatOptionLabel = ({ label, category }) => (
     <div
-      style={category === "advantage" ? { color: "green" } : { color: "red" }}
+      style={category === "advantage" ? { color: "seagreen" } : { color: "brown" }}
     >
       {label}
     </div>
@@ -103,6 +103,7 @@ const SearchBar = () => {
           {IsChoosingAdvantages ? "ADVANTAGES" : "DISADVANTAGES"}
         </h1>
       )}
+      <div className='test'>
       <ToggleAdvantageDisadvantage />
       <Select
         className="searchBar"
@@ -112,6 +113,8 @@ const SearchBar = () => {
         onChange={handleChange}
         formatOptionLabel={formatOptionLabel}
       />
+      </div>
+      
     </div>
   );
 };

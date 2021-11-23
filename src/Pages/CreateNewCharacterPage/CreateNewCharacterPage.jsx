@@ -40,7 +40,24 @@ const CreateNewCharacterPage = () => {
       <Header />
       <div className="user-interface-window">
         <h1 className="main-title"> G.C.C.M </h1>
-        <div className="form">
+        
+        <div className="container">
+        
+          <div className="toolbar-container">
+            <span className="toolbar-header">Character Tools</span>
+            <div className="toolbar-characters">
+              <ResetCharacter />
+              <SaveCharacter />
+            </div>
+            <span className="toolbar-header">Output Tools</span>
+            <div className="toolbar-print-options">
+            <PrintPDF />
+              <CopyToClipboard />
+              
+            </div>
+          </div>
+          <div className="main-interface">
+          <div className="form">
           <Form className="new-character-form" onSubmit={handleSubmit}>
             <Form.Control
               type="text"
@@ -52,19 +69,6 @@ const CreateNewCharacterPage = () => {
             />
           </Form>
         </div>
-        <div className="container">
-          <div className="toolbar-container">
-            <span className="toolbar-header">Character Toolbar</span>
-            <div className="toolbar-characters">
-              <ResetCharacter />
-              <SaveCharacter />
-            </div>
-            <div className="toolbar-print-options">
-              <CopyToClipboard />
-              <PrintPDF />
-            </div>
-          </div>
-          <div className="main-interface">
             <SearchBar />
             <DisplaySelected />
           </div>

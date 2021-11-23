@@ -3,13 +3,23 @@
   justify-content: flex-end;
   background-color: black;
 
+
+  
   #sign-out {
-    height: 50px;
-    width: 50px;
-    background-image: url("../../Assets/Images/depositphotos_66251761-stock-photo-logout-circular-icon-on-white.jpg");
-    background-size: contain;
+    height: 30px;
+    width: 30px;
+    background-image: url("../../Assets/Images/logoutIcon.png");
+    background-size: 100%;
     background-repeat: no-repeat;
+    background-color: black;
     border: none;
+    margin-top: 0.75%;
     margin-right: 1%;
+    text-decoration: none;
+
+   
   }
+
+
+  
 }

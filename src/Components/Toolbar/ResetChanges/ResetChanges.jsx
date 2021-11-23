@@ -29,26 +29,20 @@ const ResetChanges = () => {
     setSelectedAdvantagesList(initialAdvantages);
     setSelectedDisadvantagesList(initialDisadvantages);
     setSelectInput(initalSelect);
+    console.log('test')
   };
+
+  const con = () => {
+    console.log('initialselect: ', initalSelect)
+    console.log('select: ', selectInput)
+  }
 
   return (
     <div>
-      <Button onClick={handleClick} size="lg">
+      <Button className="tool-button" onClick={handleClick} size="lg">
         Reset Changes
       </Button>
-      <button
-        onClick={() =>
-          console.log(
-            "ads, dads, initselect, select ",
-            initialAdvantages,
-            initialDisadvantages,
-            initalSelect,
-            selectInput
-          )
-        }
-      >
-        cons
-      </button>
+      <button onClick={con}>con</button>
     </div>
   );
 };

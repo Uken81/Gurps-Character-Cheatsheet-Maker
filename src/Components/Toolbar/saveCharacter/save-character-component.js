@@ -1,5 +1,8 @@
 import { setDoc } from "@firebase/firestore";
 import { useContext, useEffect, useState } from "react";
+
+import Button from "react-bootstrap/Button";
+
 import {
   CharacterNameContext,
   CurrentCharacterIdContext,
@@ -87,9 +90,9 @@ const SaveCharacter = () => {
 
   return (
     <div className="button-container">
-      <button className="tool-button" onClick={saveCharacterHandler}>
+      <Button className="tool-button" size="lg" onClick={saveCharacterHandler}>
         Save Character
-      </button>
+      </Button>
     </div>
   );
 };

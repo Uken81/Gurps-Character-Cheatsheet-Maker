@@ -1,8 +1,10 @@
 .main-title {
-  font-size: 8rem;
-  /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;  */
+  font-size: 12rem;
+  // /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;  */
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-weight: normal;
   letter-spacing: 2rem;
+  color: #212529;
   /* text-shadow: 1px 1px bisque; */
   text-shadow: 2px 2px royalblue;
 }
@@ -10,6 +12,8 @@
 h1 {
   font-size: 3rem;
   text-align: center;
+  font-weight: bolder;
+  color: white;
 }
 
 input {
@@ -20,15 +24,29 @@ input {
   display: flex;
   flex-direction: column;
   background-color: black;
-  color: whitesmoke;
+  // color: whitesmoke;
   list-style: none;
   align-items: center;
+ 
+
+  .launching-page-options {
+    flex-direction: row;
+    margin-top: 15%;
+
+    .links {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: 20% 20%;
+    }
+  }
 
   .container {
     display: flex;
     flex-direction: row;
     min-width: 100%;
     margin: 0%;
+
     h2 {
       font-size: 4rem;
       text-align: center;
@@ -44,55 +62,71 @@ input {
     button:hover {
       cursor: pointer;
     }
-    .toolbar-header {
-        font-size: 2rem;
-        font-weight: 400;
-    }
+   
 
     .toolbar-container {
       display: flex;
-      justify-content: center;
+      // justify-content: center;
       flex-direction: column;
-      background-color: black;
-      align-self: flex-start;
+      // align-self: flex-start;
       margin-left: 1.5%;
       width: 10%;
-      
       float: left;
+      font-weight: bolder;
+      text-align: center;
+      
 
-  
-      .toolbar-characters, .toolbar-print-options {
+      .toolbar-header {
+        font-size: 1.75rem;
+        font-weight: 400;
+        color: white;
+        margin-bottom: 5%;
+        font-weight: bolder;
+      }
+
+      .toolbar-characters,
+      .toolbar-print-options {
         display: flex;
         flex-direction: column;
-        justify-content: space-evenly;
+        // justify-content: space-between;
         align-items: center;
         margin-bottom: 25%;
         border: white solid 3px;
         border-radius: 25%;
         padding: 15% 10%;
-        
+
+        .tool-button {
+    
+          background-color: white;
+          color: black;
+          font-weight: bolder;
+          // padding: 1rem;
+          // width: 10rem;
+          margin: 10% 0;
+          font-size: 1.25rem;
+          // font-weight: bold;
+          // border-radius: 10%;
+        }
       }
 
-      .tool-button {
-        background-color: black;
-        color: white;
-        padding: 1rem;
-        width: 10rem;
-        margin: 10%;
-        font-size: 1rem;
-        font-weight: bold;
-        border-radius: 10%;
-      }
+      
     }
 
     .main-interface {
       display: flex;
       flex-direction: column;
+      // justify-content: center;
       align-items: center;
-      // flex: 1;
-      // background-color: blue;
       max-width: 50%;
-      margin-left: 20%;
+      margin-left: 13%;
+
+      .form {
+        margin-top: 3%;
+      }
+
+      .selected-header {
+        margin: 1% 0 7% 0;
+      }
     }
   }
 }

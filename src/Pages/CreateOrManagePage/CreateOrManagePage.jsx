@@ -24,7 +24,7 @@ const CreateOrManage = () => {
   const { setSelectedDisadvantagesList } = useContext(
     SelectedDisadvantagesContext
   );
-  
+
   useEffect(() => {
     console.log("***Test: createOrManagePage");
     let unsubscribeFromAuth = null;
@@ -58,13 +58,19 @@ const CreateOrManage = () => {
   return (
     <div className="create-or-manage-characters">
       <Header />
-      <h1 className="main-title"> G.C.C.M </h1>
-      <Link to="/create-new-character-page">
-        <Button size="lg" variant="outline-primary">
-          Create New Character
-        </Button>
-      </Link>
-      <LoadCharacter />
+      <div className="user-interface-window">
+        <div className="launching-page-options">
+          <h1 className="main-title"> G.C.C.M </h1>
+          <div className="links">
+            <Link to="/create-new-character-page">
+              <Button size="lg" variant="outline-primary">
+                Create New Character
+              </Button>
+            </Link>
+            <LoadCharacter />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

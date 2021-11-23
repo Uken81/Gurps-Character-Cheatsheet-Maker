@@ -1,20 +1,51 @@
-.toggle-window {
+.toggle-container {
   display: flex;
   flex-direction: row;
   justify-content: left;
   margin-top: 5%;
+  
 
-  p {
-    margin-right: 1rem;
+  .toggle-advantage-section {
+    font-size: 1.25rem;
+    
   }
 
-  .toggle-buttons {
-    font-weight: bold;
-    width: 10rem;
-    height: 2rem;
-    border: 2.5px outset white;
-    border-radius: 2%;
+  .nav-tabs .nav-link.disabled  {
+    color: white;
+    // background-color: lightcoral;
+
+    #tab-advantages {
+      color: seagreen;
+    }
+    
   }
+
+  
+  .toggle-advantages-disadvantages {
+    border-bottom: none;
+    font-weight: bolder;
+
+  
+
+
+   
+    .nav-item, button {
+      // color: brown;
+      font-weight: bolder;
+      
+    
+      #tab-choose-from {
+        // color: whitesmoke;
+        background-color: yellowgreen;
+      }
+      #tab-advantages {
+        color: seagreen;
+      }
+      #react-aria6387250207-2-tab-disadvantages {
+        color: brown;
+      }
+    }
+  }
+
 }
-
 

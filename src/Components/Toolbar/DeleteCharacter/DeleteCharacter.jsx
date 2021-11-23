@@ -1,6 +1,9 @@
 import { deleteDoc } from "firebase/firestore";
 import { useContext } from "react";
 import { useHistory } from "react-router";
+
+import Button from "react-bootstrap/Button";
+
 import { CharacterNameContext, CurrentCharacterIdContext, UserContext } from "../../../context";
 import { GetCharacterReference } from "../../Firebase/firebase.utils";
 
@@ -23,7 +26,7 @@ const DeleteCharacter = () => {
   
     return (
         <div className='button-container'>
-            <button className="tool-button" onClick={deleteCharacter}>Delete {characterName}</button>
+            <Button className="tool-button" onClick={deleteCharacter}>Delete {characterName}</Button>
         </div>
 
     );

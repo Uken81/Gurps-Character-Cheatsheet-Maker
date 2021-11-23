@@ -1,38 +1,38 @@
-import { useContext } from 'react';
-import { IsChoosingAdvantagesContext } from '../../context';
-import './Toggle.styles.scss';
+import { useContext, useEffect } from "react";
+import { IsChoosingAdvantagesContext } from "../../context";
+import "./Toggle.styles.scss";
+
+import { Tab, Tabs } from "react-bootstrap";
 
 const ToggleAdvantageDisadvantage = () => {
-    const { isChoosingAdvantages, setIsChoosingAdvantages } = useContext(IsChoosingAdvantagesContext);
+  const { setIsChoosingAdvantages } = useContext(IsChoosingAdvantagesContext);
 
-    const toggledBackground = { backgroundColor: 'whitesmoke' };
-    const untoggledBackground = { backgroundColor: 'darkgray' };
+  useEffect(()=> {
+    setIsChoosingAdvantages(true);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[]);
 
-    return (
-        <div className='toggle-window'>
-          <p>CHOOSE FROM</p>
-            <div className='toggle-advantage-section'>
-                <button
-                    className='toggle-buttons'
-                    id='toggle-advantage'
-                    style={ isChoosingAdvantages ? toggledBackground : untoggledBackground }
-                    onClick={() => setIsChoosingAdvantages(true)}
-                >
-                    Advantages
-                </button >
-            </div>
-            <div className='toggle-disadvantage-section'>
-                <button
-                    className='toggle-buttons'
-                    id='toggle-disadvantage'
-                    style={ isChoosingAdvantages ? untoggledBackground : toggledBackground }
-                    onClick={() => setIsChoosingAdvantages(false)}
-                >
-                    Disadvantages
-                </button>
-            </div>
-        </div>
-    );
-}
+  const handleTabs = (key) => {
+    key === "advantages"
+      ? setIsChoosingAdvantages(true)
+      : setIsChoosingAdvantages(false);
+  };
+
+  return (
+    <div className="toggle-container">
+      <div className="toggle-advantage-section">
+        <Tabs
+          defaultActiveKey="advantages"
+          className="toggle-advantages-disadvantages"
+          onSelect={handleTabs}
+        >
+          <Tab eventKey="choose-from" className='tab-disabled' title="Choose From" disabled />
+          <Tab eventKey="advantages" id='tab-advantages' title="Advantages" />
+          <Tab eventKey="disadvantages" id='tab-disadvantages' title="Disadvantages" />
+        </Tabs>
+      </div>
+    </div>
+  );
+};
 
 export default ToggleAdvantageDisadvantage;

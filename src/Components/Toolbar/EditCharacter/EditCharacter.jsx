@@ -1,5 +1,8 @@
 import { useContext } from "react";
 import { useHistory } from "react-router";
+
+import Button from "react-bootstrap/Button";
+
 import {
   CurrentCharacterIdContext,
   SelectedAdvantagesContext,
@@ -36,9 +39,9 @@ const EditCharacter = () => {
 
   return (
     <div className="button-container">
-      <button className="tool-button" onClick={handleEdit}>
+      <Button className="tool-button" onClick={handleEdit}>
         Save Changes
-      </button>
+      </Button>
     </div>
   );
 };

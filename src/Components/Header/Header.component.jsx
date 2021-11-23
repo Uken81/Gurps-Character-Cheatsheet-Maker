@@ -38,9 +38,9 @@ const Header = () => {
     return (
         <div className="header">          
             {['/sign-in-and-sign-up', '/guest-page'].includes(pathname)  ? <BackToLandingPage /> : null}
-            {['/create-new-character-page', '/manage-characters-page','/edit-character-page'].includes(pathname) ? <BackToCreateManage /> : null}
-            {user && <button id='sign-out' onClick={signout}></button>}               
-        </div>
+            {['/create-new-character-page', '/manage-characters-page','/edit-character-page'].includes(pathname) ? <BackToCreateManage /> : null}        
+            {user && <button id='sign-out' onClick={signout}></button>}
+            </div>
     );
 }
 

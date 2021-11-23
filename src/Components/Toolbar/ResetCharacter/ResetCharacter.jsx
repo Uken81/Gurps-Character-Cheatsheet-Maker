@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { CharacterNameContext, SelectedAdvantagesContext, SelectedDisadvantagesContext, SelectInputValueContext } from "../../../context";
+import Button from "react-bootstrap/Button";
 
 const ResetCharacter = () => {
     const {setSelectInput} = useContext(SelectInputValueContext);
@@ -16,7 +17,7 @@ const ResetCharacter = () => {
 
     return (
         <div className="button-container">
-            <button className="tool-button" onClick={HandleCharacterReset}>Reset Character</button>
+            <Button className="tool-button" size="lg" onClick={HandleCharacterReset}>Reset Character</Button>
         </div>
     );
 }

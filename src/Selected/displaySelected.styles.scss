@@ -1,0 +1,26 @@
+.selected-window {
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    width: 100%;
+    font-size: 2rem;
+    text-align: center;
+
+    h1 {
+        font-size: 4rem;
+    }
+}
+
+.selected-list {
+    border: whitesmoke solid 8px;
+    padding: 2%;
+    min-width: 50%;
+}
+
+#selected-advantages {
+    margin-right: 5%;
+}
+
+#selected-disadvantages {
+    margin-left: 5%;
+}

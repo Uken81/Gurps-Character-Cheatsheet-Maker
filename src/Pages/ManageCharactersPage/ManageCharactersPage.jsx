@@ -12,7 +12,7 @@ import { CharacterNameContext } from "../../context";
 import { ToEditCharacter } from "../../Components/Header/Navigation Links/navigationLinks";
 
 const ManageCharactersPage = () => {
-    const { characterName } = useContext(CharacterNameContext);
+  const { characterName } = useContext(CharacterNameContext);
     
   return (
     <div className="manage-character-page">
@@ -32,8 +32,7 @@ const ManageCharactersPage = () => {
             </div>
           </div>
           <div className="main-interface">
-            {/* <SearchBar /> */}
-            <h1>{characterName.toUpperCase()}'S CHEATSHEET</h1>
+            <h1 className='selected-header'>{characterName.toUpperCase()}'S CHEATSHEET</h1>
             <DisplaySelected />
           </div>
         </div>

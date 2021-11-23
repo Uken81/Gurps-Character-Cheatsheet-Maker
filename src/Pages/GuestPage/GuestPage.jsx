@@ -16,11 +16,12 @@ const GuestPage = () => {
             <div className="user-interface-window">
                 <h1 className="main-title"> G.C.C.M </h1>
                 <div className="container">
-                    <div className="toolbar-container">
-                    
-                        <ResetCharacter />
-                        <CopyToClipboard />
+                    <div className="toolbar-container"> 
+                    <div className="toolbar-characters">
+                    <ResetCharacter />
                         <PrintPDF />
+                        <CopyToClipboard />
+                        </div>                                      
                     </div>
                     <div className="main-interface">
                         <SearchBar />

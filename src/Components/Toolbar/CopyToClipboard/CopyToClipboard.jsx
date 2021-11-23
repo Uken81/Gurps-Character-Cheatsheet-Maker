@@ -1,3 +1,5 @@
+import Button from "react-bootstrap/Button";
+
 const CopyToClipboard = () => {
     //This works pretty much as intended but can get some strange results (eg. adding large amounts of white space between lines) 
     //in certain text editors like Google Docs. Is there a better way to do this?
@@ -27,7 +29,7 @@ const CopyToClipboard = () => {
 
     return (
         <div className="button-container">
-            <button className='tool-button' onClick={copyToClipboard}>Copy To Clipboard</button>
+            <Button className='tool-button' size="lg" onClick={copyToClipboard}>Copy To Clipboard</Button>
         </div>
 
     )

@@ -119,6 +119,9 @@ const LoadCharacter = () => {
         className="dropdown-button"
         id="dropdown-item-button"
         title={`LOAD CHARACTER`}
+        variant="outline-primary"
+        size='lg'
+        // style={{border: '4px solid red'}}
       >
         {dropdownList !== [] &&
           dropdownList.map((character) => (
@@ -126,6 +129,12 @@ const LoadCharacter = () => {
               className="dropdown-link"
               key={dropdownList.indexOf(character)}
               onClick={() => handleLoad(character)}
+              style={{color: 'white',
+                      backgroundColor: 'black',
+                      // width: '60%',
+                      fontSize: '1.5rem',
+                      // borderBottom: '2px solid white'
+            }}
             >
               {character}
             </DropdownItem>

@@ -8,7 +8,7 @@ const SelectedDisadvantages = (props) => {
                     <li
                         className='selected'
                         key={`${title}-selected`}
-                        style={{color: 'red'}}
+                        style={{color: 'brown'}}
                     >
                         {title}
                     </li>
