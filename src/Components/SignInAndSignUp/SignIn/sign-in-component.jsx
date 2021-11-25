@@ -109,8 +109,8 @@ const SignIn = (props) => {
 };
 
 SignIn.propTypes = {
-  setSignInOrUp: PropTypes.string,
-  setIsWaitingForPopup: PropTypes.bool
+  setSignInOrUp: PropTypes.func,
+  setIsWaitingForPopup: PropTypes.func
 };
 
 export default SignIn;

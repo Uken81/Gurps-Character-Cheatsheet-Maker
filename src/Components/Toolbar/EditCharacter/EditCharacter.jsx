@@ -20,9 +20,14 @@ const EditCharacter = () => {
   const history = useHistory();
   const handleEdit = async () => {
     const characterRef = await GetCharacterReference(user.uid, currentCharacterId);
-    await SaveChangesToCharacter(characterRef, selectedAdvantagesList, selectedDisadvantagesList);
-    console.log(characterRef);
-    history.push('/create-or-manage-page');
+    if ((selectedAdvantagesList.length !== 0) & (selectedDisadvantagesList.length !== 0)) {
+      await SaveChangesToCharacter(characterRef, selectedAdvantagesList, selectedDisadvantagesList);
+      console.log(`${characterRef} has been successfully edited.`);
+      history.push('/create-or-manage-page');
+    } else {
+      console.log('**** Edit fail');
+      alert('You must select at least one Advantage or Disadvantage');
+    }
   };
 
   return (

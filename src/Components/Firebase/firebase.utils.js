@@ -5,13 +5,22 @@ import { doc, setDoc, getDoc, getDocs, addDoc, where, query } from 'firebase/fir
 
 const firebaseConfig = {
   // eslint-disable-next-line no-undef
-  apiKey: process.env.REACT_APP_SECRET_KEY,
+  apiKey: 'AIzaSyDM_A2LxIvoHnD4HmkPEyaNnXg3LEr6flM',
   authDomain: 'gccm-ab99e.firebaseapp.com',
   projectId: 'gccm-ab99e',
   storageBucket: 'gccm-ab99e.appspot.com',
   messagingSenderId: '456039580012',
   appId: '1:456039580012:web:c42af6f76a7a2803b63349'
 };
+// const firebaseConfig = {
+//   // eslint-disable-next-line no-undef
+//   apiKey: process.env.REACT_APP_SECRET_KEY,
+//   authDomain: 'gccm-ab99e.firebaseapp.com',
+//   projectId: 'gccm-ab99e',
+//   storageBucket: 'gccm-ab99e.appspot.com',
+//   messagingSenderId: '456039580012',
+//   appId: '1:456039580012:web:c42af6f76a7a2803b63349'
+// };
 
 const firebaseApp = initializeApp(firebaseConfig);
 
