@@ -1,23 +1,16 @@
-import { initializeApp } from "firebase/app";
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
-import { getFirestore, collection } from "firebase/firestore";
-import {
-  doc,
-  setDoc,
-  getDoc,
-  getDocs,
-  addDoc,
-  where,
-  query,
-} from "firebase/firestore";
+import { initializeApp } from 'firebase/app';
+import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import { getFirestore, collection } from 'firebase/firestore';
+import { doc, setDoc, getDoc, getDocs, addDoc, where, query } from 'firebase/firestore';
 
 const firebaseConfig = {
+  // eslint-disable-next-line no-undef
   apiKey: process.env.REACT_APP_SECRET_KEY,
-  authDomain: "gccm-ab99e.firebaseapp.com",
-  projectId: "gccm-ab99e",
-  storageBucket: "gccm-ab99e.appspot.com",
-  messagingSenderId: "456039580012",
-  appId: "1:456039580012:web:c42af6f76a7a2803b63349"
+  authDomain: 'gccm-ab99e.firebaseapp.com',
+  projectId: 'gccm-ab99e',
+  storageBucket: 'gccm-ab99e.appspot.com',
+  messagingSenderId: '456039580012',
+  appId: '1:456039580012:web:c42af6f76a7a2803b63349'
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
@@ -37,29 +30,28 @@ const createUserProfileDocument = async (userAuth) => {
       await setDoc(userRef, {
         displayName,
         email,
-        createdAt,
+        createdAt
       });
-      console.log("CreateUserProfileDocument/FireBase.Utils");
-      console.log("userRef: ", userRef);
-      console.log("docSnap exist: ", docSnap.exists());
-      console.log("docData: ", docSnap.data());
-      console.log("UID: ", userAuth.uid);
+      console.log('CreateUserProfileDocument/FireBase.Utils');
+      console.log('userRef: ', userRef);
+      console.log('docSnap exist: ', docSnap.exists());
+      console.log('docData: ', docSnap.data());
+      console.log('UID: ', userAuth.uid);
     } catch (error) {
-      console.log("error creating user", error.message);
+      console.log('error creating user', error.message);
     }
   }
   return userRef;
 };
 
 const provider = new GoogleAuthProvider();
-provider.setCustomParameters({ prompt: "select_account" });
+provider.setCustomParameters({ prompt: 'select_account' });
 
 const auth = getAuth(firebaseApp);
 
-
 const google = async () => {
   await signInWithPopup(auth, provider)
-    .then((result) => {      
+    .then((result) => {
       const user = result.user;
       console.log(`${user.email} has signed in with google pop-up.`);
     })
@@ -67,38 +59,36 @@ const google = async () => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorCode);
-     alert(errorMessage);
+      alert(errorMessage);
     });
 };
 
 const addNewCharacterForUser = async (userId, newCharacter) => {
-  const userCharactersRef = collection(db, "users", userId, "characters");
+  const userCharactersRef = collection(db, 'users', userId, 'characters');
 
   try {
     const newCharacterRef = await addDoc(userCharactersRef, newCharacter);
     return newCharacterRef;
   } catch (error) {
-    console.log("**** Something Went wrong: ", error);
+    console.log('**** Something Went wrong: ', error);
   }
 };
 
 const getMatchingCharactersForUser = async (userId, characterName) => {
-  const userCharactersRef = collection(db, "users", userId, "characters");
-  const q = query(userCharactersRef, where("name", "==", characterName));
+  const userCharactersRef = collection(db, 'users', userId, 'characters');
+  const q = query(userCharactersRef, where('name', '==', characterName));
   try {
     const matchingCharactersSnapshot = await getDocs(q);
     const matchingCharacters = [];
-    matchingCharactersSnapshot.forEach((doc) =>
-      matchingCharacters.push(doc.data())
-    );
+    matchingCharactersSnapshot.forEach((doc) => matchingCharacters.push(doc.data()));
     return matchingCharacters;
   } catch (error) {
-    console.log("**** Something Went wrong: ", error);
+    console.log('**** Something Went wrong: ', error);
   }
 };
 
 const getUsersCharactersList = async (userId) => {
-  const userCharactersRef = collection(db, "users", userId, "characters");
+  const userCharactersRef = collection(db, 'users', userId, 'characters');
   const charactersList = await getDocs(userCharactersRef);
   const usersCharactersList = [];
 
@@ -107,21 +97,27 @@ const getUsersCharactersList = async (userId) => {
 };
 
 const GetCharacterReference = async (userId, currentCharacterId) => {
-  const userCharactersRef = collection(db, "users", userId, "characters");
-  console.log("userCharacterRef: ", userCharactersRef);
+  const userCharactersRef = collection(db, 'users', userId, 'characters');
+  console.log('userCharacterRef: ', userCharactersRef);
 
   const docRef = doc(userCharactersRef, currentCharacterId);
 
-  console.log("docRef: ", docRef);
+  console.log('docRef: ', docRef);
 
   return docRef;
 };
 
-const SaveChangesToCharacter = async (characterRef, selectedAdvantagesList, selectedDisadvantagesList) => {
+const SaveChangesToCharacter = async (
+  characterRef,
+  selectedAdvantagesList,
+  selectedDisadvantagesList
+) => {
   setDoc(
     characterRef,
-    {advantages: selectedAdvantagesList.map(({ title }) => title) ,
-     disadvantages: selectedDisadvantagesList.map(({ title }) => title)},
+    {
+      advantages: selectedAdvantagesList.map(({ title }) => title),
+      disadvantages: selectedDisadvantagesList.map(({ title }) => title)
+    },
     { merge: true }
   );
 };
@@ -137,5 +133,5 @@ export {
   getMatchingCharactersForUser,
   getUsersCharactersList,
   GetCharacterReference,
-  SaveChangesToCharacter,
+  SaveChangesToCharacter
 };

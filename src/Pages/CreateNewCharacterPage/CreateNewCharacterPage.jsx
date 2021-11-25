@@ -1,25 +1,25 @@
-import { useRef } from "react";
-import { useState } from "react";
-import { useContext } from "react";
-import { Form } from "react-bootstrap";
+import { useRef } from 'react';
+import { useState } from 'react';
+import { useContext } from 'react';
+import { Form } from 'react-bootstrap';
 
-import "../../App.css";
-import "../../Display Results/DisplayResults.styles.css";
-import "../page.styles.scss";
+import '../../App.css';
+import '../../Display Results/DisplayResults.styles.css';
+import '../page.styles.scss';
 
-import Header from "../../Components/Header/Header.component";
-import SearchBar from "../../Components/SearchBar/SearchBar";
-import CopyToClipboard from "../../Components/Toolbar/CopyToClipboard/CopyToClipboard";
-import PrintPDF from "../../Components/Toolbar/Print PDF/printPDF";
-import ResetCharacter from "../../Components/Toolbar/ResetCharacter/ResetCharacter";
-import SaveCharacter from "../../Components/Toolbar/saveCharacter/save-character-component";
-import { CharacterNameContext } from "../../context";
-import DisplaySelected from "../../Selected/DisplaySelected";
-import ComponentToPrint from "../../Display Results/ComponentToPrint";
+import Header from '../../Components/Header/Header.component';
+import SearchBar from '../../Components/SearchBar/SearchBar';
+import CopyToClipboard from '../../Components/Toolbar/CopyToClipboard/CopyToClipboard';
+import PrintPDF from '../../Components/Toolbar/Print PDF/printPDF';
+import ResetCharacter from '../../Components/Toolbar/ResetCharacter/ResetCharacter';
+import SaveCharacter from '../../Components/Toolbar/saveCharacter/save-character-component';
+import { CharacterNameContext } from '../../context';
+import DisplaySelected from '../../Selected/DisplaySelected';
+import ComponentToPrint from '../../Display Results/ComponentToPrint';
 
 const CreateNewCharacterPage = () => {
   const { setCharacterName } = useContext(CharacterNameContext);
-  const [formInput, setForminput] = useState("");
+  const [formInput, setForminput] = useState('');
 
   const formRef = useRef();
 
@@ -32,7 +32,7 @@ const CreateNewCharacterPage = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setCharacterName(formInput);
-    setForminput("");
+    setForminput('');
   };
 
   return (
@@ -40,9 +40,7 @@ const CreateNewCharacterPage = () => {
       <Header />
       <div className="user-interface-window">
         <h1 className="main-title"> G.C.C.M </h1>
-        
         <div className="container">
-        
           <div className="toolbar-container">
             <span className="toolbar-header">Character Tools</span>
             <div className="toolbar-characters">
@@ -51,24 +49,23 @@ const CreateNewCharacterPage = () => {
             </div>
             <span className="toolbar-header">Output Tools</span>
             <div className="toolbar-print-options">
-            <PrintPDF />
+              <PrintPDF />
               <CopyToClipboard />
-              
             </div>
           </div>
           <div className="main-interface">
-          <div className="form">
-          <Form className="new-character-form" onSubmit={handleSubmit}>
-            <Form.Control
-              type="text"
-              ref={formRef}
-              value={formInput}
-              onChange={handleInput}
-              placeholder="Enter New Character Name..."
-              size="lg"
-            />
-          </Form>
-        </div>
+            <div className="form">
+              <Form className="new-character-form" onSubmit={handleSubmit}>
+                <Form.Control
+                  type="text"
+                  ref={formRef}
+                  value={formInput}
+                  onChange={handleInput}
+                  placeholder="Enter New Character Name..."
+                  size="lg"
+                />
+              </Form>
+            </div>
             <SearchBar />
             <DisplaySelected />
           </div>

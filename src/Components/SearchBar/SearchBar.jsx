@@ -1,44 +1,44 @@
-import { useContext } from "react";
-import { useEffect, useState } from "react";
-import Select from "react-select";
-import AdvantagesArray from "../../Attribute Objects/Advantages/Advantages";
-import DisadvantagesArray from "../../Attribute Objects/Disadvantages/Disadvantages";
+import { useContext } from 'react';
+import { useEffect, useState } from 'react';
+import Select from 'react-select';
+import AdvantagesArray from '../../Attribute Objects/Advantages/Advantages';
+import DisadvantagesArray from '../../Attribute Objects/Disadvantages/Disadvantages';
 import {
   CharacterNameContext,
   IsChoosingAdvantagesContext,
   SelectedAdvantagesContext,
   SelectedDisadvantagesContext,
-  SelectInputValueContext,
-} from "../../context";
-import ToggleAdvantageDisadvantage from "../ToggleAdvantageDisadvantage/ToggleAdvantageDisadvantage";
+  SelectInputValueContext
+} from '../../context';
+import ToggleAdvantageDisadvantage from '../ToggleAdvantageDisadvantage/ToggleAdvantageDisadvantage';
 
-import "./SearchBar.styles.scss";
+import './SearchBar.styles.scss';
 
 const SearchBar = () => {
   const [advantageOptions, setAdvantageOptions] = useState([]);
   const [disadvantageOptions, setDisadvantageOptions] = useState([]);
 
   const { IsChoosingAdvantages } = useContext(IsChoosingAdvantagesContext);
-  const { selectedAdvantagesList, setSelectedAdvantagesList } = useContext(
-    SelectedAdvantagesContext
+  const { selectedAdvantagesList, setSelectedAdvantagesList } =
+    useContext(SelectedAdvantagesContext);
+  const { selectedDisadvantagesList, setSelectedDisadvantagesList } = useContext(
+    SelectedDisadvantagesContext
   );
-  const { selectedDisadvantagesList, setSelectedDisadvantagesList } =
-    useContext(SelectedDisadvantagesContext);
   const { selectInput, setSelectInput } = useContext(SelectInputValueContext);
   const { characterName } = useContext(CharacterNameContext);
 
   useEffect(() => {
     const createSearchOptions = () => {
-      console.log("***Test: createSearchOptions");
+      console.log('***Test: createSearchOptions');
       let adsArr = AdvantagesArray.map((opt) => ({
         label: opt.title,
         value: opt,
-        category: opt.type,
+        category: opt.type
       }));
       let disadsArr = DisadvantagesArray.map((opt) => ({
         label: opt.title,
         value: opt,
-        category: opt.type,
+        category: opt.type
       }));
       setAdvantageOptions(adsArr);
       setDisadvantageOptions(disadsArr);
@@ -52,9 +52,7 @@ const SearchBar = () => {
     let disadsArr = [];
     console.log(event);
     event.forEach((e) => {
-      e.value.type === "advantage"
-        ? adsArr.push(e.value)
-        : disadsArr.push(e.value);
+      e.value.type === 'advantage' ? adsArr.push(e.value) : disadsArr.push(e.value);
     });
     setSelectedAdvantagesList(adsArr);
     setSelectedDisadvantagesList(disadsArr);
@@ -65,56 +63,47 @@ const SearchBar = () => {
       let adsArr = selectedAdvantagesList.map((adv) => ({
         label: adv.title,
         value: adv,
-        category: adv.type,
+        category: adv.type
       }));
 
       let disadsArr = selectedDisadvantagesList.map((disad) => ({
         label: disad.title,
         value: disad,
-        category: disad.type,
+        category: disad.type
       }));
 
       let combinedArr = [...adsArr, ...disadsArr];
-      console.log("combined: ", combinedArr);
+      console.log('combined: ', combinedArr);
       setSelectInput(combinedArr);
     };
     updateSelect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedAdvantagesList, selectedDisadvantagesList]);
 
   const formatOptionLabel = ({ label, category }) => (
-    <div
-      style={category === "advantage" ? { color: "seagreen" } : { color: "brown" }}
-    >
-      {label}
-    </div>
+    <div style={category === 'advantage' ? { color: 'seagreen' } : { color: 'brown' }}>{label}</div>
   );
 
   return (
     <div className="searchbar-container">
-      {characterName === "" ? (
-        <h1>
-          Select your Characters{" "}
-          {IsChoosingAdvantages ? "ADVANTAGES" : "DISADVANTAGES"}
-        </h1>
+      {characterName === '' ? (
+        <h1>Select your Characters {IsChoosingAdvantages ? 'ADVANTAGES' : 'DISADVANTAGES'}</h1>
       ) : (
         <h1>
-          SELECT {characterName.toUpperCase()}'S{" "}
-          {IsChoosingAdvantages ? "ADVANTAGES" : "DISADVANTAGES"}
+          SELECT {characterName.toUpperCase()}S{' '}
+          {IsChoosingAdvantages ? 'ADVANTAGES' : 'DISADVANTAGES'}
         </h1>
       )}
-      <div className='test'>
-      <ToggleAdvantageDisadvantage />
-      <Select
-        className="searchBar"
-        options={IsChoosingAdvantages ? advantageOptions : disadvantageOptions}
-        value={selectInput}
-        isMulti
-        onChange={handleChange}
-        formatOptionLabel={formatOptionLabel}
-      />
+      <div className="test">
+        <ToggleAdvantageDisadvantage />
+        <Select
+          className="searchBar"
+          options={IsChoosingAdvantages ? advantageOptions : disadvantageOptions}
+          value={selectInput}
+          isMulti
+          onChange={handleChange}
+          formatOptionLabel={formatOptionLabel}
+        />
       </div>
-      
     </div>
   );
 };

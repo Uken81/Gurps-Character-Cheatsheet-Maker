@@ -1,34 +1,32 @@
-import DropdownButton from "react-bootstrap/DropdownButton";
-import DropdownItem from "react-bootstrap/DropdownItem";
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import DropdownItem from 'react-bootstrap/DropdownItem';
 import {
   getMatchingCharactersForUser,
-  getUsersCharactersList,
-} from "../../Firebase/firebase.utils";
-import { useEffect, useState } from "react";
+  getUsersCharactersList
+} from '../../Firebase/firebase.utils';
+import { useEffect, useState } from 'react';
 
-import AdvantagesArray from "../../../Attribute Objects/Advantages/Advantages";
-import DisadvantagesArray from "../../../Attribute Objects/Disadvantages/Disadvantages";
-import { useContext } from "react";
+import AdvantagesArray from '../../../Attribute Objects/Advantages/Advantages';
+import DisadvantagesArray from '../../../Attribute Objects/Disadvantages/Disadvantages';
+import { useContext } from 'react';
 import {
   CharacterNameContext,
   CurrentCharacterIdContext,
   SelectedAdvantagesContext,
   SelectedDisadvantagesContext,
-  UserContext,
-} from "../../../context";
-import { useHistory, useLocation } from "react-router";
+  UserContext
+} from '../../../context';
+import { useHistory, useLocation } from 'react-router';
 
 const LoadCharacter = () => {
   const { user } = useContext(UserContext);
   const { setSelectedAdvantagesList } = useContext(SelectedAdvantagesContext);
-  const { setSelectedDisadvantagesList } = useContext(
-    SelectedDisadvantagesContext
-  );
+  const { setSelectedDisadvantagesList } = useContext(SelectedDisadvantagesContext);
   const { setCurrentCharacterId } = useContext(CurrentCharacterIdContext);
   const { setCharacterName } = useContext(CharacterNameContext);
 
   const [dropdownList, setDropdownList] = useState([]);
-  const [characterToLoad, setCharacterToLoad] = useState("");
+  const [characterToLoad, setCharacterToLoad] = useState('');
 
   useEffect(() => {
     const mapUsersCharacterList = async () => {
@@ -51,7 +49,7 @@ const LoadCharacter = () => {
   let records;
   const getRecord = async (character) => {
     character = characterToLoad;
-    if (characterToLoad !== "") {
+    if (characterToLoad !== '') {
       records = await getMatchingCharactersForUser(user.uid, character);
     }
     return records;
@@ -62,7 +60,7 @@ const LoadCharacter = () => {
 
     const characterNameRecord = newRecord.flatMap((item) => item.name);
     const characterName = characterNameRecord[0];
-    console.log("****Loading ", characterName);
+    console.log('****Loading ', characterName);
 
     const advantagesRecord = newRecord.flatMap((item) => item.advantages);
     const characterAdvantages = AdvantagesArray.filter((advantage) =>
@@ -79,16 +77,16 @@ const LoadCharacter = () => {
     setCharacterName(characterName);
 
     console.log(`****${characterName} successfully loaded`);
-    console.log("CD: ", characterDisadvantages);
+    console.log('CD: ', characterDisadvantages);
   };
 
   const repopulateCurrentCharacterId = async () => {
     const newRecord = await getRecord();
-    let characterId = "";
+    let characterId = '';
     await newRecord.forEach((element) => {
       characterId = element.id;
     });
-    console.log("characterId: ", characterId);
+    console.log('characterId: ', characterId);
 
     await setCurrentCharacterId(characterId);
   };
@@ -98,19 +96,18 @@ const LoadCharacter = () => {
 
   useEffect(() => {
     const loadSelectedCharactersStats = async () => {
-      if (characterToLoad !== "") {
-        console.log("***Test: loadCharacter");
+      if (characterToLoad !== '') {
+        console.log('***Test: loadCharacter');
         await getRecord(characterToLoad);
         await repopulateCharacterAttributes();
         await repopulateCurrentCharacterId();
 
-        if (location.pathname === "/create-or-manage-page") {
-          history.push("/manage-characters-page");
+        if (location.pathname === '/create-or-manage-page') {
+          history.push('/manage-characters-page');
         }
       }
     };
     loadSelectedCharactersStats();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [characterToLoad]);
 
   return (
@@ -120,7 +117,7 @@ const LoadCharacter = () => {
         id="dropdown-item-button"
         title={`LOAD CHARACTER`}
         variant="outline-primary"
-        size='lg'
+        size="lg"
         // style={{border: '4px solid red'}}
       >
         {dropdownList !== [] &&
@@ -129,13 +126,13 @@ const LoadCharacter = () => {
               className="dropdown-link"
               key={dropdownList.indexOf(character)}
               onClick={() => handleLoad(character)}
-              style={{color: 'white',
-                      backgroundColor: 'black',
-                      // width: '60%',
-                      fontSize: '1.5rem',
-                      // borderBottom: '2px solid white'
-            }}
-            >
+              style={{
+                color: 'white',
+                backgroundColor: 'black',
+                // width: '60%',
+                fontSize: '1.5rem'
+                // borderBottom: '2px solid white'
+              }}>
               {character}
             </DropdownItem>
           ))}

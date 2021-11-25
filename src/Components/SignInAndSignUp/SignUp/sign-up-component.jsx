@@ -1,24 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import "../../../Pages/SignInAndSignUp/sign-in-and-sign-up.scss";
+import '../../../Pages/SignInAndSignUp/sign-in-and-sign-up.scss';
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { useHistory } from "react-router";
-import { auth, google } from "../../Firebase/firebase.utils";
-import { Button, Form } from "react-bootstrap";
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { useHistory } from 'react-router';
+import { auth, google } from '../../Firebase/firebase.utils';
+import { Button, Form } from 'react-bootstrap';
 
 const SignUp = () => {
   const [inputs, setInputs] = useState({});
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const history = useHistory();
 
   const handleChange = (e) =>
     setInputs((prevState) => ({
       ...prevState,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     }));
 
   const handleSubmit = async (event) => {
@@ -33,52 +33,47 @@ const SignUp = () => {
       await createUserWithEmailAndPassword(auth, email, password);
 
       setInputs({
-        email: "",
-        password: "",
-        confirmPassword: "",
+        email: '',
+        password: '',
+        confirmPassword: ''
       });
-      history.push("/create-or-manage-page");
+      history.push('/create-or-manage-page');
     } catch (error) {
-      console.error("error code: ", error.code);
+      console.error('error code: ', error.code);
       const errorCode = error.code;
 
-      if (errorCode === "auth/email-already-in-use") {
-        alert("An account using this email already exists");
+      if (errorCode === 'auth/email-already-in-use') {
+        alert('An account using this email already exists');
       }
 
-      if (errorCode === "auth/invalid-email") {
-        alert("The provided Email is invalid");
+      if (errorCode === 'auth/invalid-email') {
+        alert('The provided Email is invalid');
       }
 
-      if (errorCode === "auth/weak-password") {
-        alert("The password is too weak");
+      if (errorCode === 'auth/weak-password') {
+        alert('The password is too weak');
       }
     }
   };
 
   useEffect(() => {
-    console.log("***Test: sign-up-component/form onChange");
+    console.log('***Test: sign-up-component/form onChange');
     setEmail(inputs.email);
     setPassword(inputs.password);
     setConfirmPassword(inputs.confirmPassword);
-  }, [
-    inputs.confirmPassword,
-    inputs.displayName,
-    inputs.email,
-    inputs.password,
-  ]);
+  }, [inputs.confirmPassword, inputs.displayName, inputs.email, inputs.password]);
 
   const googleSignUp = async () => {
     await google();
-    history.push("/create-or-manage-page");
+    history.push('/create-or-manage-page');
   };
 
   return (
     <div className="sign-up">
       <Button variant="primary" onClick={googleSignUp}>
-          SIGN UP WITH GOOGLE
-        </Button>
-        <span>or</span>
+        SIGN UP WITH GOOGLE
+      </Button>
+      <span>or</span>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="sign-up-form" controlId="sign-up-email">
           <Form.Control
@@ -115,7 +110,6 @@ const SignUp = () => {
         <Button variant="primary" type="submit">
           SIGN UP
         </Button>
-        
       </Form>
     </div>
   );

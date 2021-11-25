@@ -1,15 +1,10 @@
-import { useEffect } from "react";
-import Header from "../../Components/Header/Header.component";
-import SearchBar from "../../Components/SearchBar/SearchBar";
-import EditCharacter from "../../Components/Toolbar/EditCharacter/EditCharacter";
-import ResetChanges from "../../Components/Toolbar/ResetChanges/ResetChanges";
-import DisplaySelected from "../../Selected/DisplaySelected";
+import Header from '../../Components/Header/Header.component';
+import SearchBar from '../../Components/SearchBar/SearchBar';
+import EditCharacter from '../../Components/Toolbar/EditCharacter/EditCharacter';
+import ResetChanges from '../../Components/Toolbar/ResetChanges/ResetChanges';
+import DisplaySelected from '../../Selected/DisplaySelected';
 
 const EditCharacterPage = () => {
-  // useEffect(()=> {
-
-  // })
-
   return (
     <div className="edit-character-page">
       <Header />

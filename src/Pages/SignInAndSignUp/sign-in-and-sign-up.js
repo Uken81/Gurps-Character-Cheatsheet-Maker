@@ -1,12 +1,12 @@
-import "./sign-in-and-sign-up.scss";
+import './sign-in-and-sign-up.scss';
 
-import Header from "../../Components/Header/Header.component";
-import SignIn from "../../Components/SignInAndSignUp/SignIn/sign-in-component.jsx";
-import SignUp from "../../Components/SignInAndSignUp/SignUp/sign-up-component.jsx";
-import { useState } from "react";
+import Header from '../../Components/Header/Header.component';
+import SignIn from '../../Components/SignInAndSignUp/SignIn/sign-in-component.jsx';
+import SignUp from '../../Components/SignInAndSignUp/SignUp/sign-up-component.jsx';
+import { useState } from 'react';
 
 const SignInAndSignUp = () => {
-  const [signInOrUp, setSignInOrUp] = useState("sign-in");
+  const [signInOrUp, setSignInOrUp] = useState('sign-in');
   const [isWaitingForPopup, setIsWaitingForPopup] = useState(false);
 
   if (!isWaitingForPopup) {
@@ -15,14 +15,14 @@ const SignInAndSignUp = () => {
         <Header />
         <div className="form-container">
           <h1 className="main-title"> G.C.C.M </h1>
-          {signInOrUp === "sign-in" && (
+          {signInOrUp === 'sign-in' && (
             <SignIn
               setSignInOrUp={setSignInOrUp}
               isWaitingForPopup={isWaitingForPopup}
               setIsWaitingForPopup={setIsWaitingForPopup}
             />
           )}
-          {signInOrUp === "sign-up" && <SignUp />}
+          {signInOrUp === 'sign-up' && <SignUp />}
         </div>
       </div>
     );
@@ -31,11 +31,10 @@ const SignInAndSignUp = () => {
       <div
         className="sign-in-and-sign-up"
         style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}>
         <h1 className="main-title"> G.C.C.M </h1>
       </div>
     );

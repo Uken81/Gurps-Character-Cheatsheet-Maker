@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import Button from "react-bootstrap/Button";
+import Button from 'react-bootstrap/Button';
 
-import "./navigationLinks.styles.scss";
+import './navigationLinks.styles.scss';
 
 export const SignInButton = () => {
   return (
@@ -32,10 +32,7 @@ export const ToEditCharacter = () => {
   return (
     <div className="button-container">
       <Button className="tool-button">
-        <Link
-          to="/edit-character-page"
-          style={{ color: "black", textDecoration: "none" }}
-        >
+        <Link to="/edit-character-page" style={{ color: 'black', textDecoration: 'none' }}>
           Edit Character
         </Link>
       </Button>

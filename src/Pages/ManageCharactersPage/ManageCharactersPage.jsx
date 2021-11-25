@@ -1,19 +1,19 @@
-import "../../App.css";
-import "../../Display Results/DisplayResults.styles.css";
-import "../page.styles.scss";
+import '../../App.css';
+import '../../Display Results/DisplayResults.styles.css';
+import '../page.styles.scss';
 
-import Header from "../../Components/Header/Header.component";
-import CopyToClipboard from "../../Components/Toolbar/CopyToClipboard/CopyToClipboard";
-import DeleteCharacter from "../../Components/Toolbar/DeleteCharacter/DeleteCharacter";
-import PrintPDF from "../../Components/Toolbar/Print PDF/printPDF";
-import DisplaySelected from "../../Selected/DisplaySelected";
-import { useContext } from "react";
-import { CharacterNameContext } from "../../context";
-import { ToEditCharacter } from "../../Components/Header/Navigation Links/navigationLinks";
+import Header from '../../Components/Header/Header.component';
+import CopyToClipboard from '../../Components/Toolbar/CopyToClipboard/CopyToClipboard';
+import DeleteCharacter from '../../Components/Toolbar/DeleteCharacter/DeleteCharacter';
+import PrintPDF from '../../Components/Toolbar/Print PDF/printPDF';
+import DisplaySelected from '../../Selected/DisplaySelected';
+import { useContext } from 'react';
+import { CharacterNameContext } from '../../context';
+import { ToEditCharacter } from '../../Components/Header/Navigation Links/navigationLinks';
 
 const ManageCharactersPage = () => {
   const { characterName } = useContext(CharacterNameContext);
-    
+
   return (
     <div className="manage-character-page">
       <Header />
@@ -32,7 +32,7 @@ const ManageCharactersPage = () => {
             </div>
           </div>
           <div className="main-interface">
-            <h1 className='selected-header'>{characterName.toUpperCase()}'S CHEATSHEET</h1>
+            <h1 className="selected-header">{characterName.toUpperCase()}S CHEATSHEET</h1>
             <DisplaySelected />
           </div>
         </div>

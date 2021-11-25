@@ -1,22 +1,20 @@
-import { useEffect } from "react";
-import { useContext } from "react";
+import { useEffect } from 'react';
+import { useContext } from 'react';
 
-import "../page.styles.scss";
+import '../page.styles.scss';
 
-import Button from "react-bootstrap/Button";
-import { Link } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 import {
   CharacterNameContext,
   SelectedAdvantagesContext,
-  SelectedDisadvantagesContext,
-} from "../../context";
+  SelectedDisadvantagesContext
+} from '../../context';
 
 const LandingPage = () => {
   const { setCharacterName } = useContext(CharacterNameContext);
   const { setSelectedAdvantagesList } = useContext(SelectedAdvantagesContext);
-  const { setSelectedDisadvantagesList } = useContext(
-    SelectedDisadvantagesContext
-  );
+  const { setSelectedDisadvantagesList } = useContext(SelectedDisadvantagesContext);
 
   useEffect(() => {
     const resetAttributes = () => {
@@ -25,7 +23,6 @@ const LandingPage = () => {
       setSelectedDisadvantagesList([]);
     };
     resetAttributes();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -34,15 +31,15 @@ const LandingPage = () => {
         <div className="launching-page-options">
           <h1 className="main-title"> G.C.C.M </h1>
           <div className="links">
-          <Link to="/sign-in-and-sign-up">
-            <Button size="lg">Log-in/Sign-up</Button>
-          </Link>
-          <Link to="/guest-page">
-            <Button size="lg" variant="outline-primary">
-              Continue as Guest
-            </Button>{" "}
-          </Link>
-          </div>        
+            <Link to="/sign-in-and-sign-up">
+              <Button size="lg">Log-in/Sign-up</Button>
+            </Link>
+            <Link to="/guest-page">
+              <Button size="lg" variant="outline-primary">
+                Continue as Guest
+              </Button>{' '}
+            </Link>
+          </div>
         </div>
       </div>
     </div>
