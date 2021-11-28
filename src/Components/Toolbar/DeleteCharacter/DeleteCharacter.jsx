@@ -1,37 +1,30 @@
-import { deleteDoc } from 'firebase/firestore';
 import { useContext } from 'react';
-import { useHistory } from 'react-router';
+import PropTypes from 'prop-types';
 
 import Button from 'react-bootstrap/Button';
 
-import { CharacterNameContext, CurrentCharacterIdContext, UserContext } from '../../../context';
-import { GetCharacterReference } from '../../Firebase/firebase.utils';
+import { CharacterNameContext } from '../../../context';
 
-const DeleteCharacter = () => {
-  const { user } = useContext(UserContext);
+const DeleteCharacter = (props) => {
   const { characterName } = useContext(CharacterNameContext);
-  const { currentCharacterId } = useContext(CurrentCharacterIdContext);
 
-  const history = useHistory();
-  const deleteCharacter = async () => {
-    const docRef = await GetCharacterReference(user.uid, currentCharacterId);
-    await deleteDoc(docRef)
-      .then(() => {
-        console.log('****Current character has been removed from database');
-        history.push('/create-or-manage-page');
-      })
-      .catch(() => {
-        alert('Unable to delete character from database please try again later');
-      });
+  const setShowAlert = props.setShowAlert;
+
+  const show = () => {
+    setShowAlert(true);
   };
 
   return (
     <div className="button-container">
-      <Button className="tool-button" onClick={deleteCharacter}>
+      <Button className="tool-button" onClick={show}>
         Delete {characterName}
       </Button>
     </div>
   );
+};
+
+DeleteCharacter.propTypes = {
+  setShowAlert: PropTypes.func
 };
 
 export default DeleteCharacter;

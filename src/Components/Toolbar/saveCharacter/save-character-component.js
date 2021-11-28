@@ -8,6 +8,7 @@ import {
   CurrentCharacterIdContext,
   SelectedAdvantagesContext,
   SelectedDisadvantagesContext,
+  ShowSuccessfulSaveAlertContext,
   UserContext
 } from '../../../context';
 import { addNewCharacterForUser, getUsersCharactersList } from '../../Firebase/firebase.utils';
@@ -18,6 +19,7 @@ const SaveCharacter = () => {
   const { setCurrentCharacterId } = useContext(CurrentCharacterIdContext);
   const { selectedAdvantagesList } = useContext(SelectedAdvantagesContext);
   const { selectedDisadvantagesList } = useContext(SelectedDisadvantagesContext);
+  const { setShowSuccessfulSaveAlert } = useContext(ShowSuccessfulSaveAlertContext);
 
   const [nameIsDuplicate, setNameIsDuplicate] = useState(false);
 
@@ -66,6 +68,8 @@ const SaveCharacter = () => {
       setCurrentCharacterId(id);
       console.log('**** NewCharacterId: ', newCharacterRef.id);
       await setDoc(newCharacterRef, id, { merge: true });
+
+      setShowSuccessfulSaveAlert(true);
     }
   };
 

@@ -18,7 +18,7 @@ const SearchBar = () => {
   const [advantageOptions, setAdvantageOptions] = useState([]);
   const [disadvantageOptions, setDisadvantageOptions] = useState([]);
 
-  const { IsChoosingAdvantages } = useContext(IsChoosingAdvantagesContext);
+  const { isChoosingAdvantages } = useContext(IsChoosingAdvantagesContext);
   const { selectedAdvantagesList, setSelectedAdvantagesList } =
     useContext(SelectedAdvantagesContext);
   const { selectedDisadvantagesList, setSelectedDisadvantagesList } = useContext(
@@ -86,18 +86,18 @@ const SearchBar = () => {
   return (
     <div className="searchbar-container">
       {characterName === '' ? (
-        <h1>Select your Characters {IsChoosingAdvantages ? 'ADVANTAGES' : 'DISADVANTAGES'}</h1>
+        <h1>Select your Characters {isChoosingAdvantages ? 'ADVANTAGES' : 'DISADVANTAGES'}</h1>
       ) : (
         <h1>
-          SELECT {characterName.toUpperCase()}S{' '}
-          {IsChoosingAdvantages ? 'ADVANTAGES' : 'DISADVANTAGES'}
+          SELECT {characterName.toUpperCase()}&apos;S{' '}
+          {isChoosingAdvantages ? 'ADVANTAGES' : 'DISADVANTAGES'}
         </h1>
       )}
       <div className="test">
         <ToggleAdvantageDisadvantage />
         <Select
           className="searchBar"
-          options={IsChoosingAdvantages ? advantageOptions : disadvantageOptions}
+          options={isChoosingAdvantages ? advantageOptions : disadvantageOptions}
           value={selectInput}
           isMulti
           onChange={handleChange}

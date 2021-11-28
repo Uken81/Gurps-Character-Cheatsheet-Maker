@@ -8,3 +8,4 @@ export const IsChoosingAdvantagesContext = createContext(null);
 export const SelectedAdvantagesContext = createContext(null);
 export const SelectedDisadvantagesContext = createContext(null);
 export const CurrentCharacterIdContext = createContext(null);
+export const ShowSuccessfulSaveAlertContext = createContext(null);

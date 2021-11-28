@@ -10,6 +10,7 @@ import { auth, createUserProfileDocument } from '../../Components/Firebase/fireb
 import Header from '../../Components/Header/Header.component';
 import LoadCharacter from '../../Components/Toolbar/LoadCharacter/LoadCharacter';
 import {
+  CharacterNameContext,
   SelectedAdvantagesContext,
   SelectedDisadvantagesContext,
   UserContext
@@ -17,6 +18,7 @@ import {
 
 const CreateOrManage = () => {
   const { user, setUser } = useContext(UserContext);
+  const { setCharacterName } = useContext(CharacterNameContext);
   const { setSelectedAdvantagesList } = useContext(SelectedAdvantagesContext);
   const { setSelectedDisadvantagesList } = useContext(SelectedDisadvantagesContext);
 
@@ -42,6 +44,7 @@ const CreateOrManage = () => {
 
   useEffect(() => {
     const resetAttributes = () => {
+      setCharacterName('');
       setSelectedAdvantagesList([]);
       setSelectedDisadvantagesList([]);
     };

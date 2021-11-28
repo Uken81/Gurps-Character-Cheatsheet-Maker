@@ -7,12 +7,14 @@ import CopyToClipboard from '../../Components/Toolbar/CopyToClipboard/CopyToClip
 import DeleteCharacter from '../../Components/Toolbar/DeleteCharacter/DeleteCharacter';
 import PrintPDF from '../../Components/Toolbar/Print PDF/printPDF';
 import DisplaySelected from '../../Selected/DisplaySelected';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { CharacterNameContext } from '../../context';
 import { ToEditCharacter } from '../../Components/Header/Navigation Links/navigationLinks';
+import DeleteAlert from '../../Components/Toolbar/DeleteCharacter/DeleteAlert';
 
 const ManageCharactersPage = () => {
   const { characterName } = useContext(CharacterNameContext);
+  const [showAlert, setShowAlert] = useState(false);
 
   return (
     <div className="manage-character-page">
@@ -24,7 +26,7 @@ const ManageCharactersPage = () => {
             <span className="toolbar-header">Character Toolbar</span>
             <div className="toolbar-characters">
               <ToEditCharacter />
-              <DeleteCharacter />
+              <DeleteCharacter setShowAlert={setShowAlert} />
             </div>
             <div className="toolbar-print-options">
               <CopyToClipboard />
@@ -32,7 +34,8 @@ const ManageCharactersPage = () => {
             </div>
           </div>
           <div className="main-interface">
-            <h1 className="selected-header">{characterName.toUpperCase()}S CHEATSHEET</h1>
+            <h1 className="selected-header">{characterName.toUpperCase()}&apos;S CHEATSHEET</h1>
+            {showAlert && <DeleteAlert setShowAlert={setShowAlert} />}
             <DisplaySelected />
           </div>
         </div>

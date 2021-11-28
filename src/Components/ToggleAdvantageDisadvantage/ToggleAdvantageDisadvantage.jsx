@@ -5,7 +5,7 @@ import './Toggle.styles.scss';
 import { Tab, Tabs } from 'react-bootstrap';
 
 const ToggleAdvantageDisadvantage = () => {
-  const { setIsChoosingAdvantages } = useContext(IsChoosingAdvantagesContext);
+  const { isChoosingAdvantages, setIsChoosingAdvantages } = useContext(IsChoosingAdvantagesContext);
 
   useEffect(() => {
     setIsChoosingAdvantages(true);
@@ -20,6 +20,7 @@ const ToggleAdvantageDisadvantage = () => {
       <div className="toggle-advantage-section">
         <Tabs
           defaultActiveKey="advantages"
+          activeKey={isChoosingAdvantages ? 'advantages' : 'disadvantages'}
           className="toggle-advantages-disadvantages"
           onSelect={handleTabs}>
           <Tab eventKey="choose-from" className="tab-disabled" title="Choose From" disabled />

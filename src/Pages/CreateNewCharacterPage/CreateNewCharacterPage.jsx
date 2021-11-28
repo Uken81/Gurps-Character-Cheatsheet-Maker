@@ -12,13 +12,15 @@ import SearchBar from '../../Components/SearchBar/SearchBar';
 import CopyToClipboard from '../../Components/Toolbar/CopyToClipboard/CopyToClipboard';
 import PrintPDF from '../../Components/Toolbar/Print PDF/printPDF';
 import ResetCharacter from '../../Components/Toolbar/ResetCharacter/ResetCharacter';
-import SaveCharacter from '../../Components/Toolbar/saveCharacter/save-character-component';
-import { CharacterNameContext } from '../../context';
+import SaveCharacter from '../../Components/Toolbar/SaveCharacter/Save-character-component';
+import { CharacterNameContext, ShowSuccessfulSaveAlertContext } from '../../context';
 import DisplaySelected from '../../Selected/DisplaySelected';
 import ComponentToPrint from '../../Display Results/ComponentToPrint';
+import SuccessfulSaveAlert from '../../Components/Toolbar/SaveCharacter/SuccessfulSaveAlert';
 
 const CreateNewCharacterPage = () => {
   const { setCharacterName } = useContext(CharacterNameContext);
+  const { showSuccessfulSaveAlert } = useContext(ShowSuccessfulSaveAlertContext);
   const [formInput, setForminput] = useState('');
 
   const formRef = useRef();
@@ -40,6 +42,7 @@ const CreateNewCharacterPage = () => {
       <Header />
       <div className="user-interface-window">
         <h1 className="main-title"> G.C.C.M </h1>
+        {showSuccessfulSaveAlert && <SuccessfulSaveAlert />}
         <div className="container">
           <div className="toolbar-container">
             <span className="toolbar-header">Character Tools</span>
