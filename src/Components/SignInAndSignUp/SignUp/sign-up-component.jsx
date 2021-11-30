@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import '../../../Pages/SignInAndSignUp/sign-in-and-sign-up.scss';
 
@@ -8,18 +8,24 @@ import { auth, google } from '../../Firebase/firebase.utils';
 import { Button, Form } from 'react-bootstrap';
 
 const SignUp = () => {
-  const [inputs, setInputs] = useState({});
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const history = useHistory();
+  const handleChange = (e) => {
+    if (e.target.name === 'email') {
+      setEmail(e.target.value);
+    }
 
-  const handleChange = (e) =>
-    setInputs((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value
-    }));
+    if (e.target.name === 'password') {
+      setPassword(e.target.value);
+    }
+
+    if (e.target.name === 'confirm-password') {
+      setConfirmPassword(e.target.value);
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -31,12 +37,10 @@ const SignUp = () => {
 
     try {
       await createUserWithEmailAndPassword(auth, email, password);
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
 
-      setInputs({
-        email: '',
-        password: '',
-        confirmPassword: ''
-      });
       history.push('/create-or-manage-page');
     } catch (error) {
       console.error('error code: ', error.code);
@@ -55,13 +59,6 @@ const SignUp = () => {
       }
     }
   };
-
-  useEffect(() => {
-    console.log('***Test: sign-up-component/form onChange');
-    setEmail(inputs.email);
-    setPassword(inputs.password);
-    setConfirmPassword(inputs.confirmPassword);
-  }, [inputs.confirmPassword, inputs.displayName, inputs.email, inputs.password]);
 
   const googleSignUp = async () => {
     await google();
@@ -99,7 +96,7 @@ const SignUp = () => {
         <Form.Group className="sign-up-form" controlId="confirm-password">
           <Form.Control
             type="password"
-            name="confirmPassword"
+            name="confirm-password"
             value={confirmPassword}
             placeholder="Confirm Password"
             onChange={handleChange}

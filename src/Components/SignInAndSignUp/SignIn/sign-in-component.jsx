@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import '../../../Pages/SignInAndSignUp/sign-in-and-sign-up.scss';
@@ -9,18 +9,21 @@ import { google } from '../../Firebase/firebase.utils';
 import { Button, Form } from 'react-bootstrap';
 
 const SignIn = (props) => {
-  const [inputs, setInputs] = useState({});
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const setSignInOrUp = props.setSignInOrUp;
   const setIsWaitingForPopup = props.setIsWaitingForPopup;
 
-  const handleChange = (e) =>
-    setInputs((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value
-    }));
+  const handleChange = (e) => {
+    if (e.target.name === 'email') {
+      setEmail(e.target.value);
+    }
+
+    if (e.target.name === 'password') {
+      setPassword(e.target.value);
+    }
+  };
 
   const history = useHistory();
   const auth = getAuth();
@@ -30,7 +33,8 @@ const SignIn = (props) => {
     await signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         console.log('****signin');
-        setInputs({ email: '', password: '' });
+        setEmail('');
+        setPassword('');
         history.push('/create-or-manage-page');
       })
       .catch((error) => {
@@ -45,11 +49,6 @@ const SignIn = (props) => {
         }
       });
   };
-
-  useEffect(() => {
-    setEmail(inputs.email);
-    setPassword(inputs.password);
-  }, [inputs.email, inputs.password]);
 
   const googleSignIn = async () => {
     setIsWaitingForPopup(true);
