@@ -23,7 +23,13 @@ const ToggleAdvantageDisadvantage = () => {
           activeKey={isChoosingAdvantages ? 'advantages' : 'disadvantages'}
           className="toggle-advantages-disadvantages"
           onSelect={handleTabs}>
-          <Tab eventKey="choose-from" className="tab-disabled" title="Choose From" disabled />
+          <Tab
+            style={{ backgroundColor: 'red' }}
+            eventKey="choose-from"
+            className="tab-disabled"
+            title="Choose From"
+            disabled
+          />
           <Tab eventKey="advantages" id="tab-advantages" title="Advantages" />
           <Tab eventKey="disadvantages" id="tab-disadvantages" title="Disadvantages" />
         </Tabs>

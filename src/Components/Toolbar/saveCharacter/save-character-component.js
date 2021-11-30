@@ -23,7 +23,10 @@ const SaveCharacter = () => {
 
   const [nameIsDuplicate, setNameIsDuplicate] = useState(false);
 
-  const currentlyLoggedInUserId = user.uid;
+  let currentlyLoggedInUserId;
+  if (user) {
+    currentlyLoggedInUserId = user.uid;
+  }
 
   useEffect(() => {
     const checkIfDuplicate = async () => {
@@ -32,7 +35,7 @@ const SaveCharacter = () => {
       setNameIsDuplicate(() => matchingName.includes(characterName));
     };
     checkIfDuplicate();
-  }, [characterName, currentlyLoggedInUserId]);
+  }, [characterName]);
 
   const saveCharacterHandler = async () => {
     if ((selectedAdvantagesList.length === 0) & (selectedDisadvantagesList.length === 0)) {
