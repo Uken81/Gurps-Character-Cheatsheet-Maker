@@ -32,12 +32,11 @@ const createUserProfileDocument = async (userAuth) => {
   const docSnap = await getDoc(userRef);
 
   if (!docSnap.exists()) {
-    const { displayName, email } = userAuth;
+    const { email } = userAuth;
     const createdAt = new Date();
 
     try {
       await setDoc(userRef, {
-        displayName,
         email,
         createdAt
       });
@@ -83,7 +82,7 @@ const addNewCharacterForUser = async (userId, newCharacter) => {
   }
 };
 
-const getMatchingCharactersForUser = async (userId, characterName) => {
+const getMatchingCharacterForUser = async (userId, characterName) => {
   const userCharactersRef = collection(db, 'users', userId, 'characters');
   const q = query(userCharactersRef, where('name', '==', characterName));
   try {
@@ -96,7 +95,7 @@ const getMatchingCharactersForUser = async (userId, characterName) => {
   }
 };
 
-const getUsersCharactersList = async (userId) => {
+const getUsersSavedCharactersList = async (userId) => {
   const userCharactersRef = collection(db, 'users', userId, 'characters');
   const charactersList = await getDocs(userCharactersRef);
   const usersCharactersList = [];
@@ -139,8 +138,8 @@ export {
   firebaseApp,
   createUserProfileDocument,
   addNewCharacterForUser,
-  getMatchingCharactersForUser,
-  getUsersCharactersList,
+  getMatchingCharacterForUser,
+  getUsersSavedCharactersList,
   GetCharacterReference,
   SaveChangesToCharacter
 };

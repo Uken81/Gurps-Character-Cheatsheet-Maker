@@ -19,14 +19,10 @@ const ResetChanges = () => {
   const [initalSelect, setInitialSelect] = useState([]);
 
   useEffect(() => {
-    if ((initialAdvantages.length === 0) & (initialDisadvantages.length === 0)) {
-      setInitialAdvantages(selectedAdvantagesList);
-      setInitialDisadvantages(selectedDisadvantagesList);
-    }
-    if (initalSelect.length === 0) {
-      setInitialSelect(selectInput);
-    }
-  });
+    setInitialAdvantages(selectedAdvantagesList);
+    setInitialDisadvantages(selectedDisadvantagesList);
+    setInitialSelect(selectInput);
+  }, []);
 
   const handleClick = async () => {
     setSelectedAdvantagesList(initialAdvantages);
@@ -34,17 +30,11 @@ const ResetChanges = () => {
     setSelectInput(initalSelect);
   };
 
-  const con = () => {
-    console.log('initialselect: ', initalSelect);
-    console.log('select: ', selectInput);
-  };
-
   return (
     <div>
       <Button className="tool-button" onClick={handleClick} size="lg">
         Reset Changes
       </Button>
-      <button onClick={con}>con</button>
     </div>
   );
 };

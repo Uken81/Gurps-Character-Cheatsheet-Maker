@@ -10,6 +10,8 @@ import {
 import DisplayAdvantages from './DisplayAdvantages';
 import DisplayDisadvantages from './DisplayDisadvantages';
 
+import './DisplayResults.styles.scss';
+
 const ComponentToPrint = () => {
   const { componentRef, setComponentRef } = useContext(ComponentRefContext);
 
@@ -20,19 +22,15 @@ const ComponentToPrint = () => {
 
   useEffect(() => {
     const createReference = () => {
-      console.log('***Test: componentToPrint');
       setComponentRef(divRef);
-      console.log('****creating reference');
     };
     createReference();
-  }, [setComponentRef]);
+  }, []);
 
   return (
     <div className="display-container" ref={componentRef}>
-      <div className="display-container">
-        <DisplayAdvantages selectedAdvantagesList={selectedAdvantagesList} />
-        <DisplayDisadvantages selectedDisadvantagesList={selectedDisadvantagesList} />
-      </div>
+      <DisplayAdvantages selectedAdvantagesList={selectedAdvantagesList} />
+      <DisplayDisadvantages selectedDisadvantagesList={selectedDisadvantagesList} />
     </div>
   );
 };

@@ -1,8 +1,6 @@
 import Button from 'react-bootstrap/Button';
 
 const CopyToClipboard = () => {
-  //This works pretty much as intended but can get some strange results (eg. adding large amounts of white space between lines)
-  //in certain text editors like Google Docs. Is there a better way to do this?
   const copyToClipboard = () => {
     const sectionToCopy = document.getElementById('results');
     let currentRange;

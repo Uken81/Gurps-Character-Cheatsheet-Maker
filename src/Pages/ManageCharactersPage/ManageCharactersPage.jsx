@@ -1,5 +1,4 @@
-import '../../App.css';
-import '../../Display Results/DisplayResults.styles.css';
+import '../../Display Results/DisplayResults.styles.scss';
 import '../page.styles.scss';
 
 import Header from '../../Components/Header/Header.component';

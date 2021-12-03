@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 
 import './navigationLinks.styles.scss';
 
-export const SignInButton = () => {
+export const BackToSignIn = () => {
   return (
     <div className="nav-link">
       <Link to="/sign-in-and-sign-up">SIGN IN</Link>

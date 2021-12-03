@@ -1,7 +1,13 @@
+* {
+  list-style: none;
+  text-decoration: none;
+  margin: 0;
+}
+
 .main-title {
   font-size: 12rem;
   // /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;  */
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-weight: normal;
   letter-spacing: 2rem;
   color: #212529;
@@ -24,10 +30,9 @@ input {
   display: flex;
   flex-direction: column;
   background-color: black;
-  // color: whitesmoke;
+  height: 100vh;
   list-style: none;
   align-items: center;
- 
 
   .launching-page-options {
     flex-direction: row;
@@ -47,34 +52,18 @@ input {
     min-width: 100%;
     margin: 0%;
 
-    h2 {
-      font-size: 4rem;
-      text-align: center;
-      text-shadow: whitesmoke 5px 2px;
-    }
-
-    h3 {
-      font-size: 6rem;
-      text-align: center;
-      text-shadow: darkgray 3px 2px;
-    }
-
     button:hover {
       cursor: pointer;
     }
-   
 
     .toolbar-container {
       display: flex;
-      // justify-content: center;
       flex-direction: column;
-      // align-self: flex-start;
       margin-left: 1.5%;
       width: 10%;
       float: left;
       font-weight: bolder;
       text-align: center;
-      
 
       .toolbar-header {
         font-size: 1.75rem;
@@ -88,7 +77,6 @@ input {
       .toolbar-print-options {
         display: flex;
         flex-direction: column;
-        // justify-content: space-between;
         align-items: center;
         margin-bottom: 25%;
         border: white solid 3px;
@@ -96,26 +84,18 @@ input {
         padding: 15% 10%;
 
         .tool-button {
-    
           background-color: white;
           color: black;
           font-weight: bolder;
-          // padding: 1rem;
-          // width: 10rem;
           margin: 10% 0;
           font-size: 1.25rem;
-          // font-weight: bold;
-          // border-radius: 10%;
         }
       }
-
-      
     }
 
     .main-interface {
       display: flex;
       flex-direction: column;
-      // justify-content: center;
       align-items: center;
       max-width: 50%;
       margin-left: 13%;

@@ -1,29 +1,23 @@
 .searchbar-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  min-width: 35vw;
   width: 100%;
   margin: 5% 0;
   color: whitesmoke;
   font-weight: bolder;
 
-  .test {
+  .toggle-and-search {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
-    align-content: flex-end;
     margin: 0 10%;
   }
 
   .searchBar {
-    // min-width: 60%;
-    // width: 60%;
-    font-weight: bold;
+    // font-weight: bold;
     font-size: x-large;
-    margin-bottom: 5%;
-    margin-left: 17.5%;
-    color: black;
+    margin: 0 0 5% 17.5%;
+    // margin-bottom: 5%;
+    // margin-left: 17.5%;
+    // color: black;
   }
 }

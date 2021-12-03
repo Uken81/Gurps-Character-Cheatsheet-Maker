@@ -11,7 +11,7 @@ import {
   ShowSuccessfulSaveAlertContext,
   UserContext
 } from '../../../context';
-import { addNewCharacterForUser, getUsersCharactersList } from '../../Firebase/firebase.utils';
+import { addNewCharacterForUser, getUsersSavedCharactersList } from '../../Firebase/firebase.utils';
 
 const SaveCharacter = () => {
   const { user } = useContext(UserContext);
@@ -30,8 +30,7 @@ const SaveCharacter = () => {
 
   useEffect(() => {
     const checkIfDuplicate = async () => {
-      console.log('***Test: saveCharacter/checkIfDuplicate');
-      const matchingName = await getUsersCharactersList(currentlyLoggedInUserId);
+      const matchingName = await getUsersSavedCharactersList(currentlyLoggedInUserId);
       setNameIsDuplicate(() => matchingName.includes(characterName));
     };
     checkIfDuplicate();
@@ -55,8 +54,7 @@ const SaveCharacter = () => {
       console.log('**** SelectedDisadvantagesList: ', selectedDisadvantagesList);
       console.log(`**** ${characterName} has been saved`);
 
-      let newCharacter;
-      newCharacter = {
+      const newCharacter = {
         name: characterName,
         advantages: selectedAdvantagesList.map(({ title }) => title),
         disadvantages: selectedDisadvantagesList.map(({ title }) => title)

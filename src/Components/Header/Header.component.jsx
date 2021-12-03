@@ -13,10 +13,10 @@ import { useEffect } from 'react';
 const Header = () => {
   const { user } = useContext(UserContext);
 
+  const [pathname, setPathName] = useState('');
+
   const location = useLocation();
   const history = useHistory();
-
-  const [pathname, setPathName] = useState('');
 
   useEffect(() => {
     const setPath = () => {

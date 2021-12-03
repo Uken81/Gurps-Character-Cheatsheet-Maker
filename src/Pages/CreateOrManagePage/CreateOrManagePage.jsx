@@ -23,14 +23,11 @@ const CreateOrManage = () => {
   const { setSelectedDisadvantagesList } = useContext(SelectedDisadvantagesContext);
 
   useEffect(() => {
-    console.log('***Test: createOrManagePage');
     let unsubscribeFromAuth = null;
     unsubscribeFromAuth = onAuthStateChanged(auth, async (userAuth) => {
       await createUserProfileDocument(userAuth);
       if (userAuth) {
         setUser(userAuth);
-        console.log('OnAuthStateChange/HomePage');
-        // console.log(`${userAuth.email} has logged in`);
         console.log('****User: ', user);
       } else {
         setUser(userAuth);

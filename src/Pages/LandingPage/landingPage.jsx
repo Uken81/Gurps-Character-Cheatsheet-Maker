@@ -1,29 +1,11 @@
-import { useEffect } from 'react';
-import { useContext } from 'react';
-
 import '../page.styles.scss';
 
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
-import {
-  CharacterNameContext,
-  SelectedAdvantagesContext,
-  SelectedDisadvantagesContext
-} from '../../context';
+import useResetAttributes from '../../Components/SharedComponents/ResetAttributes';
 
 const LandingPage = () => {
-  const { setCharacterName } = useContext(CharacterNameContext);
-  const { setSelectedAdvantagesList } = useContext(SelectedAdvantagesContext);
-  const { setSelectedDisadvantagesList } = useContext(SelectedDisadvantagesContext);
-
-  useEffect(() => {
-    const resetAttributes = () => {
-      setCharacterName('');
-      setSelectedAdvantagesList([]);
-      setSelectedDisadvantagesList([]);
-    };
-    resetAttributes();
-  }, []);
+  useResetAttributes();
 
   return (
     <div className="landingPage">

@@ -17,23 +17,21 @@ const ToggleAdvantageDisadvantage = () => {
 
   return (
     <div className="toggle-container">
-      <div className="toggle-advantage-section">
-        <Tabs
-          defaultActiveKey="advantages"
-          activeKey={isChoosingAdvantages ? 'advantages' : 'disadvantages'}
-          className="toggle-advantages-disadvantages"
-          onSelect={handleTabs}>
-          <Tab
-            style={{ backgroundColor: 'red' }}
-            eventKey="choose-from"
-            className="tab-disabled"
-            title="Choose From"
-            disabled
-          />
-          <Tab eventKey="advantages" id="tab-advantages" title="Advantages" />
-          <Tab eventKey="disadvantages" id="tab-disadvantages" title="Disadvantages" />
-        </Tabs>
-      </div>
+      <Tabs
+        defaultActiveKey="advantages"
+        activeKey={isChoosingAdvantages ? 'advantages' : 'disadvantages'}
+        className="toggle-advantages-disadvantages"
+        onSelect={handleTabs}>
+        <Tab
+          style={{ backgroundColor: 'red' }}
+          eventKey="choose-from"
+          className="tab-disabled"
+          title="Choose From"
+          disabled
+        />
+        <Tab eventKey="advantages" title="Advantages" />
+        <Tab eventKey="disadvantages" title="Disadvantages" />
+      </Tabs>
     </div>
   );
 };

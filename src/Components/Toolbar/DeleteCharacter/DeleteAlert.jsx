@@ -35,7 +35,7 @@ const DeleteAlert = (props) => {
   return (
     <div className="delete-alert">
       <Alert variant="warning">
-        <Alert.Heading>{`Confirm Delete ${characterName}`}</Alert.Heading>
+        <Alert.Heading>{`Confirm to Delete ${characterName}`}</Alert.Heading>
         <p>
           {`You are attempting to delete ${characterName}. This can not be undone. Are you sure you wish to continue?`}
         </p>

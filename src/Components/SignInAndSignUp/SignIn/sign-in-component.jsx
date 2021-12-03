@@ -8,12 +8,9 @@ import { useHistory } from 'react-router';
 import { google } from '../../Firebase/firebase.utils';
 import { Button, Form } from 'react-bootstrap';
 
-const SignIn = (props) => {
+const SignIn = ({ setSignInOrUp, setIsWaitingForPopup }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const setSignInOrUp = props.setSignInOrUp;
-  const setIsWaitingForPopup = props.setIsWaitingForPopup;
 
   const handleChange = (e) => {
     if (e.target.name === 'email') {

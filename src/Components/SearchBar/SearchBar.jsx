@@ -29,7 +29,6 @@ const SearchBar = () => {
 
   useEffect(() => {
     const createSearchOptions = () => {
-      console.log('***Test: createSearchOptions');
       let adsArr = AdvantagesArray.map((opt) => ({
         label: opt.title,
         value: opt,
@@ -73,7 +72,6 @@ const SearchBar = () => {
       }));
 
       let combinedArr = [...adsArr, ...disadsArr];
-      console.log('combined: ', combinedArr);
       setSelectInput(combinedArr);
     };
     updateSelect();
@@ -93,7 +91,7 @@ const SearchBar = () => {
           {isChoosingAdvantages ? 'ADVANTAGES' : 'DISADVANTAGES'}
         </h1>
       )}
-      <div className="test">
+      <div className="toggle-and-search">
         <ToggleAdvantageDisadvantage />
         <Select
           className="searchBar"

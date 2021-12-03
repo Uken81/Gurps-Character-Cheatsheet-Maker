@@ -1,8 +1,8 @@
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import DropdownItem from 'react-bootstrap/DropdownItem';
 import {
-  getMatchingCharactersForUser,
-  getUsersCharactersList
+  getMatchingCharacterForUser,
+  getUsersSavedCharactersList
 } from '../../Firebase/firebase.utils';
 import { useEffect, useState } from 'react';
 
@@ -29,17 +29,17 @@ const LoadCharacter = () => {
   const [characterToLoad, setCharacterToLoad] = useState('');
 
   useEffect(() => {
-    const mapUsersCharacterList = async () => {
+    const mapUsersSavedCharactersList = async () => {
       if (user) {
         let tempArr = [];
-        const record = await getUsersCharactersList(user.uid);
+        const record = await getUsersSavedCharactersList(user.uid);
         record.forEach((element) => {
           tempArr.push(element);
         });
         setDropdownList(tempArr);
       }
     };
-    mapUsersCharacterList();
+    mapUsersSavedCharactersList();
   }, [user]);
 
   const handleLoad = (character) => {
@@ -50,7 +50,7 @@ const LoadCharacter = () => {
   const getRecord = async (character) => {
     character = characterToLoad;
     if (characterToLoad !== '') {
-      records = await getMatchingCharactersForUser(user.uid, character);
+      records = await getMatchingCharacterForUser(user.uid, character);
     }
     return records;
   };
@@ -97,7 +97,6 @@ const LoadCharacter = () => {
   useEffect(() => {
     const loadSelectedCharactersStats = async () => {
       if (characterToLoad !== '') {
-        console.log('***Test: loadCharacter');
         await getRecord(characterToLoad);
         await repopulateCharacterAttributes();
         await repopulateCurrentCharacterId();
@@ -114,12 +113,9 @@ const LoadCharacter = () => {
     <div>
       <DropdownButton
         className="dropdown-button"
-        id="dropdown-item-button"
         title={`LOAD CHARACTER`}
         variant="outline-primary"
-        size="lg"
-        // style={{border: '4px solid red'}}
-      >
+        size="lg">
         {dropdownList !== [] &&
           dropdownList.map((character) => (
             <DropdownItem
@@ -129,9 +125,8 @@ const LoadCharacter = () => {
               style={{
                 color: 'white',
                 backgroundColor: 'black',
-                // width: '60%',
-                fontSize: '1.5rem'
-                // borderBottom: '2px solid white'
+                fontSize: '1.5rem',
+                borderBottom: '1px solid white'
               }}>
               {character}
             </DropdownItem>

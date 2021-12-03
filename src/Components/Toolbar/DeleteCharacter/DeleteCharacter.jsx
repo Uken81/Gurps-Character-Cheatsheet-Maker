@@ -10,13 +10,13 @@ const DeleteCharacter = (props) => {
 
   const setShowAlert = props.setShowAlert;
 
-  const show = () => {
+  const showDeleteAlert = () => {
     setShowAlert(true);
   };
 
   return (
     <div className="button-container">
-      <Button className="tool-button" onClick={show}>
+      <Button className="tool-button" onClick={showDeleteAlert}>
         Delete {characterName}
       </Button>
     </div>
