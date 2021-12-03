@@ -7,9 +7,11 @@ import './DisplayResults.styles.scss';
 const DisplayAdvantages = ({ selectedAdvantagesList }) => {
   const { characterName } = useContext(CharacterNameContext);
 
+  const nameText = characterName !== '' ? `${characterName}'s` : '';
+
   return (
     <div>
-      {selectedAdvantagesList.length > 0 && <h3>{`${characterName}'s Advantages`}</h3>}
+      {selectedAdvantagesList.length > 0 && <h3>{`${nameText} Advantages`}</h3>}
       {selectedAdvantagesList.map(({ title, points, description, subCategories, extraText }) => {
         return (
           <div className="results-container" key={`${title}-container`}>

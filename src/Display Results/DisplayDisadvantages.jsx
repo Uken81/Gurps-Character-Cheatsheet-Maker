@@ -5,9 +5,11 @@ import { CharacterNameContext } from '../context';
 const DisplayDisadvantages = ({ selectedDisadvantagesList }) => {
   const { characterName } = useContext(CharacterNameContext);
 
+  const nameText = characterName !== '' ? `${characterName}'s` : '';
+
   return (
     <div>
-      {selectedDisadvantagesList.length > 0 && <h3>{`${characterName}'s Disadvantages`}</h3>}
+      {selectedDisadvantagesList.length > 0 && <h3>{`${nameText} Disadvantages`}</h3>}
       {selectedDisadvantagesList.map(({ title, points, description, subCategories, extraText }) => {
         return (
           <div className="results-container" key={`${title}-container`}>
