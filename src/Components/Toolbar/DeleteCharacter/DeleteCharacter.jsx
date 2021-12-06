@@ -5,10 +5,8 @@ import Button from 'react-bootstrap/Button';
 
 import { CharacterNameContext } from '../../../context';
 
-const DeleteCharacter = (props) => {
+const DeleteCharacter = ({ setShowAlert }) => {
   const { characterName } = useContext(CharacterNameContext);
-
-  const setShowAlert = props.setShowAlert;
 
   const showDeleteAlert = () => {
     setShowAlert(true);
@@ -17,7 +15,7 @@ const DeleteCharacter = (props) => {
   return (
     <div className="button-container">
       <Button className="tool-button" onClick={showDeleteAlert}>
-        Delete {characterName}
+        {`Delete ${characterName}`}
       </Button>
     </div>
   );

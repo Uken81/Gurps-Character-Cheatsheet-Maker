@@ -9,16 +9,15 @@ import { GetCharacterReference } from '../../Firebase/firebase.utils';
 import { useHistory } from 'react-router';
 import { deleteDoc } from '@firebase/firestore';
 
-const DeleteAlert = (props) => {
+const DeleteAlert = ({ setShowAlert, isDeleting, setIsDeleting }) => {
   const { user } = useContext(UserContext);
   const { currentCharacterId } = useContext(CurrentCharacterIdContext);
   const { characterName } = useContext(CharacterNameContext);
 
-  const setShowAlert = props.setShowAlert;
-
   const history = useHistory();
   const deleteCharacter = async () => {
     const docRef = await GetCharacterReference(user.uid, currentCharacterId);
+    setIsDeleting(true);
     await deleteDoc(docRef)
       .then(() => {
         console.log('****Current character has been removed from database');
@@ -27,7 +26,9 @@ const DeleteAlert = (props) => {
       .catch(() => {
         alert('Unable to delete character from database please try again later');
       });
+    setIsDeleting(false);
   };
+
   const hideAlert = () => {
     setShowAlert(false);
   };
@@ -35,9 +36,11 @@ const DeleteAlert = (props) => {
   return (
     <div className="delete-alert">
       <Alert variant="warning">
-        <Alert.Heading>{`Confirm to Delete ${characterName}`}</Alert.Heading>
+        <Alert.Heading>{isDeleting ? '' : `Confirm to Delete ${characterName}`}</Alert.Heading>
         <p>
-          {`You are attempting to delete ${characterName}. This can not be undone. Are you sure you wish to continue?`}
+          {isDeleting
+            ? `Deleting ${characterName}....`
+            : `You are attempting to delete ${characterName}. This can not be undone. Are you sure you wish to continue?`}
         </p>
         <hr />
         <div className="d-flex justify-content-end">
@@ -52,7 +55,9 @@ const DeleteAlert = (props) => {
 };
 
 DeleteAlert.propTypes = {
-  setShowAlert: PropTypes.func
+  setShowAlert: PropTypes.func,
+  isDeleting: PropTypes.bool,
+  setIsDeleting: PropTypes.func
 };
 
 export default DeleteAlert;

@@ -11,7 +11,7 @@ import SearchBar from '../../Components/SearchBar/SearchBar';
 import CopyToClipboard from '../../Components/Toolbar/CopyToClipboard/CopyToClipboard';
 import PrintPDF from '../../Components/Toolbar/Print PDF/printPDF';
 import ResetCharacter from '../../Components/Toolbar/ResetCharacter/ResetCharacter';
-import SaveCharacter from '../../Components/Toolbar/SaveCharacter/save-character-component';
+import SaveCharacter from '../../Components/Toolbar/SaveCharacter/SaveCharacterComponent';
 import { CharacterNameContext, ShowSuccessfulSaveAlertContext } from '../../context';
 import DisplaySelected from '../../Selected/DisplaySelected';
 import ComponentToPrint from '../../Display Results/ComponentToPrint';

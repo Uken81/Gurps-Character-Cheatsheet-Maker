@@ -22,6 +22,7 @@ const SaveCharacter = () => {
   const { setShowSuccessfulSaveAlert } = useContext(ShowSuccessfulSaveAlertContext);
 
   const [nameIsDuplicate, setNameIsDuplicate] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
 
   let currentlyLoggedInUserId;
   if (user) {
@@ -37,6 +38,7 @@ const SaveCharacter = () => {
   }, [characterName]);
 
   const saveCharacterHandler = async () => {
+    setIsSaving(true);
     if ((selectedAdvantagesList.length === 0) & (selectedDisadvantagesList.length === 0)) {
       console.log('**** Save fail');
       alert('You must select at least one Advantage or Disadvantage');
@@ -72,12 +74,13 @@ const SaveCharacter = () => {
 
       setShowSuccessfulSaveAlert(true);
     }
+    setIsSaving(false);
   };
 
   return (
     <div className="button-container">
       <Button className="tool-button" size="lg" onClick={saveCharacterHandler}>
-        Save Character
+        {isSaving ? 'Saving...' : 'Save Character'}
       </Button>
     </div>
   );

@@ -27,6 +27,7 @@ const LoadCharacter = () => {
 
   const [dropdownList, setDropdownList] = useState([]);
   const [characterToLoad, setCharacterToLoad] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const mapUsersSavedCharactersList = async () => {
@@ -97,6 +98,7 @@ const LoadCharacter = () => {
   useEffect(() => {
     const loadSelectedCharactersStats = async () => {
       if (characterToLoad !== '') {
+        setIsLoading(true);
         await getRecord(characterToLoad);
         await repopulateCharacterAttributes();
         await repopulateCurrentCharacterId();
@@ -104,6 +106,7 @@ const LoadCharacter = () => {
         if (location.pathname === '/create-or-manage-page') {
           history.push('/manage-characters-page');
         }
+        setIsLoading(false);
       }
     };
     loadSelectedCharactersStats();
@@ -113,7 +116,7 @@ const LoadCharacter = () => {
     <div>
       <DropdownButton
         className="dropdown-button"
-        title={`LOAD CHARACTER`}
+        title={isLoading ? 'LOADING...' : 'LOAD CHARACTER'}
         variant="outline-primary"
         size="lg">
         {dropdownList !== [] &&

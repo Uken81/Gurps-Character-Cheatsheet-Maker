@@ -14,6 +14,7 @@ import DeleteAlert from '../../Components/Toolbar/DeleteCharacter/DeleteAlert';
 const ManageCharactersPage = () => {
   const { characterName } = useContext(CharacterNameContext);
   const [showAlert, setShowAlert] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   return (
     <div className="manage-character-page">
@@ -25,7 +26,7 @@ const ManageCharactersPage = () => {
             <span className="toolbar-header">Character Toolbar</span>
             <div className="toolbar-characters">
               <ToEditCharacter />
-              <DeleteCharacter setShowAlert={setShowAlert} />
+              <DeleteCharacter setShowAlert={setShowAlert} isDeleting={isDeleting} />
             </div>
             <div className="toolbar-print-options">
               <CopyToClipboard />
@@ -34,7 +35,13 @@ const ManageCharactersPage = () => {
           </div>
           <div className="main-interface">
             <h1 className="selected-header">{characterName.toUpperCase()}&apos;S CHEATSHEET</h1>
-            {showAlert && <DeleteAlert setShowAlert={setShowAlert} />}
+            {showAlert && (
+              <DeleteAlert
+                setShowAlert={setShowAlert}
+                isDeleting={isDeleting}
+                setIsDeleting={setIsDeleting}
+              />
+            )}
             <DisplaySelected />
           </div>
         </div>
