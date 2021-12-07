@@ -6,8 +6,9 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useHistory } from 'react-router';
 import { auth, google } from '../../Firebase/firebase.utils';
 import { Button, Form } from 'react-bootstrap';
+import { propTypes } from 'react-bootstrap/esm/Image';
 
-const SignUp = () => {
+const SignUp = ({ setShowLoadingScreen }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -36,6 +37,7 @@ const SignUp = () => {
     }
 
     try {
+      setShowLoadingScreen(true);
       await createUserWithEmailAndPassword(auth, email, password);
       setEmail('');
       setPassword('');
@@ -58,6 +60,7 @@ const SignUp = () => {
         alert('The password is too weak');
       }
     }
+    setShowLoadingScreen(false);
   };
 
   const googleSignUp = async () => {
@@ -110,6 +113,10 @@ const SignUp = () => {
       </Form>
     </div>
   );
+};
+
+SignUp.propTypes = {
+  setShowLoadingScreen: propTypes.func
 };
 
 export default SignUp;

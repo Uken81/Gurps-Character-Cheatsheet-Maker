@@ -7,22 +7,18 @@ import { useState } from 'react';
 
 const SignInAndSignUp = () => {
   const [signInOrUp, setSignInOrUp] = useState('sign-in');
-  const [isWaitingForPopup, setIsWaitingForPopup] = useState(false);
+  const [showLoadingScreen, setShowLoadingScreen] = useState(false);
 
-  if (!isWaitingForPopup) {
+  if (!showLoadingScreen) {
     return (
       <div className="sign-in-and-sign-up">
         <Header />
         <div className="form-container">
           <h1 className="main-title"> G.C.C.M </h1>
           {signInOrUp === 'sign-in' && (
-            <SignIn
-              setSignInOrUp={setSignInOrUp}
-              isWaitingForPopup={isWaitingForPopup}
-              setIsWaitingForPopup={setIsWaitingForPopup}
-            />
+            <SignIn setSignInOrUp={setSignInOrUp} setShowLoadingScreen={setShowLoadingScreen} />
           )}
-          {signInOrUp === 'sign-up' && <SignUp />}
+          {signInOrUp === 'sign-up' && <SignUp setShowLoadingScreen={setShowLoadingScreen} />}
         </div>
       </div>
     );
@@ -32,10 +28,18 @@ const SignInAndSignUp = () => {
         className="sign-in-and-sign-up"
         style={{
           display: 'flex',
+          flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center'
         }}>
         <h1 className="main-title"> G.C.C.M </h1>
+        <p
+          style={{
+            fontSize: '2rem',
+            color: 'white'
+          }}>
+          LOADING....
+        </p>
       </div>
     );
   }

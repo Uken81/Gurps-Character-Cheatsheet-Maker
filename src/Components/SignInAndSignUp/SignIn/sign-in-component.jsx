@@ -8,7 +8,7 @@ import { useHistory } from 'react-router';
 import { google } from '../../Firebase/firebase.utils';
 import { Button, Form } from 'react-bootstrap';
 
-const SignIn = ({ setSignInOrUp, setIsWaitingForPopup }) => {
+const SignIn = ({ setSignInOrUp, setShowLoadingScreen }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -27,6 +27,7 @@ const SignIn = ({ setSignInOrUp, setIsWaitingForPopup }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setShowLoadingScreen(true);
     await signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         console.log('****signin');
@@ -45,10 +46,11 @@ const SignIn = ({ setSignInOrUp, setIsWaitingForPopup }) => {
           alert('Wrong password entered for this account.');
         }
       });
+    setShowLoadingScreen(false);
   };
 
   const googleSignIn = async () => {
-    setIsWaitingForPopup(true);
+    setShowLoadingScreen(true);
 
     await google()
       .then(() => {
@@ -57,6 +59,7 @@ const SignIn = ({ setSignInOrUp, setIsWaitingForPopup }) => {
       .catch(() => {
         alert('Google sign in is not working. Sign in with email and password or try again later.');
       });
+    setShowLoadingScreen(false);
   };
 
   const redirectToSignup = () => {
@@ -106,7 +109,7 @@ const SignIn = ({ setSignInOrUp, setIsWaitingForPopup }) => {
 
 SignIn.propTypes = {
   setSignInOrUp: PropTypes.func,
-  setIsWaitingForPopup: PropTypes.func
+  setShowLoadingScreen: PropTypes.func
 };
 
 export default SignIn;
