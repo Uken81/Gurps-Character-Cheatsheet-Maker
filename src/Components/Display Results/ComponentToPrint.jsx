@@ -6,7 +6,7 @@ import {
   ComponentRefContext,
   SelectedAdvantagesContext,
   SelectedDisadvantagesContext
-} from '../context';
+} from '../../context.js';
 import DisplayAdvantages from './DisplayAdvantages';
 import DisplayDisadvantages from './DisplayDisadvantages';
 

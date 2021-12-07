@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useContext } from 'react';
 import { Form } from 'react-bootstrap';
 
-import '../../Display Results/DisplayResults.styles.scss';
+import '../../Components/Display Results/DisplayResults.styles.scss';
 import '../page.styles.scss';
 
 import Header from '../../Components/Header/Header.component';
@@ -13,8 +13,8 @@ import PrintPDF from '../../Components/Toolbar/Print PDF/printPDF';
 import ResetCharacter from '../../Components/Toolbar/ResetCharacter/ResetCharacter';
 import SaveCharacter from '../../Components/Toolbar/SaveCharacter/SaveCharacterComponent';
 import { CharacterNameContext, ShowSuccessfulSaveAlertContext } from '../../context';
-import DisplaySelected from '../../Selected/DisplaySelected';
-import ComponentToPrint from '../../Display Results/ComponentToPrint';
+import DisplaySelected from '../../Components/Selected/DisplaySelected';
+import ComponentToPrint from '../../Components/Display Results/ComponentToPrint';
 import SuccessfulSaveAlert from '../../Components/Toolbar/SaveCharacter/SuccessfulSaveAlert';
 
 const CreateNewCharacterPage = () => {

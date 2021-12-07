@@ -5,8 +5,8 @@ import SearchBar from '../../Components/SearchBar/SearchBar';
 import CopyToClipboard from '../../Components/Toolbar/CopyToClipboard/CopyToClipboard';
 import PrintPDF from '../../Components/Toolbar/Print PDF/printPDF';
 import ResetCharacter from '../../Components/Toolbar/ResetCharacter/ResetCharacter';
-import ComponentToPrint from '../../Display Results/ComponentToPrint';
-import DisplaySelected from '../../Selected/DisplaySelected';
+import ComponentToPrint from '../../Components/Display Results/ComponentToPrint';
+import DisplaySelected from '../../Components/Selected/DisplaySelected';
 
 const GuestPage = () => {
   return (

@@ -18,7 +18,8 @@
     "react-scripts": "^4.0.3",
     "react-select": "^5.1.0",
     "react-to-print": "^2.13.0",
-    "scss": "^0.2.4"
+    "scss": "^0.2.4",
+    "zustand": "^3.6.6"
   },
   "scripts": {
     "start": "react-scripts start",

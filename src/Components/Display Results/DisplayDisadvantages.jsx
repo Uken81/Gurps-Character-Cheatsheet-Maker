@@ -1,18 +1,16 @@
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
-import { CharacterNameContext } from '../context';
+import { CharacterNameContext } from '../../context';
 
-import './DisplayResults.styles.scss';
-
-const DisplayAdvantages = ({ selectedAdvantagesList }) => {
+const DisplayDisadvantages = ({ selectedDisadvantagesList }) => {
   const { characterName } = useContext(CharacterNameContext);
 
   const nameText = characterName !== '' ? `${characterName}'s` : '';
 
   return (
     <div>
-      {selectedAdvantagesList.length > 0 && <h3>{`${nameText} Advantages`}</h3>}
-      {selectedAdvantagesList.map(({ title, points, description, subCategories, extraText }) => {
+      {selectedDisadvantagesList.length > 0 && <h3>{`${nameText} Disadvantages`}</h3>}
+      {selectedDisadvantagesList.map(({ title, points, description, subCategories, extraText }) => {
         return (
           <div className="results-container" key={`${title}-container`}>
             <h2>{title}</h2>
@@ -42,8 +40,8 @@ const DisplayAdvantages = ({ selectedAdvantagesList }) => {
   );
 };
 
-DisplayAdvantages.propTypes = {
-  selectedAdvantagesList: PropTypes.array
+DisplayDisadvantages.propTypes = {
+  selectedDisadvantagesList: PropTypes.array
 };
 
-export default DisplayAdvantages;
+export default DisplayDisadvantages;

@@ -1,11 +1,11 @@
-import '../../Display Results/DisplayResults.styles.scss';
+import '../../Components/Display Results/DisplayResults.styles.scss';
 import '../page.styles.scss';
 
 import Header from '../../Components/Header/Header.component';
 import CopyToClipboard from '../../Components/Toolbar/CopyToClipboard/CopyToClipboard';
 import DeleteCharacter from '../../Components/Toolbar/DeleteCharacter/DeleteCharacter';
 import PrintPDF from '../../Components/Toolbar/Print PDF/printPDF';
-import DisplaySelected from '../../Selected/DisplaySelected';
+import DisplaySelected from '../../Components/Selected/DisplaySelected';
 import { useContext, useState } from 'react';
 import { CharacterNameContext } from '../../context';
 import { ToEditCharacter } from '../../Components/Header/Navigation Links/navigationLinks';

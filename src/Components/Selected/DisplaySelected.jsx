@@ -7,7 +7,7 @@ import {
   IsChoosingAdvantagesContext,
   SelectedAdvantagesContext,
   SelectedDisadvantagesContext
-} from '../context';
+} from '../../context';
 
 const DisplaySelected = () => {
   const { setIsChoosingAdvantages } = useContext(IsChoosingAdvantagesContext);

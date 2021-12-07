@@ -2,7 +2,7 @@ import Header from '../../Components/Header/Header.component';
 import SearchBar from '../../Components/SearchBar/SearchBar';
 import EditCharacter from '../../Components/Toolbar/EditCharacter/EditCharacter';
 import ResetChanges from '../../Components/Toolbar/ResetChanges/ResetChanges';
-import DisplaySelected from '../../Selected/DisplaySelected';
+import DisplaySelected from '../../Components/Selected/DisplaySelected';
 
 const EditCharacterPage = () => {
   return (
