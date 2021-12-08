@@ -3,12 +3,9 @@ import { Route, Switch } from 'react-router-dom';
 import SignInAndSignUp from './Pages/SignInAndSignUp/sign-in-and-sign-up';
 import { useState } from 'react';
 import {
-  CharacterNameContext,
   ComponentRefContext,
   CurrentCharacterIdContext,
   IsChoosingAdvantagesContext,
-  SelectedAdvantagesContext,
-  SelectedDisadvantagesContext,
   SelectInputValueContext,
   UserContext,
   ShowSuccessfulSaveAlertContext
@@ -49,15 +46,6 @@ function App() {
     [selectInput]
   );
 
-  const [characterName, setCharacterName] = useState('');
-  const characterNameValue = useMemo(
-    () => ({
-      characterName,
-      setCharacterName
-    }),
-    [characterName]
-  );
-
   const [currentCharacterId, setCurrentCharacterId] = useState('');
   const currentCharacterIdValue = useMemo(
     () => ({
@@ -76,24 +64,6 @@ function App() {
     [isChoosingAdvantages]
   );
 
-  const [selectedAdvantagesList, setSelectedAdvantagesList] = useState([]);
-  const selectedAdvantagesValue = useMemo(
-    () => ({
-      selectedAdvantagesList,
-      setSelectedAdvantagesList
-    }),
-    [selectedAdvantagesList]
-  );
-
-  const [selectedDisadvantagesList, setSelectedDisadvantagesList] = useState([]);
-  const selectedDisadvantagesValue = useMemo(
-    () => ({
-      selectedDisadvantagesList,
-      setSelectedDisadvantagesList
-    }),
-    [selectedDisadvantagesList]
-  );
-
   const [showSuccessfulSaveAlert, setShowSuccessfulSaveAlert] = useState(false);
   const showSuccessfulSaveAlertValue = useMemo(
     () => ({
@@ -109,29 +79,20 @@ function App() {
         <UserContext.Provider value={userValue}>
           <Route path="/sign-in-and-sign-up" component={SignInAndSignUp} />{' '}
           <IsChoosingAdvantagesContext.Provider value={isChoosingAdvantagesValue}>
-            <CharacterNameContext.Provider value={characterNameValue}>
-              <SelectedAdvantagesContext.Provider value={selectedAdvantagesValue}>
-                <SelectedDisadvantagesContext.Provider value={selectedDisadvantagesValue}>
-                  <Route exact path="/" component={LandingPage} />{' '}
-                  <SelectInputValueContext.Provider value={selectInputValue}>
-                    <CurrentCharacterIdContext.Provider value={currentCharacterIdValue}>
-                      <ShowSuccessfulSaveAlertContext.Provider value={showSuccessfulSaveAlertValue}>
-                        <Route path="/create-or-manage-page" component={CreateOrManage} />{' '}
-                        <Route path="/edit-character-page" component={EditCharacterPage} />{' '}
-                        <ComponentRefContext.Provider value={componentRefValue}>
-                          <Route path="/guest-page" component={GuestPage} />{' '}
-                          <Route
-                            path="/create-new-character-page"
-                            component={CreateNewCharacterPage}
-                          />{' '}
-                          <Route path="/manage-characters-page" component={ManageCharactersPage} />{' '}
-                        </ComponentRefContext.Provider>{' '}
-                      </ShowSuccessfulSaveAlertContext.Provider>{' '}
-                    </CurrentCharacterIdContext.Provider>{' '}
-                  </SelectInputValueContext.Provider>{' '}
-                </SelectedDisadvantagesContext.Provider>{' '}
-              </SelectedAdvantagesContext.Provider>{' '}
-            </CharacterNameContext.Provider>{' '}
+            <Route exact path="/" component={LandingPage} />{' '}
+            <SelectInputValueContext.Provider value={selectInputValue}>
+              <CurrentCharacterIdContext.Provider value={currentCharacterIdValue}>
+                <ShowSuccessfulSaveAlertContext.Provider value={showSuccessfulSaveAlertValue}>
+                  <Route path="/create-or-manage-page" component={CreateOrManage} />{' '}
+                  <Route path="/edit-character-page" component={EditCharacterPage} />{' '}
+                  <ComponentRefContext.Provider value={componentRefValue}>
+                    <Route path="/guest-page" component={GuestPage} />{' '}
+                    <Route path="/create-new-character-page" component={CreateNewCharacterPage} />{' '}
+                    <Route path="/manage-characters-page" component={ManageCharactersPage} />{' '}
+                  </ComponentRefContext.Provider>{' '}
+                </ShowSuccessfulSaveAlertContext.Provider>{' '}
+              </CurrentCharacterIdContext.Provider>{' '}
+            </SelectInputValueContext.Provider>{' '}
           </IsChoosingAdvantagesContext.Provider>{' '}
         </UserContext.Provider>{' '}
       </Switch>{' '}

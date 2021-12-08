@@ -1,23 +1,16 @@
 import { useContext } from 'react';
-import {
-  CharacterNameContext,
-  SelectedAdvantagesContext,
-  SelectedDisadvantagesContext,
-  SelectInputValueContext
-} from '../../../context';
+import { SelectInputValueContext } from '../../../context';
 import Button from 'react-bootstrap/Button';
+import useCharacterStore from '../../../Global State/store';
 
 const ResetCharacter = () => {
   const { setSelectInput } = useContext(SelectInputValueContext);
-  const { setCharacterName } = useContext(CharacterNameContext);
-  const { setSelectedAdvantagesList } = useContext(SelectedAdvantagesContext);
-  const { setSelectedDisadvantagesList } = useContext(SelectedDisadvantagesContext);
 
   const HandleCharacterReset = () => {
     setSelectInput([]);
-    setCharacterName('');
-    setSelectedAdvantagesList([]);
-    setSelectedDisadvantagesList([]);
+    useCharacterStore.setState({ characterName: '' });
+    useCharacterStore.setState({ selectedAdvantages: [] });
+    useCharacterStore.setState({ selectedDisadvantages: [] });
   };
 
   return (

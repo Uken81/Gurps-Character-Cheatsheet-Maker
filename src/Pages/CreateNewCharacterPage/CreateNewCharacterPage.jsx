@@ -12,14 +12,15 @@ import CopyToClipboard from '../../Components/Toolbar/CopyToClipboard/CopyToClip
 import PrintPDF from '../../Components/Toolbar/Print PDF/printPDF';
 import ResetCharacter from '../../Components/Toolbar/ResetCharacter/ResetCharacter';
 import SaveCharacter from '../../Components/Toolbar/SaveCharacter/SaveCharacterComponent';
-import { CharacterNameContext, ShowSuccessfulSaveAlertContext } from '../../context';
+import { ShowSuccessfulSaveAlertContext } from '../../context';
 import DisplaySelected from '../../Components/Selected/DisplaySelected';
 import ComponentToPrint from '../../Components/Display Results/ComponentToPrint';
 import SuccessfulSaveAlert from '../../Components/Toolbar/SaveCharacter/SuccessfulSaveAlert';
+import useCharacterStore from '../../Global State/store';
 
 const CreateNewCharacterPage = () => {
-  const { setCharacterName } = useContext(CharacterNameContext);
   const { showSuccessfulSaveAlert } = useContext(ShowSuccessfulSaveAlertContext);
+
   const [formInput, setForminput] = useState('');
 
   const formRef = useRef();
@@ -27,12 +28,11 @@ const CreateNewCharacterPage = () => {
   const handleInput = () => {
     const value = formRef.current.value;
     setForminput(value);
-    console.log(value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setCharacterName(formInput);
+    useCharacterStore.setState({ characterName: formInput });
     setForminput('');
   };
 

@@ -2,10 +2,10 @@ import '../page.styles.scss';
 
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
-import useResetAttributes from '../../Components/SharedComponents/ResetAttributes';
+import useResetAttributesOnLoad from '../../Components/SharedComponents/ResetAttributes';
 
 const LandingPage = () => {
-  useResetAttributes();
+  useResetAttributesOnLoad();
 
   return (
     <div className="landingPage">

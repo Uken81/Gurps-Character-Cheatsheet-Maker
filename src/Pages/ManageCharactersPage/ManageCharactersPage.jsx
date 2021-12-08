@@ -6,13 +6,13 @@ import CopyToClipboard from '../../Components/Toolbar/CopyToClipboard/CopyToClip
 import DeleteCharacter from '../../Components/Toolbar/DeleteCharacter/DeleteCharacter';
 import PrintPDF from '../../Components/Toolbar/Print PDF/printPDF';
 import DisplaySelected from '../../Components/Selected/DisplaySelected';
-import { useContext, useState } from 'react';
-import { CharacterNameContext } from '../../context';
+import { useState } from 'react';
 import { ToEditCharacter } from '../../Components/Header/Navigation Links/navigationLinks';
 import DeleteAlert from '../../Components/Toolbar/DeleteCharacter/DeleteAlert';
+import useCharacterStore from '../../Global State/store';
 
 const ManageCharactersPage = () => {
-  const { characterName } = useContext(CharacterNameContext);
+  const characterName = useCharacterStore((state) => state.characterName);
   const [showAlert, setShowAlert] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 

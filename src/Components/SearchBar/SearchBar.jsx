@@ -3,13 +3,8 @@ import { useEffect, useState } from 'react';
 import Select from 'react-select';
 import AdvantagesArray from '../../Attribute Objects/Advantages/Advantages';
 import DisadvantagesArray from '../../Attribute Objects/Disadvantages/Disadvantages';
-import {
-  CharacterNameContext,
-  IsChoosingAdvantagesContext,
-  SelectedAdvantagesContext,
-  SelectedDisadvantagesContext,
-  SelectInputValueContext
-} from '../../context';
+import { IsChoosingAdvantagesContext, SelectInputValueContext } from '../../context';
+import useCharacterStore from '../../Global State/store';
 import ToggleAdvantageDisadvantage from '../ToggleAdvantageDisadvantage/ToggleAdvantageDisadvantage';
 
 import './SearchBar.styles.scss';
@@ -19,13 +14,11 @@ const SearchBar = () => {
   const [disadvantageOptions, setDisadvantageOptions] = useState([]);
 
   const { isChoosingAdvantages } = useContext(IsChoosingAdvantagesContext);
-  const { selectedAdvantagesList, setSelectedAdvantagesList } =
-    useContext(SelectedAdvantagesContext);
-  const { selectedDisadvantagesList, setSelectedDisadvantagesList } = useContext(
-    SelectedDisadvantagesContext
-  );
   const { selectInput, setSelectInput } = useContext(SelectInputValueContext);
-  const { characterName } = useContext(CharacterNameContext);
+
+  const characterName = useCharacterStore((state) => state.characterName);
+  const selectedAdvantages = useCharacterStore((state) => state.selectedAdvantages);
+  const selectedDisadvantages = useCharacterStore((state) => state.selectedDisadvantages);
 
   useEffect(() => {
     const createSearchOptions = () => {
@@ -53,19 +46,19 @@ const SearchBar = () => {
     event.forEach((e) => {
       e.value.type === 'advantage' ? adsArr.push(e.value) : disadsArr.push(e.value);
     });
-    setSelectedAdvantagesList(adsArr);
-    setSelectedDisadvantagesList(disadsArr);
+    useCharacterStore.setState({ selectedAdvantages: adsArr });
+    useCharacterStore.setState({ selectedDisadvantages: disadsArr });
   };
 
   useEffect(() => {
     const updateSelect = () => {
-      let adsArr = selectedAdvantagesList.map((adv) => ({
+      let adsArr = selectedAdvantages.map((adv) => ({
         label: adv.title,
         value: adv,
         category: adv.type
       }));
 
-      let disadsArr = selectedDisadvantagesList.map((disad) => ({
+      let disadsArr = selectedDisadvantages.map((disad) => ({
         label: disad.title,
         value: disad,
         category: disad.type
@@ -75,7 +68,7 @@ const SearchBar = () => {
       setSelectInput(combinedArr);
     };
     updateSelect();
-  }, [selectedAdvantagesList, selectedDisadvantagesList]);
+  }, [selectedAdvantages, selectedDisadvantages]);
 
   const formatOptionLabel = ({ label, category }) => (
     <div style={category === 'advantage' ? { color: 'seagreen' } : { color: 'brown' }}>{label}</div>

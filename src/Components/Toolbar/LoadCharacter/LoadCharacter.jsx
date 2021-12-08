@@ -9,21 +9,13 @@ import { useEffect, useState } from 'react';
 import AdvantagesArray from '../../../Attribute Objects/Advantages/Advantages';
 import DisadvantagesArray from '../../../Attribute Objects/Disadvantages/Disadvantages';
 import { useContext } from 'react';
-import {
-  CharacterNameContext,
-  CurrentCharacterIdContext,
-  SelectedAdvantagesContext,
-  SelectedDisadvantagesContext,
-  UserContext
-} from '../../../context';
+import { CurrentCharacterIdContext, UserContext } from '../../../context';
 import { useHistory, useLocation } from 'react-router';
+import useCharacterStore from '../../../Global State/store';
 
 const LoadCharacter = () => {
   const { user } = useContext(UserContext);
-  const { setSelectedAdvantagesList } = useContext(SelectedAdvantagesContext);
-  const { setSelectedDisadvantagesList } = useContext(SelectedDisadvantagesContext);
   const { setCurrentCharacterId } = useContext(CurrentCharacterIdContext);
-  const { setCharacterName } = useContext(CharacterNameContext);
 
   const [dropdownList, setDropdownList] = useState([]);
   const [characterToLoad, setCharacterToLoad] = useState('');
@@ -73,9 +65,9 @@ const LoadCharacter = () => {
       disadvantagesRecord.includes(disadvantage.title)
     );
 
-    setSelectedAdvantagesList(characterAdvantages);
-    setSelectedDisadvantagesList(characterDisadvantages);
-    setCharacterName(characterName);
+    useCharacterStore.setState({ characterName: characterName });
+    useCharacterStore.setState({ selectedAdvantages: characterAdvantages });
+    useCharacterStore.setState({ selectedDisadvantages: characterDisadvantages });
 
     console.log(`****${characterName} successfully loaded`);
     console.log('CD: ', characterDisadvantages);

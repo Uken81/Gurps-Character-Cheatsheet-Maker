@@ -2,11 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useRef } from 'react';
 import { useContext } from 'react';
-import {
-  ComponentRefContext,
-  SelectedAdvantagesContext,
-  SelectedDisadvantagesContext
-} from '../../context.js';
+import { ComponentRefContext } from '../../context.js';
 import DisplayAdvantages from './DisplayAdvantages';
 import DisplayDisadvantages from './DisplayDisadvantages';
 
@@ -17,9 +13,6 @@ const ComponentToPrint = () => {
 
   const divRef = useRef();
 
-  const { selectedAdvantagesList } = useContext(SelectedAdvantagesContext);
-  const { selectedDisadvantagesList } = useContext(SelectedDisadvantagesContext);
-
   useEffect(() => {
     const createReference = () => {
       setComponentRef(divRef);
@@ -29,8 +22,8 @@ const ComponentToPrint = () => {
 
   return (
     <div className="display-container" ref={componentRef}>
-      <DisplayAdvantages selectedAdvantagesList={selectedAdvantagesList} />
-      <DisplayDisadvantages selectedDisadvantagesList={selectedDisadvantagesList} />
+      <DisplayAdvantages />
+      <DisplayDisadvantages />
     </div>
   );
 };

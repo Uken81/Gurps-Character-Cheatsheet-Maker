@@ -9,18 +9,13 @@ import { Link } from 'react-router-dom';
 import { auth, createUserProfileDocument } from '../../Components/Firebase/firebase.utils';
 import Header from '../../Components/Header/Header.component';
 import LoadCharacter from '../../Components/Toolbar/LoadCharacter/LoadCharacter';
-import {
-  CharacterNameContext,
-  SelectedAdvantagesContext,
-  SelectedDisadvantagesContext,
-  UserContext
-} from '../../context';
+import { UserContext } from '../../context';
+import useResetAttributesOnLoad from '../../Components/SharedComponents/ResetAttributes';
 
 const CreateOrManage = () => {
   const { user, setUser } = useContext(UserContext);
-  const { setCharacterName } = useContext(CharacterNameContext);
-  const { setSelectedAdvantagesList } = useContext(SelectedAdvantagesContext);
-  const { setSelectedDisadvantagesList } = useContext(SelectedDisadvantagesContext);
+
+  useResetAttributesOnLoad();
 
   useEffect(() => {
     let unsubscribeFromAuth = null;
@@ -38,15 +33,6 @@ const CreateOrManage = () => {
       };
     });
   }, [user]);
-
-  useEffect(() => {
-    const resetAttributes = () => {
-      setCharacterName('');
-      setSelectedAdvantagesList([]);
-      setSelectedDisadvantagesList([]);
-    };
-    resetAttributes();
-  }, []);
 
   return (
     <div className="create-or-manage-characters">

@@ -1,12 +1,14 @@
 import { useContext } from 'react';
-import { CharacterNameContext, ShowSuccessfulSaveAlertContext } from '../../../context';
+import { ShowSuccessfulSaveAlertContext } from '../../../context';
 
 import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
+import useCharacterStore from '../../../Global State/store';
 
 const SuccessfulSaveAlert = () => {
-  const { characterName } = useContext(CharacterNameContext);
   const { setShowSuccessfulSaveAlert } = useContext(ShowSuccessfulSaveAlertContext);
+
+  const characterName = useCharacterStore((state) => state.characterName);
 
   const hideAlert = () => {
     setShowSuccessfulSaveAlert(false);

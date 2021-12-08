@@ -4,22 +4,21 @@ import { useContext, useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 
 import {
-  CharacterNameContext,
   CurrentCharacterIdContext,
-  SelectedAdvantagesContext,
-  SelectedDisadvantagesContext,
   ShowSuccessfulSaveAlertContext,
   UserContext
 } from '../../../context';
+import useCharacterStore from '../../../Global State/store';
 import { addNewCharacterForUser, getUsersSavedCharactersList } from '../../Firebase/firebase.utils';
 
 const SaveCharacter = () => {
   const { user } = useContext(UserContext);
-  const { characterName } = useContext(CharacterNameContext);
   const { setCurrentCharacterId } = useContext(CurrentCharacterIdContext);
-  const { selectedAdvantagesList } = useContext(SelectedAdvantagesContext);
-  const { selectedDisadvantagesList } = useContext(SelectedDisadvantagesContext);
   const { setShowSuccessfulSaveAlert } = useContext(ShowSuccessfulSaveAlertContext);
+
+  const characterName = useCharacterStore((state) => state.characterName);
+  const selectedAdvantages = useCharacterStore((state) => state.selectedAdvantages);
+  const selectedDisadvantages = useCharacterStore((state) => state.selectedDisadvantages);
 
   const [nameIsDuplicate, setNameIsDuplicate] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -39,7 +38,7 @@ const SaveCharacter = () => {
 
   const saveCharacterHandler = async () => {
     setIsSaving(true);
-    if ((selectedAdvantagesList.length === 0) & (selectedDisadvantagesList.length === 0)) {
+    if ((selectedAdvantages.length === 0) & (selectedDisadvantages.length === 0)) {
       console.log('**** Save fail');
       alert('You must select at least one Advantage or Disadvantage');
     } else if (nameIsDuplicate) {
@@ -52,14 +51,14 @@ const SaveCharacter = () => {
       alert('You must select a name for your character in order to save');
     } else {
       console.log('**** SaveCharacterHandler Called');
-      console.log('**** SelectedAdvantagesList: ', selectedAdvantagesList);
-      console.log('**** SelectedDisadvantagesList: ', selectedDisadvantagesList);
+      console.log('**** SelectedAdvantages: ', selectedAdvantages);
+      console.log('**** SelectedDisadvantages: ', selectedDisadvantages);
       console.log(`**** ${characterName} has been saved`);
 
       const newCharacter = {
         name: characterName,
-        advantages: selectedAdvantagesList.map(({ title }) => title),
-        disadvantages: selectedDisadvantagesList.map(({ title }) => title)
+        advantages: selectedAdvantages.map(({ title }) => title),
+        disadvantages: selectedDisadvantages.map(({ title }) => title)
       };
 
       const currentlyLoggedInUserId = user.uid;

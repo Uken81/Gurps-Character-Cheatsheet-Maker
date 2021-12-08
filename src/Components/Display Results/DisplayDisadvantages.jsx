@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
-import { CharacterNameContext } from '../../context';
+import useCharacterStore from '../../Global State/store';
 
-const DisplayDisadvantages = ({ selectedDisadvantagesList }) => {
-  const { characterName } = useContext(CharacterNameContext);
+const DisplayDisadvantages = () => {
+  const characterName = useCharacterStore((state) => state.characterName);
+  const selectedDisadvantages = useCharacterStore((state) => state.selectedDisadvantages);
 
   const nameText = characterName !== '' ? `${characterName}'s` : '';
 
   return (
     <div>
-      {selectedDisadvantagesList.length > 0 && <h3>{`${nameText} Disadvantages`}</h3>}
-      {selectedDisadvantagesList.map(({ title, points, description, subCategories, extraText }) => {
+      {selectedDisadvantages.length > 0 && <h3>{`${nameText} Disadvantages`}</h3>}
+      {selectedDisadvantages.map(({ title, points, description, subCategories, extraText }) => {
         return (
           <div className="results-container" key={`${title}-container`}>
             <h2>{title}</h2>

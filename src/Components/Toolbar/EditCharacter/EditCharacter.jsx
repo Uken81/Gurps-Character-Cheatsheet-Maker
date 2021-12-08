@@ -3,25 +3,22 @@ import { useHistory } from 'react-router';
 
 import Button from 'react-bootstrap/Button';
 
-import {
-  CurrentCharacterIdContext,
-  SelectedAdvantagesContext,
-  SelectedDisadvantagesContext,
-  UserContext
-} from '../../../context';
+import { CurrentCharacterIdContext, UserContext } from '../../../context';
 import { GetCharacterReference, SaveChangesToCharacter } from '../../Firebase/firebase.utils';
+import useCharacterStore from '../../../Global State/store';
 
 const EditCharacter = () => {
   const { user } = useContext(UserContext);
   const { currentCharacterId } = useContext(CurrentCharacterIdContext);
-  const { selectedAdvantagesList } = useContext(SelectedAdvantagesContext);
-  const { selectedDisadvantagesList } = useContext(SelectedDisadvantagesContext);
+
+  const selectedAdvantages = useCharacterStore((state) => state.selectedAdvantages);
+  const selectedDisadvantages = useCharacterStore((state) => state.selectedDisadvantages);
 
   const history = useHistory();
   const handleEdit = async () => {
     const characterRef = await GetCharacterReference(user.uid, currentCharacterId);
-    if ((selectedAdvantagesList.length !== 0) & (selectedDisadvantagesList.length !== 0)) {
-      await SaveChangesToCharacter(characterRef, selectedAdvantagesList, selectedDisadvantagesList);
+    if ((selectedAdvantages.length !== 0) & (selectedDisadvantages.length !== 0)) {
+      await SaveChangesToCharacter(characterRef, selectedAdvantages, selectedDisadvantages);
       console.log(`${characterRef} has been successfully edited.`);
       history.push('/create-or-manage-page');
     } else {

@@ -1,12 +1,10 @@
-import { useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import Button from 'react-bootstrap/Button';
-
-import { CharacterNameContext } from '../../../context';
+import useCharacterStore from '../../../Global State/store';
 
 const DeleteCharacter = ({ setShowAlert }) => {
-  const { characterName } = useContext(CharacterNameContext);
+  const characterName = useCharacterStore((state) => state.characterName);
 
   const showDeleteAlert = () => {
     setShowAlert(true);

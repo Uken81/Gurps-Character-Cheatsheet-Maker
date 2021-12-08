@@ -1,20 +1,13 @@
-import { useContext, useEffect } from 'react';
-import {
-  CharacterNameContext,
-  SelectedAdvantagesContext,
-  SelectedDisadvantagesContext
-} from '../../context';
+import { useEffect } from 'react';
 
-const useResetAttributes = () => {
-  const { setCharacterName } = useContext(CharacterNameContext);
-  const { setSelectedAdvantagesList } = useContext(SelectedAdvantagesContext);
-  const { setSelectedDisadvantagesList } = useContext(SelectedDisadvantagesContext);
+import useCharacterStore from '../../Global State/store';
 
+const useResetAttributesOnLoad = () => {
   useEffect(() => {
-    setCharacterName('');
-    setSelectedAdvantagesList([]);
-    setSelectedDisadvantagesList([]);
+    useCharacterStore.setState({ characterName: '' });
+    useCharacterStore.setState({ selectedAdvantages: [] });
+    useCharacterStore.setState({ selectedDisadvantages: [] });
   }, []);
 };
 
-export default useResetAttributes;
+export default useResetAttributesOnLoad;

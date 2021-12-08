@@ -1,32 +1,27 @@
 import { useContext, useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import {
-  SelectedAdvantagesContext,
-  SelectedDisadvantagesContext,
-  SelectInputValueContext
-} from '../../../context';
+import { SelectInputValueContext } from '../../../context';
+import useCharacterStore from '../../../Global State/store';
 
 const ResetChanges = () => {
   const { selectInput, setSelectInput } = useContext(SelectInputValueContext);
-  const { selectedAdvantagesList, setSelectedAdvantagesList } =
-    useContext(SelectedAdvantagesContext);
-  const { selectedDisadvantagesList, setSelectedDisadvantagesList } = useContext(
-    SelectedDisadvantagesContext
-  );
+
+  const selectedAdvantages = useCharacterStore((state) => state.selectedAdvantages);
+  const selectedDisadvantages = useCharacterStore((state) => state.selectedDisadvantages);
 
   const [initialAdvantages, setInitialAdvantages] = useState([]);
   const [initialDisadvantages, setInitialDisadvantages] = useState([]);
   const [initalSelect, setInitialSelect] = useState([]);
 
   useEffect(() => {
-    setInitialAdvantages(selectedAdvantagesList);
-    setInitialDisadvantages(selectedDisadvantagesList);
+    setInitialAdvantages(selectedAdvantages);
+    setInitialDisadvantages(selectedDisadvantages);
     setInitialSelect(selectInput);
   }, []);
 
   const handleClick = async () => {
-    setSelectedAdvantagesList(initialAdvantages);
-    setSelectedDisadvantagesList(initialDisadvantages);
+    useCharacterStore.setState({ selectedAdvantages: initialAdvantages });
+    useCharacterStore.setState({ selectedDisadvantages: initialDisadvantages });
     setSelectInput(initalSelect);
   };
 
