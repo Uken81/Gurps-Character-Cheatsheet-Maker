@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import useCharacterStore from '../../Global State/store';
+import { useCharacterStore } from '../../Global State/store';
 
 const useResetAttributesOnLoad = () => {
   useEffect(() => {

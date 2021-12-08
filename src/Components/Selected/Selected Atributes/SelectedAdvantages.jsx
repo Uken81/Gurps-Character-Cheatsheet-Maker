@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import useCharacterStore from '../../../Global State/store';
+import { useCharacterStore } from '../../../Global State/store';
 
 const SelectedAdvantages = () => {
   const selectedAdvantages = useCharacterStore((state) => state.selectedAdvantages);

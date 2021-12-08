@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { CurrentCharacterIdContext, UserContext } from '../../../context';
+import { UserContext } from '../../../context';
 import PropTypes from 'prop-types';
 
 import Button from 'react-bootstrap/Button';
@@ -8,13 +8,13 @@ import Alert from 'react-bootstrap/Alert';
 import { GetCharacterReference } from '../../Firebase/firebase.utils';
 import { useHistory } from 'react-router';
 import { deleteDoc } from '@firebase/firestore';
-import useCharacterStore from '../../../Global State/store';
+import { useCharacterStore } from '../../../Global State/store';
 
 const DeleteAlert = ({ setShowAlert, isDeleting, setIsDeleting }) => {
   const { user } = useContext(UserContext);
-  const { currentCharacterId } = useContext(CurrentCharacterIdContext);
 
   const characterName = useCharacterStore((state) => state.characterName);
+  const currentCharacterId = useCharacterStore((state) => state.currentCharacterId);
 
   const history = useHistory();
   const deleteCharacter = async () => {

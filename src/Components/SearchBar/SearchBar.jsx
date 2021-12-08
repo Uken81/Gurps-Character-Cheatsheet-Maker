@@ -1,10 +1,8 @@
-import { useContext } from 'react';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
 import AdvantagesArray from '../../Attribute Objects/Advantages/Advantages';
 import DisadvantagesArray from '../../Attribute Objects/Disadvantages/Disadvantages';
-import { IsChoosingAdvantagesContext, SelectInputValueContext } from '../../context';
-import useCharacterStore from '../../Global State/store';
+import { useCharacterStore, useStore, useToggleStore } from '../../Global State/store';
 import ToggleAdvantageDisadvantage from '../ToggleAdvantageDisadvantage/ToggleAdvantageDisadvantage';
 
 import './SearchBar.styles.scss';
@@ -13,12 +11,13 @@ const SearchBar = () => {
   const [advantageOptions, setAdvantageOptions] = useState([]);
   const [disadvantageOptions, setDisadvantageOptions] = useState([]);
 
-  const { isChoosingAdvantages } = useContext(IsChoosingAdvantagesContext);
-  const { selectInput, setSelectInput } = useContext(SelectInputValueContext);
+  const selectInput = useStore((state) => state.selectInput);
 
   const characterName = useCharacterStore((state) => state.characterName);
   const selectedAdvantages = useCharacterStore((state) => state.selectedAdvantages);
   const selectedDisadvantages = useCharacterStore((state) => state.selectedDisadvantages);
+
+  const isChoosingAdvantages = useToggleStore((state) => state.isChoosingAdvantages);
 
   useEffect(() => {
     const createSearchOptions = () => {
@@ -39,7 +38,7 @@ const SearchBar = () => {
   }, []);
 
   const handleChange = (event) => {
-    setSelectInput(event.value);
+    useStore.setState({ selectInput: event.value });
     let adsArr = [];
     let disadsArr = [];
     console.log(event);
@@ -65,7 +64,7 @@ const SearchBar = () => {
       }));
 
       let combinedArr = [...adsArr, ...disadsArr];
-      setSelectInput(combinedArr);
+      useStore.setState({ selectInput: combinedArr });
     };
     updateSelect();
   }, [selectedAdvantages, selectedDisadvantages]);

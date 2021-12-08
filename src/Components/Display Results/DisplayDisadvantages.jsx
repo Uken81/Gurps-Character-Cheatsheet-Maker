@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import useCharacterStore from '../../Global State/store';
+import { useCharacterStore } from '../../Global State/store';
 
 const DisplayDisadvantages = () => {
   const characterName = useCharacterStore((state) => state.characterName);

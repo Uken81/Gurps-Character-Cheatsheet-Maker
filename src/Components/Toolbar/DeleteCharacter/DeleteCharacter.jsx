@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 import Button from 'react-bootstrap/Button';
-import useCharacterStore from '../../../Global State/store';
+import { useCharacterStore } from '../../../Global State/store';
 
 const DeleteCharacter = ({ setShowAlert }) => {
   const characterName = useCharacterStore((state) => state.characterName);

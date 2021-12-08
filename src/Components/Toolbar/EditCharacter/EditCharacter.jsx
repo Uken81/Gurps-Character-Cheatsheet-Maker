@@ -3,14 +3,14 @@ import { useHistory } from 'react-router';
 
 import Button from 'react-bootstrap/Button';
 
-import { CurrentCharacterIdContext, UserContext } from '../../../context';
+import { UserContext } from '../../../context';
 import { GetCharacterReference, SaveChangesToCharacter } from '../../Firebase/firebase.utils';
-import useCharacterStore from '../../../Global State/store';
+import { useCharacterStore } from '../../../Global State/store';
 
 const EditCharacter = () => {
   const { user } = useContext(UserContext);
-  const { currentCharacterId } = useContext(CurrentCharacterIdContext);
 
+  const currentCharacterId = useCharacterStore((state) => state.currentCharacterId);
   const selectedAdvantages = useCharacterStore((state) => state.selectedAdvantages);
   const selectedDisadvantages = useCharacterStore((state) => state.selectedDisadvantages);
 

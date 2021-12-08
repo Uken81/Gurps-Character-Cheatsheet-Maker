@@ -3,22 +3,17 @@ import { useContext, useEffect, useState } from 'react';
 
 import Button from 'react-bootstrap/Button';
 
-import {
-  CurrentCharacterIdContext,
-  ShowSuccessfulSaveAlertContext,
-  UserContext
-} from '../../../context';
-import useCharacterStore from '../../../Global State/store';
+import { UserContext } from '../../../context';
+import { useCharacterStore, useToggleStore } from '../../../Global State/store';
 import { addNewCharacterForUser, getUsersSavedCharactersList } from '../../Firebase/firebase.utils';
 
 const SaveCharacter = () => {
   const { user } = useContext(UserContext);
-  const { setCurrentCharacterId } = useContext(CurrentCharacterIdContext);
-  const { setShowSuccessfulSaveAlert } = useContext(ShowSuccessfulSaveAlertContext);
-
   const characterName = useCharacterStore((state) => state.characterName);
   const selectedAdvantages = useCharacterStore((state) => state.selectedAdvantages);
   const selectedDisadvantages = useCharacterStore((state) => state.selectedDisadvantages);
+
+  const toggleShow = useToggleStore((state) => state.toggleShow);
 
   const [nameIsDuplicate, setNameIsDuplicate] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -67,11 +62,11 @@ const SaveCharacter = () => {
       console.log('**** NewCharacterRef: ', newCharacterRef);
 
       const id = { id: newCharacterRef.id };
-      setCurrentCharacterId(id);
+      useCharacterStore.setState({ currentCharacterId: id });
       console.log('**** NewCharacterId: ', newCharacterRef.id);
       await setDoc(newCharacterRef, id, { merge: true });
 
-      setShowSuccessfulSaveAlert(true);
+      toggleShow();
     }
     setIsSaving(false);
   };

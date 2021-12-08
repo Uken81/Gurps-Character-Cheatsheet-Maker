@@ -9,7 +9,7 @@ import DisplaySelected from '../../Components/Selected/DisplaySelected';
 import { useState } from 'react';
 import { ToEditCharacter } from '../../Components/Header/Navigation Links/navigationLinks';
 import DeleteAlert from '../../Components/Toolbar/DeleteCharacter/DeleteAlert';
-import useCharacterStore from '../../Global State/store';
+import { useCharacterStore } from '../../Global State/store';
 
 const ManageCharactersPage = () => {
   const characterName = useCharacterStore((state) => state.characterName);

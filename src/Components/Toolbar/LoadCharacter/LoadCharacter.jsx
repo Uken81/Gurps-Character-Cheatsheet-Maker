@@ -9,13 +9,12 @@ import { useEffect, useState } from 'react';
 import AdvantagesArray from '../../../Attribute Objects/Advantages/Advantages';
 import DisadvantagesArray from '../../../Attribute Objects/Disadvantages/Disadvantages';
 import { useContext } from 'react';
-import { CurrentCharacterIdContext, UserContext } from '../../../context';
+import { UserContext } from '../../../context';
 import { useHistory, useLocation } from 'react-router';
-import useCharacterStore from '../../../Global State/store';
+import { useCharacterStore } from '../../../Global State/store';
 
 const LoadCharacter = () => {
   const { user } = useContext(UserContext);
-  const { setCurrentCharacterId } = useContext(CurrentCharacterIdContext);
 
   const [dropdownList, setDropdownList] = useState([]);
   const [characterToLoad, setCharacterToLoad] = useState('');
@@ -81,7 +80,7 @@ const LoadCharacter = () => {
     });
     console.log('characterId: ', characterId);
 
-    await setCurrentCharacterId(characterId);
+    await useCharacterStore.setState({ currentCharacterId: characterId });
   };
 
   const history = useHistory();

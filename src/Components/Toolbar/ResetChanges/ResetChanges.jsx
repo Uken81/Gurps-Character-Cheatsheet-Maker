@@ -1,10 +1,9 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import { SelectInputValueContext } from '../../../context';
-import useCharacterStore from '../../../Global State/store';
+import { useCharacterStore, useStore } from '../../../Global State/store';
 
 const ResetChanges = () => {
-  const { selectInput, setSelectInput } = useContext(SelectInputValueContext);
+  const selectInput = useStore((state) => state.selectInput);
 
   const selectedAdvantages = useCharacterStore((state) => state.selectedAdvantages);
   const selectedDisadvantages = useCharacterStore((state) => state.selectedDisadvantages);
@@ -22,7 +21,7 @@ const ResetChanges = () => {
   const handleClick = async () => {
     useCharacterStore.setState({ selectedAdvantages: initialAdvantages });
     useCharacterStore.setState({ selectedDisadvantages: initialDisadvantages });
-    setSelectInput(initalSelect);
+    useStore.setState({ selectInput: initalSelect });
   };
 
   return (

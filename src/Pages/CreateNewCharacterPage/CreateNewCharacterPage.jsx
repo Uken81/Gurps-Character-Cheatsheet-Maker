@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import { useState } from 'react';
-import { useContext } from 'react';
 import { Form } from 'react-bootstrap';
 
 import '../../Components/Display Results/DisplayResults.styles.scss';
@@ -12,14 +11,13 @@ import CopyToClipboard from '../../Components/Toolbar/CopyToClipboard/CopyToClip
 import PrintPDF from '../../Components/Toolbar/Print PDF/printPDF';
 import ResetCharacter from '../../Components/Toolbar/ResetCharacter/ResetCharacter';
 import SaveCharacter from '../../Components/Toolbar/SaveCharacter/SaveCharacterComponent';
-import { ShowSuccessfulSaveAlertContext } from '../../context';
 import DisplaySelected from '../../Components/Selected/DisplaySelected';
 import ComponentToPrint from '../../Components/Display Results/ComponentToPrint';
 import SuccessfulSaveAlert from '../../Components/Toolbar/SaveCharacter/SuccessfulSaveAlert';
-import useCharacterStore from '../../Global State/store';
+import { useCharacterStore, useToggleStore } from '../../Global State/store';
 
 const CreateNewCharacterPage = () => {
-  const { showSuccessfulSaveAlert } = useContext(ShowSuccessfulSaveAlertContext);
+  const showSuccessfulSaveAlert = useToggleStore((state) => state.showSuccessfulSaveAlert);
 
   const [formInput, setForminput] = useState('');
 

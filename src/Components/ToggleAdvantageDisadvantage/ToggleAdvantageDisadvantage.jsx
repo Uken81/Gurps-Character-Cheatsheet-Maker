@@ -1,18 +1,21 @@
-import { useContext, useEffect } from 'react';
-import { IsChoosingAdvantagesContext } from '../../context';
+import { useEffect } from 'react';
+
 import './Toggle.styles.scss';
 
 import { Tab, Tabs } from 'react-bootstrap';
+import { useToggleStore } from '../../Global State/store';
 
 const ToggleAdvantageDisadvantage = () => {
-  const { isChoosingAdvantages, setIsChoosingAdvantages } = useContext(IsChoosingAdvantagesContext);
+  const isChoosingAdvantages = useToggleStore((state) => state.isChoosingAdvantages);
+  const toggleAdvantages = useToggleStore((state) => state.toggleAdvantages);
+  const toggleDisadvantages = useToggleStore((state) => state.toggleDisadvantages);
 
   useEffect(() => {
-    setIsChoosingAdvantages(true);
+    toggleAdvantages();
   }, []);
 
   const handleTabs = (key) => {
-    key === 'advantages' ? setIsChoosingAdvantages(true) : setIsChoosingAdvantages(false);
+    key === 'advantages' ? toggleAdvantages() : toggleDisadvantages();
   };
 
   return (

@@ -2,25 +2,19 @@ import SelectedAdvantages from './Selected Atributes/SelectedAdvantages';
 import SelectedDisadvantages from './Selected Atributes/SelectedDisadvantages';
 
 import './displaySelected.styles.scss';
-import { useContext } from 'react';
-import { IsChoosingAdvantagesContext } from '../../context';
+import { useToggleStore } from '../../Global State/store';
 
 const DisplaySelected = () => {
-  const { setIsChoosingAdvantages } = useContext(IsChoosingAdvantagesContext);
+  const toggleAdvantages = useToggleStore((state) => state.toggleAdvantages);
+  const toggleDisadvantages = useToggleStore((state) => state.toggleDisadvantages);
 
   return (
     <div className="selected-window">
-      <div
-        className="selected-list"
-        id="selected-advantages"
-        onClick={() => setIsChoosingAdvantages(true)}>
+      <div className="selected-list" id="selected-advantages" onClick={toggleAdvantages}>
         <h1 style={{ color: 'seagreen' }}>Selected Advantages</h1>
         <SelectedAdvantages />
       </div>
-      <div
-        className="selected-list"
-        id="selected-disadvantages"
-        onClick={() => setIsChoosingAdvantages(false)}>
+      <div className="selected-list" id="selected-disadvantages" onClick={toggleDisadvantages}>
         <h1 style={{ color: 'brown' }}>Selected Disadvantages</h1>
         <SelectedDisadvantages />
       </div>

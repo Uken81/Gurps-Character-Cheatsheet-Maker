@@ -1,13 +1,9 @@
-import { useContext } from 'react';
-import { SelectInputValueContext } from '../../../context';
 import Button from 'react-bootstrap/Button';
-import useCharacterStore from '../../../Global State/store';
+import { useCharacterStore, useStore } from '../../../Global State/store';
 
 const ResetCharacter = () => {
-  const { setSelectInput } = useContext(SelectInputValueContext);
-
   const HandleCharacterReset = () => {
-    setSelectInput([]);
+    useStore.setState({ selectInput: [] });
     useCharacterStore.setState({ characterName: '' });
     useCharacterStore.setState({ selectedAdvantages: [] });
     useCharacterStore.setState({ selectedDisadvantages: [] });
