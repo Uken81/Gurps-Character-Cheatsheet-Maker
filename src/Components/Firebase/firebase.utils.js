@@ -4,7 +4,8 @@ import { getFirestore, collection } from 'firebase/firestore';
 import { doc, setDoc, getDoc, getDocs, addDoc, where, query } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCrT2lwJTWbo8bNE7Ws_taXrMQbtV-IjD0',
+  // eslint-disable-next-line no-undef
+  apiKey: process.env.REACT_APP_SECRET_KEY,
   authDomain: 'gccm-40940.firebaseapp.com',
   projectId: 'gccm-40940',
   storageBucket: 'gccm-40940.appspot.com',
