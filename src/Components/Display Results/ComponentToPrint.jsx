@@ -19,7 +19,6 @@ const ComponentToPrint = () => {
     };
     createReference();
   }, []);
-
   return (
     <div className="display-container" ref={componentRef}>
       <DisplayAdvantages />

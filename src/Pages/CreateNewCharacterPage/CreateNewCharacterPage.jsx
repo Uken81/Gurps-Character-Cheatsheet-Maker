@@ -10,11 +10,11 @@ import SearchBar from '../../Components/SearchBar/SearchBar';
 import CopyToClipboard from '../../Components/Toolbar/CopyToClipboard/CopyToClipboard';
 import PrintPDF from '../../Components/Toolbar/Print PDF/printPDF';
 import ResetCharacter from '../../Components/Toolbar/ResetCharacter/ResetCharacter';
-import SaveCharacter from '../../Components/Toolbar/SaveCharacter/SaveCharacterComponent';
 import DisplaySelected from '../../Components/Selected/DisplaySelected';
 import ComponentToPrint from '../../Components/Display Results/ComponentToPrint';
 import SuccessfulSaveAlert from '../../Components/Toolbar/SaveCharacter/SuccessfulSaveAlert';
 import { useCharacterStore, useToggleStore } from '../../Global State/store';
+import SaveCharacter from '../../Components/Toolbar/SaveCharacter/SaveCharacterComponent';
 
 const CreateNewCharacterPage = () => {
   const showSuccessfulSaveAlert = useToggleStore((state) => state.showSuccessfulSaveAlert);
