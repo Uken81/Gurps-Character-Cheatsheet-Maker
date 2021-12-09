@@ -28,11 +28,10 @@ const SignIn = ({ setSignInOrUp, setShowLoadingScreen }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setShowLoadingScreen(true);
+
     await signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         console.log('****signin');
-        setEmail('');
-        setPassword('');
         history.push('/create-or-manage-page');
       })
       .catch((error) => {
@@ -45,8 +44,8 @@ const SignIn = ({ setSignInOrUp, setShowLoadingScreen }) => {
         if (errorCode === 'auth/wrong-password') {
           alert('Wrong password entered for this account.');
         }
+        setShowLoadingScreen(false);
       });
-    setShowLoadingScreen(false);
   };
 
   const googleSignIn = async () => {
