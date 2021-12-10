@@ -4,14 +4,21 @@ import { getFirestore, collection } from 'firebase/firestore';
 import { doc, setDoc, getDoc, getDocs, addDoc, where, query } from 'firebase/firestore';
 
 const firebaseConfig = {
-  // eslint-disable-next-line no-undef
-  apiKey: process.env.REACT_APP_SECRET_KEY,
+  apiKey: 'AIzaSyCrT2lwJTWbo8bNE7Ws_taXrMQbtV-IjD0',
   authDomain: 'gccm-40940.firebaseapp.com',
   projectId: 'gccm-40940',
   storageBucket: 'gccm-40940.appspot.com',
   messagingSenderId: '96522224544',
   appId: '1:96522224544:web:2f2ee9b539f198daebdac5'
 };
+// const firebaseConfig = {
+//   apiKey: process.env.REACT_APP_SECRET_KEY,
+//   authDomain: 'gccm-40940.firebaseapp.com',
+//   projectId: 'gccm-40940',
+//   storageBucket: 'gccm-40940.appspot.com',
+//   messagingSenderId: '96522224544',
+//   appId: '1:96522224544:web:2f2ee9b539f198daebdac5'
+// };
 
 const firebaseApp = initializeApp(firebaseConfig);
 

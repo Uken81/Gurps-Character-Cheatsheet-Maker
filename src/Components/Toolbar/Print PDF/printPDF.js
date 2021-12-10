@@ -5,6 +5,8 @@ import Button from 'react-bootstrap/Button';
 
 import { ComponentRefContext } from '../../../context';
 
+import '../../Display Results/DisplayResults.styles.scss';
+
 const PrintPDF = () => {
   const { componentRef } = useContext(ComponentRefContext);
   return (

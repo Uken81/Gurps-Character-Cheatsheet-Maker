@@ -6,8 +6,6 @@ import { ComponentRefContext } from '../../context.js';
 import DisplayAdvantages from './DisplayAdvantages';
 import DisplayDisadvantages from './DisplayDisadvantages';
 
-import './DisplayResults.styles.scss';
-
 const ComponentToPrint = () => {
   const { componentRef, setComponentRef } = useContext(ComponentRefContext);
 

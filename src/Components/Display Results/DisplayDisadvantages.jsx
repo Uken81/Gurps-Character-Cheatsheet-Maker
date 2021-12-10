@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import { useCharacterStore } from '../../Global State/store';
 
+import './DisplayResults.styles.scss';
+
 const DisplayDisadvantages = () => {
   const characterName = useCharacterStore((state) => state.characterName);
   const selectedDisadvantages = useCharacterStore((state) => state.selectedDisadvantages);
