@@ -15,7 +15,7 @@ import ComponentToPrint from '../../Components/Display Results/ComponentToPrint'
 
 import { useCharacterStore, useToggleStore } from '../../Global State/store';
 import SuccessfulSaveAlert from '../../Components/Toolbar/SaveCharacter/SuccessfulSaveAlert';
-import SaveCharacter from '../../Components/Toolbar/SaveCharacter/SaveCharacterComponent';
+import SaveCharacter from '../../Components/Toolbar/SaveCharacter/SaveCharacter';
 
 const CreateNewCharacterPage = () => {
   const showSuccessfulSaveAlert = useToggleStore((state) => state.showSuccessfulSaveAlert);

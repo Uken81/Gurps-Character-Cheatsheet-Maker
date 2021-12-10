@@ -25,8 +25,10 @@ const SaveCharacter = () => {
 
   useEffect(() => {
     const checkIfDuplicate = async () => {
-      const matchingName = await getUsersSavedCharactersList(currentlyLoggedInUserId);
-      setNameIsDuplicate(() => matchingName.includes(characterName));
+      if (user) {
+        const matchingName = await getUsersSavedCharactersList(currentlyLoggedInUserId);
+        setNameIsDuplicate(() => matchingName.includes(characterName));
+      }
     };
     checkIfDuplicate();
   }, [characterName]);
