@@ -97,7 +97,7 @@ const LoadCharacter = () => {
         if (location.pathname === '/create-or-manage-page') {
           history.push('/manage-characters-page');
         }
-        setIsLoading(false);
+        return () => setIsLoading(false);
       }
     };
     loadSelectedCharactersStats();
