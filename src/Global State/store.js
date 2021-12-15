@@ -1,9 +1,9 @@
 import create from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
 
-export const useStore = create(() => ({
+let UseStore = () => ({
   selectInput: []
-}));
+});
 
 let ToggleStore = (set) => ({
   isChoosingAdvantages: true,
@@ -22,10 +22,13 @@ let characterStore = () => ({
   currentCharacterId: ''
 });
 
-ToggleStore = devtools(ToggleStore);
+UseStore = devtools(UseStore);
+// UseStore = persist(UseStore, { name: 'selectInput' });
+// ToggleStore = devtools(ToggleStore);
 
 characterStore = devtools(characterStore);
-characterStore = persist(characterStore);
+characterStore = persist(characterStore, { name: 'characterStore' });
 
+export const useStore = create(UseStore);
 export const useToggleStore = create(ToggleStore);
 export const useCharacterStore = create(characterStore);

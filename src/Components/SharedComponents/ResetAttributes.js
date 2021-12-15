@@ -7,6 +7,7 @@ const useResetAttributesOnLoad = () => {
     useCharacterStore.setState({ characterName: '' });
     useCharacterStore.setState({ selectedAdvantages: [] });
     useCharacterStore.setState({ selectedDisadvantages: [] });
+    useCharacterStore.setState({ currentCharacterId: '' });
   }, []);
 };
 

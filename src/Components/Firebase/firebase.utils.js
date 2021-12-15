@@ -4,12 +4,12 @@ import { getFirestore, collection } from 'firebase/firestore';
 import { doc, setDoc, getDoc, getDocs, addDoc, where, query } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCrT2lwJTWbo8bNE7Ws_taXrMQbtV-IjD0',
-  authDomain: 'gccm-40940.firebaseapp.com',
-  projectId: 'gccm-40940',
-  storageBucket: 'gccm-40940.appspot.com',
-  messagingSenderId: '96522224544',
-  appId: '1:96522224544:web:2f2ee9b539f198daebdac5'
+  apiKey: 'AIzaSyDlCVi8NXuYaCb3fkUuzbRo8StlvdZjRfs',
+  authDomain: 'gccm-57b23.firebaseapp.com',
+  projectId: 'gccm-57b23',
+  storageBucket: 'gccm-57b23.appspot.com',
+  messagingSenderId: '1047114292617',
+  appId: '1:1047114292617:web:83f4fb1a4a20849246d558'
 };
 // const firebaseConfig = {
 //   apiKey: process.env.REACT_APP_SECRET_KEY,

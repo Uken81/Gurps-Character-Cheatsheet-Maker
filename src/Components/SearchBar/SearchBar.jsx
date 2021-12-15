@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Select from 'react-select';
 import AdvantagesArray from '../../Attribute Objects/Advantages/Advantages';
 import DisadvantagesArray from '../../Attribute Objects/Disadvantages/Disadvantages';
-import { useCharacterStore, useStore, useToggleStore } from '../../Global State/store';
+import { useCharacterStore, useToggleStore } from '../../Global State/store';
 import ToggleAdvantageDisadvantage from '../ToggleAdvantageDisadvantage/ToggleAdvantageDisadvantage';
 
 import './SearchBar.styles.scss';
@@ -10,8 +10,7 @@ import './SearchBar.styles.scss';
 const SearchBar = () => {
   const [advantageOptions, setAdvantageOptions] = useState([]);
   const [disadvantageOptions, setDisadvantageOptions] = useState([]);
-
-  const selectInput = useStore((state) => state.selectInput);
+  const [selectInput, setSelectInput] = useState([]);
 
   const characterName = useCharacterStore((state) => state.characterName);
   const selectedAdvantages = useCharacterStore((state) => state.selectedAdvantages);
@@ -38,7 +37,7 @@ const SearchBar = () => {
   }, []);
 
   const handleChange = (event) => {
-    useStore.setState({ selectInput: event.value });
+    setSelectInput(event.value);
     let adsArr = [];
     let disadsArr = [];
     console.log(event);
@@ -64,7 +63,7 @@ const SearchBar = () => {
       }));
 
       let combinedArr = [...adsArr, ...disadsArr];
-      useStore.setState({ selectInput: combinedArr });
+      setSelectInput(combinedArr);
     };
     updateSelect();
   }, [selectedAdvantages, selectedDisadvantages]);

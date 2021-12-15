@@ -1,9 +1,8 @@
 import Button from 'react-bootstrap/Button';
-import { useCharacterStore, useStore } from '../../../Global State/store';
+import { useCharacterStore } from '../../../Global State/store';
 
 const ResetCharacter = () => {
   const HandleCharacterReset = () => {
-    useStore.setState({ selectInput: [] });
     useCharacterStore.setState({ characterName: '' });
     useCharacterStore.setState({ selectedAdvantages: [] });
     useCharacterStore.setState({ selectedDisadvantages: [] });
