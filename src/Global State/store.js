@@ -1,5 +1,5 @@
 import create from 'zustand';
-import { devtools, persist } from 'zustand/middleware';
+import { devtools } from 'zustand/middleware';
 
 let UseStore = () => ({
   selectInput: []
@@ -23,11 +23,7 @@ let characterStore = () => ({
 });
 
 UseStore = devtools(UseStore);
-// UseStore = persist(UseStore, { name: 'selectInput' });
-// ToggleStore = devtools(ToggleStore);
-
 characterStore = devtools(characterStore);
-characterStore = persist(characterStore, { name: 'characterStore' });
 
 export const useStore = create(UseStore);
 export const useToggleStore = create(ToggleStore);
