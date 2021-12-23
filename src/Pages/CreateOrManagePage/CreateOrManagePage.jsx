@@ -11,6 +11,7 @@ import Header from '../../Components/Header/Header.component';
 import LoadCharacter from '../../Components/Toolbar/LoadCharacter/LoadCharacter';
 import { UserContext } from '../../context';
 import useResetAttributesOnLoad from '../../Components/SharedComponents/ResetAttributes';
+import UsePushBackToLanding from '../../Components/SharedComponents/PushBackToLanding';
 
 const CreateOrManage = () => {
   const { user, setUser } = useContext(UserContext);
@@ -27,6 +28,7 @@ const CreateOrManage = () => {
       } else {
         setUser(userAuth);
         console.log('User has logged out');
+        UsePushBackToLanding();
       }
       return () => {
         unsubscribeFromAuth();

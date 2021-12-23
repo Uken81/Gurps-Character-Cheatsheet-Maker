@@ -4,11 +4,12 @@ import { BackToCreateManage, BackToLandingPage } from './Navigation Links/naviga
 
 import './header.styles.scss';
 
-import { useHistory, useLocation } from 'react-router';
+import { useLocation } from 'react-router';
 import { useContext } from 'react';
 import { UserContext } from '../../context';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import UsePushBackToLanding from '../SharedComponents/PushBackToLanding';
 
 const Header = () => {
   const { user } = useContext(UserContext);
@@ -16,7 +17,6 @@ const Header = () => {
   const [pathname, setPathName] = useState('');
 
   const location = useLocation();
-  const history = useHistory();
 
   useEffect(() => {
     const setPath = () => {
@@ -28,8 +28,8 @@ const Header = () => {
   const signout = () => {
     signOut(auth)
       .then(() => {
-        console.log(user + ' signed out');
-        history.push('/');
+        console.log(user.email + ' signed out');
+        UsePushBackToLanding();
       })
       .catch((error) => {
         console.log('error signing out user', error.message);

@@ -9,6 +9,13 @@ const SignInAndSignUp = () => {
   const [signInOrUp, setSignInOrUp] = useState('sign-in');
   const [showLoadingScreen, setShowLoadingScreen] = useState(false);
 
+  // useEffect(() => {
+  //   return () => {
+  //     console.log('cleanup');
+  //     // setSignInOrUp(null);
+  //   };
+  // });
+
   if (!showLoadingScreen) {
     return (
       <div className="sign-in-and-sign-up">

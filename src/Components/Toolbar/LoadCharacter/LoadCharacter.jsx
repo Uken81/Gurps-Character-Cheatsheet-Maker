@@ -10,8 +10,8 @@ import AdvantagesArray from '../../../Attribute Objects/Advantages/Advantages';
 import DisadvantagesArray from '../../../Attribute Objects/Disadvantages/Disadvantages';
 import { useContext } from 'react';
 import { UserContext } from '../../../context';
-import { useHistory, useLocation } from 'react-router';
 import { useCharacterStore } from '../../../Global State/store';
+import usePushBackToLoadCharacter from '../../SharedComponents/PushBackToLoadCharacter';
 
 const LoadCharacter = () => {
   const { user } = useContext(UserContext);
@@ -83,8 +83,7 @@ const LoadCharacter = () => {
     await useCharacterStore.setState({ currentCharacterId: characterId });
   };
 
-  const history = useHistory();
-  const location = useLocation();
+  // const location = useLocation();
 
   useEffect(() => {
     const loadSelectedCharactersStats = async () => {
@@ -95,7 +94,7 @@ const LoadCharacter = () => {
         await repopulateCurrentCharacterId();
 
         if (location.pathname === '/create-or-manage-page') {
-          history.push('/manage-characters-page');
+          usePushBackToLoadCharacter();
         }
         return () => setIsLoading(false);
       }

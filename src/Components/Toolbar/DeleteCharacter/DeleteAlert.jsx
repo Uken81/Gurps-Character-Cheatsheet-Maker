@@ -6,9 +6,9 @@ import Button from 'react-bootstrap/Button';
 import Alert from 'react-bootstrap/Alert';
 
 import { GetCharacterReference } from '../../Firebase/firebase.utils';
-import { useHistory } from 'react-router';
 import { deleteDoc } from '@firebase/firestore';
 import { useCharacterStore } from '../../../Global State/store';
+import usePushBackToCreateOrManage from '../../SharedComponents/PushBackToCreateOrManage';
 
 const DeleteAlert = ({ setShowAlert, isDeleting, setIsDeleting }) => {
   const { user } = useContext(UserContext);
@@ -16,14 +16,13 @@ const DeleteAlert = ({ setShowAlert, isDeleting, setIsDeleting }) => {
   const characterName = useCharacterStore((state) => state.characterName);
   const currentCharacterId = useCharacterStore((state) => state.currentCharacterId);
 
-  const history = useHistory();
   const deleteCharacter = async () => {
     const docRef = await GetCharacterReference(user.uid, currentCharacterId);
     setIsDeleting(true);
     await deleteDoc(docRef)
       .then(() => {
         console.log('****Current character has been removed from database');
-        history.push('/create-or-manage-page');
+        usePushBackToCreateOrManage();
       })
       .catch(() => {
         alert('Unable to delete character from database please try again later');

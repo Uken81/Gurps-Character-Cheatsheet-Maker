@@ -3,17 +3,16 @@ import { useState } from 'react';
 import '../../../Pages/SignInAndSignUp/sign-in-and-sign-up.scss';
 
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { useHistory } from 'react-router';
 import { auth, google } from '../../Firebase/firebase.utils';
 import { Button, Form } from 'react-bootstrap';
 import { propTypes } from 'react-bootstrap/esm/Image';
+import usePushBackToCreateOrManage from '../../SharedComponents/PushBackToCreateOrManage';
 
 const SignUp = ({ setShowLoadingScreen }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const history = useHistory();
   const handleChange = (e) => {
     if (e.target.name === 'email') {
       setEmail(e.target.value);
@@ -43,7 +42,7 @@ const SignUp = ({ setShowLoadingScreen }) => {
       setPassword('');
       setConfirmPassword('');
 
-      history.push('/create-or-manage-page');
+      usePushBackToCreateOrManage();
     } catch (error) {
       console.error('error code: ', error.code);
       const errorCode = error.code;
@@ -65,7 +64,7 @@ const SignUp = ({ setShowLoadingScreen }) => {
 
   const googleSignUp = async () => {
     await google();
-    history.push('/create-or-manage-page');
+    usePushBackToCreateOrManage();
   };
 
   return (

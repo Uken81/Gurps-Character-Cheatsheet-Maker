@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import '../../../Pages/SignInAndSignUp/sign-in-and-sign-up.scss';
 
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { useHistory } from 'react-router';
 import { google } from '../../Firebase/firebase.utils';
 import { Button, Form } from 'react-bootstrap';
+import usePushBackToCreateOrManage from '../../SharedComponents/PushBackToCreateOrManage';
 
 const SignIn = ({ setSignInOrUp, setShowLoadingScreen }) => {
   const [email, setEmail] = useState('');
@@ -22,7 +22,6 @@ const SignIn = ({ setSignInOrUp, setShowLoadingScreen }) => {
     }
   };
 
-  const history = useHistory();
   const auth = getAuth();
 
   const handleSubmit = async (event) => {
@@ -32,7 +31,7 @@ const SignIn = ({ setSignInOrUp, setShowLoadingScreen }) => {
     await signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         console.log('****signin');
-        history.push('/create-or-manage-page');
+        usePushBackToCreateOrManage();
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -44,7 +43,9 @@ const SignIn = ({ setSignInOrUp, setShowLoadingScreen }) => {
         if (errorCode === 'auth/wrong-password') {
           alert('Wrong password entered for this account.');
         }
-        setShowLoadingScreen(false);
+        return () => {
+          setShowLoadingScreen(false);
+        };
       });
   };
 
@@ -53,12 +54,14 @@ const SignIn = ({ setSignInOrUp, setShowLoadingScreen }) => {
 
     await google()
       .then(() => {
-        history.push('/create-or-manage-page');
+        usePushBackToCreateOrManage();
       })
       .catch(() => {
         alert('Google sign in is not working. Sign in with email and password or try again later.');
       });
-    setShowLoadingScreen(false);
+    return () => {
+      setShowLoadingScreen(false);
+    };
   };
 
   const redirectToSignup = () => {

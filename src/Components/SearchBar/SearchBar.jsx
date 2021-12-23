@@ -40,7 +40,7 @@ const SearchBar = () => {
     setSelectInput(event.value);
     let adsArr = [];
     let disadsArr = [];
-    console.log(event);
+    console.log('selected attributes:', event);
     event.forEach((e) => {
       e.value.type === 'advantage' ? adsArr.push(e.value) : disadsArr.push(e.value);
     });

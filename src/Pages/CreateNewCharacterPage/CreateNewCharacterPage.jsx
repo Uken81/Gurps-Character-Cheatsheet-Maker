@@ -64,6 +64,7 @@ const CreateNewCharacterPage = () => {
                   onChange={handleInput}
                   placeholder="Enter New Character Name..."
                   size="lg"
+                  maxLength="20"
                 />
               </Form>
             </div>
