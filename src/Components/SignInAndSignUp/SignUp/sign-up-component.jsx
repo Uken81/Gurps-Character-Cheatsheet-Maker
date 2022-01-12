@@ -5,8 +5,8 @@ import '../../../Pages/SignInAndSignUp/sign-in-and-sign-up.scss';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, google } from '../../Firebase/firebase.utils';
 import { Button, Form } from 'react-bootstrap';
-import { propTypes } from 'react-bootstrap/esm/Image';
-import usePushBackToCreateOrManage from '../../SharedComponents/PushBackToCreateOrManage';
+import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = ({ setShowLoadingScreen }) => {
   const [email, setEmail] = useState('');
@@ -26,7 +26,8 @@ const SignUp = ({ setShowLoadingScreen }) => {
       setConfirmPassword(e.target.value);
     }
   };
-
+  const navigate = useNavigate();
+  // const history = useHistory();
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -42,7 +43,7 @@ const SignUp = ({ setShowLoadingScreen }) => {
       setPassword('');
       setConfirmPassword('');
 
-      usePushBackToCreateOrManage();
+      navigate('/create-or-manage-page');
     } catch (error) {
       console.error('error code: ', error.code);
       const errorCode = error.code;
@@ -59,12 +60,14 @@ const SignUp = ({ setShowLoadingScreen }) => {
         alert('The password is too weak');
       }
     }
-    setShowLoadingScreen(false);
+    return () => {
+      setShowLoadingScreen(false);
+    };
   };
 
   const googleSignUp = async () => {
     await google();
-    usePushBackToCreateOrManage();
+    navigate('/create-or-manage-page');
   };
 
   return (
@@ -115,7 +118,7 @@ const SignUp = ({ setShowLoadingScreen }) => {
 };
 
 SignUp.propTypes = {
-  setShowLoadingScreen: propTypes.func
+  setShowLoadingScreen: PropTypes.func
 };
 
 export default SignUp;

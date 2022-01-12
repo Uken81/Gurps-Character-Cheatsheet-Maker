@@ -10,14 +10,11 @@ import { useState } from 'react';
 import { ToEditCharacter } from '../../Components/Header/Navigation Links/navigationLinks';
 import DeleteAlert from '../../Components/Toolbar/DeleteCharacter/DeleteAlert';
 import { useCharacterStore } from '../../Global State/store';
-import usePushBackToLoadCharacter from '../../Components/SharedComponents/PushBackToLoadCharacter';
 
 const ManageCharactersPage = () => {
   const characterName = useCharacterStore((state) => state.characterName);
   const [showAlert, setShowAlert] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-
-  usePushBackToLoadCharacter();
 
   return (
     <div className="manage-character-page">

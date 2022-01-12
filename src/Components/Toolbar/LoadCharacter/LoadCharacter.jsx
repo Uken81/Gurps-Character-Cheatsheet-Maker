@@ -11,7 +11,7 @@ import DisadvantagesArray from '../../../Attribute Objects/Disadvantages/Disadva
 import { useContext } from 'react';
 import { UserContext } from '../../../context';
 import { useCharacterStore } from '../../../Global State/store';
-import usePushBackToLoadCharacter from '../../SharedComponents/PushBackToLoadCharacter';
+import { useNavigate } from 'react-router';
 
 const LoadCharacter = () => {
   const { user } = useContext(UserContext);
@@ -34,7 +34,7 @@ const LoadCharacter = () => {
     mapUsersSavedCharactersList();
   }, [user]);
 
-  const handleLoad = (character) => {
+  const handleClick = (character) => {
     setCharacterToLoad(character);
   };
 
@@ -83,8 +83,7 @@ const LoadCharacter = () => {
     await useCharacterStore.setState({ currentCharacterId: characterId });
   };
 
-  // const location = useLocation();
-
+  const navigate = useNavigate();
   useEffect(() => {
     const loadSelectedCharactersStats = async () => {
       if (characterToLoad !== '') {
@@ -93,9 +92,8 @@ const LoadCharacter = () => {
         await repopulateCharacterAttributes();
         await repopulateCurrentCharacterId();
 
-        if (location.pathname === '/create-or-manage-page') {
-          usePushBackToLoadCharacter();
-        }
+        navigate('/manage-characters-page');
+
         return () => setIsLoading(false);
       }
     };
@@ -114,7 +112,7 @@ const LoadCharacter = () => {
             <DropdownItem
               className="dropdown-link"
               key={dropdownList.indexOf(character)}
-              onClick={() => handleLoad(character)}
+              onClick={() => handleClick(character)}
               style={{
                 color: 'white',
                 backgroundColor: 'black',

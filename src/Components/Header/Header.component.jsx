@@ -9,7 +9,7 @@ import { useContext } from 'react';
 import { UserContext } from '../../context';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import UsePushBackToLanding from '../SharedComponents/PushBackToLanding';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const { user } = useContext(UserContext);
@@ -25,11 +25,12 @@ const Header = () => {
     setPath();
   }, []);
 
+  const navigate = useNavigate();
   const signout = () => {
     signOut(auth)
       .then(() => {
         console.log(user.email + ' signed out');
-        UsePushBackToLanding();
+        navigate('/');
       })
       .catch((error) => {
         console.log('error signing out user', error.message);

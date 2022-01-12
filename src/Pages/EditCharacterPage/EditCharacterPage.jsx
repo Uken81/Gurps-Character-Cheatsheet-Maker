@@ -3,11 +3,8 @@ import SearchBar from '../../Components/SearchBar/SearchBar';
 import EditCharacter from '../../Components/Toolbar/EditCharacter/EditCharacter';
 import ResetChanges from '../../Components/Toolbar/ResetChanges/ResetChanges';
 import DisplaySelected from '../../Components/Selected/DisplaySelected';
-import usePushBackToLoadCharacter from '../../Components/SharedComponents/PushBackToLoadCharacter';
 
 const EditCharacterPage = () => {
-  usePushBackToLoadCharacter();
-
   return (
     <div className="edit-character-page">
       <Header />

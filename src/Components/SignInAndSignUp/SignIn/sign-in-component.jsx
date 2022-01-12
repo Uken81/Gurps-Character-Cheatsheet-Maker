@@ -6,7 +6,7 @@ import '../../../Pages/SignInAndSignUp/sign-in-and-sign-up.scss';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { google } from '../../Firebase/firebase.utils';
 import { Button, Form } from 'react-bootstrap';
-import usePushBackToCreateOrManage from '../../SharedComponents/PushBackToCreateOrManage';
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = ({ setSignInOrUp, setShowLoadingScreen }) => {
   const [email, setEmail] = useState('');
@@ -23,6 +23,7 @@ const SignIn = ({ setSignInOrUp, setShowLoadingScreen }) => {
   };
 
   const auth = getAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -31,7 +32,7 @@ const SignIn = ({ setSignInOrUp, setShowLoadingScreen }) => {
     await signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         console.log('****signin');
-        usePushBackToCreateOrManage();
+        navigate('/create-or-manage-page');
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -54,7 +55,7 @@ const SignIn = ({ setSignInOrUp, setShowLoadingScreen }) => {
 
     await google()
       .then(() => {
-        usePushBackToCreateOrManage();
+        navigate('/create-or-manage-page');
       })
       .catch(() => {
         alert('Google sign in is not working. Sign in with email and password or try again later.');
