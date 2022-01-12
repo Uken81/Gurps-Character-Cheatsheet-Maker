@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { UserContext } from '../../../context';
 import { GetCharacterReference, SaveChangesToCharacter } from '../../Firebase/firebase.utils';
 import { useCharacterStore } from '../../../Global State/store';
-import usePushBackToCreateOrManage from '../../SharedComponents/PushBackToCreateOrManage';
+import { useNavigate } from 'react-router';
 
 const EditCharacter = () => {
   const { user } = useContext(UserContext);
@@ -14,12 +14,13 @@ const EditCharacter = () => {
   const selectedAdvantages = useCharacterStore((state) => state.selectedAdvantages);
   const selectedDisadvantages = useCharacterStore((state) => state.selectedDisadvantages);
 
+  const navigate = useNavigate();
   const handleEdit = async () => {
     const characterRef = await GetCharacterReference(user.uid, currentCharacterId);
     if ((selectedAdvantages.length !== 0) & (selectedDisadvantages.length !== 0)) {
       await SaveChangesToCharacter(characterRef, selectedAdvantages, selectedDisadvantages);
       console.log(`${characterRef} has been successfully edited.`);
-      usePushBackToCreateOrManage();
+      navigate('/create-or-manage-page');
     } else {
       console.log('**** Edit fail');
       alert('You must select at least one Advantage or Disadvantage');

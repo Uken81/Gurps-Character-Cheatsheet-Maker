@@ -27,7 +27,6 @@ const SignUp = ({ setShowLoadingScreen }) => {
     }
   };
   const navigate = useNavigate();
-  // const history = useHistory();
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -59,6 +58,7 @@ const SignUp = ({ setShowLoadingScreen }) => {
       if (errorCode === 'auth/weak-password') {
         alert('The password is too weak');
       }
+      setShowLoadingScreen(false);
     }
     return () => {
       setShowLoadingScreen(false);
