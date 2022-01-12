@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app';
 import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
 import { getFirestore, collection } from 'firebase/firestore';
 import { doc, setDoc, getDoc, getDocs, addDoc, where, query } from 'firebase/firestore';
+import { useNavigate } from 'react-router';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAacgqhxIsbU6V537581jaLhtwJBSXL9TY',
@@ -56,6 +57,7 @@ provider.setCustomParameters({ prompt: 'select_account' });
 
 const auth = getAuth(firebaseApp);
 
+const navigate = useNavigate();
 const google = async () => {
   await signInWithPopup(auth, provider)
     .then((result) => {
@@ -67,6 +69,9 @@ const google = async () => {
       const errorMessage = error.message;
       console.log(errorCode);
       alert(errorMessage);
+      if (errorCode === 'auth/popup-closed-by-user') {
+        navigate('/sign-in-and-sign-up');
+      }
     });
 };
 

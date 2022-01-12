@@ -17,7 +17,7 @@ const EditCharacter = () => {
   const navigate = useNavigate();
   const handleEdit = async () => {
     const characterRef = await GetCharacterReference(user.uid, currentCharacterId);
-    if ((selectedAdvantages.length !== 0) & (selectedDisadvantages.length !== 0)) {
+    if (selectedAdvantages.length !== 0 || selectedDisadvantages.length !== 0) {
       await SaveChangesToCharacter(characterRef, selectedAdvantages, selectedDisadvantages);
       console.log(`${characterRef} has been successfully edited.`);
       navigate('/create-or-manage-page');
