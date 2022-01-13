@@ -7,8 +7,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 5% 30%;
-    // padding: 3% 1%;
+    margin: 3% 30%;
 
     .sign-in,
     .sign-up {
@@ -21,7 +20,6 @@
 
       button {
         min-width: 165px;
-        //   width: auto;
         width: 90%;
         height: 50px;
         letter-spacing: 0.5px;
@@ -31,7 +29,7 @@
         background-color: black;
         color: white;
         text-transform: uppercase;
-        font-family: "Open Sans Condensed";
+        font-family: 'Open Sans Condensed';
         font-weight: bolder;
         border: none;
         cursor: pointer;
@@ -63,7 +61,7 @@
       }
       span:before,
       span:after {
-        content: "";
+        content: '';
         display: inline-block;
         width: 50%;
         margin: 0 0.5em 0 -55%;
@@ -90,27 +88,37 @@
         label {
           margin: 5% 2% 0 0;
         }
+
+        .reset-password {
+          font-size: 0.75em;
+          width: 100%;
+          margin-left: 150%;
+
+          &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+          }
+        }
       }
 
       .redirect-sign-up {
         display: flex;
 
         .redirect-link {
-            color: royalblue;
-            text-decoration: underline;
-            margin-right: 0.5em;
+          color: royalblue;
+          text-decoration: underline;
+          margin-right: 0.5em;
 
-            &:hover {
-               cursor: pointer;
-                // color: #212529;
-                color: red;
-                // text-shadow: .1px .75px royalblue;
-                // color: red;
-            }
+          &:hover {
+            cursor: pointer;
+            // color: #212529;
+            color: red;
+            // text-shadow: .1px .75px royalblue;
+          }
         }
 
         p {
-          font-size: 0.75em;         
+          font-size: 0.75em;
         }
       }
     }

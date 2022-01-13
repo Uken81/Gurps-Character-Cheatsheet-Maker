@@ -13,6 +13,7 @@ export const BackToSignIn = () => {
 };
 
 export const BackToLandingPage = () => {
+  console.log('navtest');
   return (
     <div className="nav-link">
       <Link to="/">BACK</Link>

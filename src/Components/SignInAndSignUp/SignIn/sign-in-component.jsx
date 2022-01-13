@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import '../../../Pages/SignInAndSignUp/sign-in-and-sign-up.scss';
+import '../../../Pages/SignInAndSignUp/SignInAndSignUpPage.styles.scss';
 
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { google } from '../../Firebase/firebase.utils';
@@ -69,6 +69,10 @@ const SignIn = ({ setSignInOrUp, setShowLoadingScreen }) => {
     setSignInOrUp('sign-up');
   };
 
+  const toResetPasswordPage = () => {
+    navigate('/reset-password-page');
+  };
+
   return (
     <div className="sign-in">
       <Button variant="primary" onClick={googleSignIn}>
@@ -95,6 +99,10 @@ const SignIn = ({ setSignInOrUp, setShowLoadingScreen }) => {
             onChange={handleChange}
           />
         </Form.Group>
+
+        <p className="reset-password" onClick={toResetPasswordPage}>
+          Forgot your password?
+        </p>
 
         <Button variant="primary" type="submit">
           SIGN IN

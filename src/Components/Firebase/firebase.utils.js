@@ -1,5 +1,10 @@
 import { initializeApp } from 'firebase/app';
-import { GoogleAuthProvider, getAuth, signInWithPopup } from 'firebase/auth';
+import {
+  GoogleAuthProvider,
+  getAuth,
+  signInWithPopup,
+  sendPasswordResetEmail
+} from 'firebase/auth';
 import { getFirestore, collection } from 'firebase/firestore';
 import { doc, setDoc, getDoc, getDocs, addDoc, where, query } from 'firebase/firestore';
 
@@ -70,6 +75,18 @@ const google = async () => {
     });
 };
 
+const ResetPassword = (email) => {
+  sendPasswordResetEmail(auth, email)
+    .then(() => {
+      console.log('reset request sent');
+    })
+    .catch((error) => {
+      // const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorMessage);
+    });
+};
+
 const addNewCharacterForUser = async (userId, newCharacter) => {
   const userCharactersRef = collection(db, 'users', userId, 'characters');
 
@@ -136,6 +153,7 @@ export {
   db,
   firebaseApp,
   createUserProfileDocument,
+  ResetPassword,
   addNewCharacterForUser,
   getMatchingCharacterForUser,
   getUsersSavedCharactersList,

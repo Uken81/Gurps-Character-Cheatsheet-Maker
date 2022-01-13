@@ -1,4 +1,4 @@
-import './sign-in-and-sign-up.scss';
+import './SignInAndSignUpPage.styles.scss';
 
 import Header from '../../Components/Header/Header.component';
 import SignIn from '../../Components/SignInAndSignUp/SignIn/sign-in-component.jsx';

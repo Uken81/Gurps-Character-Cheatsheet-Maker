@@ -14,7 +14,9 @@ const LandingPage = () => {
           <h1 className="main-title"> G.C.C.M </h1>
           <div className="links">
             <Link to="/sign-in-and-sign-up">
-              <Button size="lg">Log-in/Sign-up</Button>
+              <Button size="lg" variant="outline-primary">
+                Log-in/Sign-up
+              </Button>
             </Link>
             <Link to="/guest-page">
               <Button size="lg" variant="outline-primary">

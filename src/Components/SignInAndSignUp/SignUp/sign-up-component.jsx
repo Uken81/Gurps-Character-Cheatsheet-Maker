@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import '../../../Pages/SignInAndSignUp/sign-in-and-sign-up.scss';
+import '../../../Pages/SignInAndSignUp/SignInAndSignUpPage.styles.scss';
 
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, google } from '../../Firebase/firebase.utils';
