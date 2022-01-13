@@ -18,7 +18,7 @@ import SuccessfulSaveAlert from '../../Components/Toolbar/SaveCharacter/Successf
 import SaveCharacter from '../../Components/Toolbar/SaveCharacter/SaveCharacter';
 
 const CreateNewCharacterPage = () => {
-  const showSuccessfulSaveAlert = useToggleStore((state) => state.showSuccessfulSaveAlert);
+  const showSuccessAlert = useToggleStore((state) => state.showSuccessAlert);
 
   const [formInput, setForminput] = useState('');
 
@@ -40,7 +40,7 @@ const CreateNewCharacterPage = () => {
       <Header />
       <div className="user-interface-window">
         <h1 className="main-title"> G.C.C.M </h1>
-        {showSuccessfulSaveAlert && <SuccessfulSaveAlert />}
+        {showSuccessAlert && <SuccessfulSaveAlert />}
         <div className="container">
           <div className="toolbar-container">
             <span className="toolbar-header">Character Tools</span>
