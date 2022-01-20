@@ -1,0 +1,14 @@
+{
+  "Special Enhancements": {
+    "scope": "javascript,typescript",
+    "prefix": "se",
+    "body": [
+      "<p>",
+      "<strong className='enhancement'>Special Enhancements</strong>",
+      "<br />",
+      "<br />",
+      "<i>$1</i>",
+      "</p>"
+    ]
+  }
+}

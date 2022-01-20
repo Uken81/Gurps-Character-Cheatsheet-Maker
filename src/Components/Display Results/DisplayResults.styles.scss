@@ -34,6 +34,20 @@
       border: 5px solid black;
       margin: 2%;
       padding: 2%;
+
+      .enhancement {
+        color: seagreen;
+      }
+
+      .limitation {
+        color: brown;
+      }
+
+      .sub-section {
+        background-color: cadetblue;
+        border: black 1px solid;
+        padding: 2%;
+      }
     }
   }
 }

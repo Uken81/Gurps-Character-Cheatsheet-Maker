@@ -1,0 +1,7 @@
+{
+  "Extra Text": {
+    "scope": "javascript,typescript",
+    "prefix": "et",
+    "body": ["extraText: (", "<strong>", "<i>", "$1", "</i>", "</strong>", ")"]
+  }
+}

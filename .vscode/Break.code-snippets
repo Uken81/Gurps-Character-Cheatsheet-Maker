@@ -1,0 +1,7 @@
+{
+  "Break": {
+    "scope": "javascript,typescript",
+    "prefix": "br",
+    "body": ["<br />", "<br />"]
+  }
+}

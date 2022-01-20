@@ -1,0 +1,16 @@
+{
+  "Special Modifiers": {
+    "scope": "javascript,typescript",
+    "prefix": "sm",
+    "body": [
+      "(",
+      "<p>",
+      "<strong>Special Modifiers</strong>",
+      "<br />",
+      "<br />",
+      "<i>$1</i>",
+      "</p>",
+      ")"
+    ]
+  }
+}

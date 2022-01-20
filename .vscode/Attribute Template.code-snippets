@@ -1,0 +1,33 @@
+{
+  "Attribute Template": {
+    "prefix": "atmps",
+    "body": [
+      "{title: '$1',",
+      "type: 'advantage',",
+      "points: '$2points',",
+      "description: <p></p>,",
+      "subCategories: [",
+      "{",
+      "name: '',",
+      "text: (",
+      "<p>",
+      "",
+      "</p>",
+      "),",
+      "points: 'points'",
+      "},",
+      "{",
+      "name: '',",
+      "text: (",
+      "<p>",
+      "",
+      "</p>",
+      "),",
+      "points: 'points'",
+      "}",
+      "]",
+      "}"
+    ],
+    "description": "Template for Attribute Objects"
+  }
+}

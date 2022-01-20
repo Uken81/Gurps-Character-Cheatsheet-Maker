@@ -1,0 +1,14 @@
+{
+  "Special Limitations": {
+    "scope": "javascript,typescript",
+    "prefix": "sl",
+    "body": [
+      "<p>",
+      "<strong className='limitation'>Special Limitations</strong>",
+      "<br />",
+      "<br />",
+      "<i>$1</i>",
+      "</p>"
+    ]
+  }
+}
