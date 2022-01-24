@@ -19,7 +19,7 @@
     font-size: 1.5rem;
     margin: 10%;
     border: 10px solid black;
-    border-radius: 20%;
+    border-radius: 10%;
     padding: 2% 5% 5% 5%;
 
     .points {
@@ -49,5 +49,16 @@
         padding: 2%;
       }
     }
+  }
+}
+
+table {
+  border-spacing: 40px;
+  border-collapse: separate;
+  background-color: darkslateblue;
+
+  tr {
+    background-color: cornflowerblue;
+    text-align: center;
   }
 }

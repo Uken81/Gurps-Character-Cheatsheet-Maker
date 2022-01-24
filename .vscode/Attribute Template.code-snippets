@@ -3,7 +3,7 @@
     "prefix": "atmps",
     "body": [
       "{title: '$1',",
-      "type: 'advantage',",
+      "type: 'disadvantage',",
       "points: '$2points',",
       "description: <p></p>,",
       "subCategories: [",
