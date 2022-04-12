@@ -24,7 +24,9 @@ const LoadCharacter = () => {
     const mapUsersSavedCharactersList = async () => {
       if (user) {
         let tempArr = [];
+        console.log('***LoadUser: ', user.uid);
         const record = await getUsersSavedCharactersList(user.uid);
+        console.log('record: ', record);
         record.forEach((element) => {
           tempArr.push(element);
         });

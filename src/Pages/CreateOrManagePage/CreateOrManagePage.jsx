@@ -18,12 +18,19 @@ const CreateOrManage = () => {
   useResetAttributesOnLoad();
   const navigate = useNavigate();
   useEffect(() => {
+    console.log('useeffect');
+    console.log('user: ', user);
     let unsubscribeFromAuth = null;
     unsubscribeFromAuth = onAuthStateChanged(auth, async (userAuth) => {
+      console.log('user: ', user);
+      console.log('auth.currentUser.uid: ', auth.currentUser.uid);
+      console.log('userAuth.uid: ', userAuth.uid);
       await createUserProfileDocument(userAuth);
+      console.log('user2: ', user);
+
       if (userAuth) {
         setUser(userAuth);
-        console.log('****User: ', user);
+        console.log('****User: ', userAuth);
       } else {
         setUser(userAuth);
         console.log('User has logged out');

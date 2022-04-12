@@ -17,10 +17,11 @@ const SaveCharacter = () => {
 
   const [nameIsDuplicate, setNameIsDuplicate] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
-
+  console.log('uesrTest: ', user);
   let currentlyLoggedInUserId;
   if (user) {
     currentlyLoggedInUserId = user.uid;
+    console.log('FB**currentlyLoggedInUser: ', currentlyLoggedInUserId);
   }
 
   useEffect(() => {
@@ -50,7 +51,6 @@ const SaveCharacter = () => {
       console.log('**** SaveCharacterHandler Called');
       console.log('**** SelectedAdvantages: ', selectedAdvantages);
       console.log('**** SelectedDisadvantages: ', selectedDisadvantages);
-      console.log(`**** ${characterName} has been saved`);
 
       const newCharacter = {
         name: characterName,
@@ -63,10 +63,14 @@ const SaveCharacter = () => {
       const newCharacterRef = await addNewCharacterForUser(currentlyLoggedInUserId, newCharacter);
       console.log('**** NewCharacterRef: ', newCharacterRef);
 
+      console.log('**newCharacterFref.id**: ', newCharacterRef.id);
       const id = { id: newCharacterRef.id };
+      console.log('**id**: ', id);
+
       useCharacterStore.setState({ currentCharacterId: id });
       console.log('**** NewCharacterId: ', newCharacterRef.id);
       await setDoc(newCharacterRef, id, { merge: true });
+      console.log(`**** ${characterName} has been saved`);
 
       toggleShow();
     }

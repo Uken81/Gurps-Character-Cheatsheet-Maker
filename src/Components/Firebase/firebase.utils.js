@@ -9,21 +9,21 @@ import { getFirestore, collection } from 'firebase/firestore';
 import { doc, setDoc, getDoc, getDocs, addDoc, where, query } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAacgqhxIsbU6V537581jaLhtwJBSXL9TY',
-  authDomain: 'gccm-4db46.firebaseapp.com',
-  projectId: 'gccm-4db46',
-  storageBucket: 'gccm-4db46.appspot.com',
-  messagingSenderId: '494749712392',
-  appId: '1:494749712392:web:2351350079ccaef65111bd'
+  apiKey: 'AIzaSyAUg8x52nzYgpcdr_xEP044Ja9WnR0FX3U',
+  authDomain: 'gccm-fcde4.firebaseapp.com',
+  projectId: 'gccm-fcde4',
+  storageBucket: 'gccm-fcde4.appspot.com',
+  messagingSenderId: '1048088412157',
+  appId: '1:1048088412157:web:97f2271de9e600df5d6394'
 };
 
 // const firebaseConfig = {
-//   apiKey:process.env.REACT_APP_SECRET_KEY,
-//   authDomain: "gccm-4db46.firebaseapp.com",
-//   projectId: "gccm-4db46",
-//   storageBucket: "gccm-4db46.appspot.com",
-//   messagingSenderId: "494749712392",
-//   appId: "1:494749712392:web:2351350079ccaef65111bd"
+//   apiKey: 'AIzaSyDjp1SIuKBI0VSOUl528FnEUUD06-uC9wI',
+//   authDomain: 'test-17e01.firebaseapp.com',
+//   projectId: 'test-17e01',
+//   storageBucket: 'test-17e01.appspot.com',
+//   messagingSenderId: '166187069376',
+//   appId: '1:166187069376:web:069713832ad34c6c1c6225'
 // };
 
 const firebaseApp = initializeApp(firebaseConfig);
@@ -31,9 +31,11 @@ const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
 
 const createUserProfileDocument = async (userAuth) => {
+  console.log('**createUserProfileDocument');
   if (!userAuth) return;
   const userRef = doc(db, `users/${userAuth.uid}`);
   const docSnap = await getDoc(userRef);
+  console.log('**createUserProfileDocument2');
 
   if (!docSnap.exists()) {
     const { email } = userAuth;
@@ -62,6 +64,7 @@ provider.setCustomParameters({ prompt: 'select_account' });
 const auth = getAuth(firebaseApp);
 
 const google = async () => {
+  console.log('google');
   await signInWithPopup(auth, provider)
     .then((result) => {
       const user = result.user;
@@ -94,7 +97,7 @@ const addNewCharacterForUser = async (userId, newCharacter) => {
     const newCharacterRef = await addDoc(userCharactersRef, newCharacter);
     return newCharacterRef;
   } catch (error) {
-    console.log('**** Something Went wrong: ', error);
+    console.log('**** Something Went wrong: ', error.message);
   }
 };
 
@@ -112,11 +115,15 @@ const getMatchingCharacterForUser = async (userId, characterName) => {
 };
 
 const getUsersSavedCharactersList = async (userId) => {
+  console.log('***TestGetUsers');
   const userCharactersRef = collection(db, 'users', userId, 'characters');
+  console.log('userCharactersRef: ', userCharactersRef);
   const charactersList = await getDocs(userCharactersRef);
+  console.log('charcterLIsty: ', charactersList);
   const usersCharactersList = [];
 
   charactersList.forEach((doc) => usersCharactersList.push(doc.data().name));
+  console.log('usersCharacterList ', usersCharactersList);
   return usersCharactersList;
 };
 
