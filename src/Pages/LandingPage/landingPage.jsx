@@ -6,6 +6,7 @@ import useResetAttributesOnLoad from '../../Components/SharedComponents/ResetAtt
 
 const LandingPage = () => {
   useResetAttributesOnLoad();
+  console.log('build');
 
   return (
     <div className="landingPage">
