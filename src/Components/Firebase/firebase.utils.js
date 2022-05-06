@@ -9,7 +9,7 @@ import { getFirestore, collection } from 'firebase/firestore';
 import { doc, setDoc, getDoc, getDocs, addDoc, where, query } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAacgqhxIsbU6V537581jaLhtwJBSXL9TY',
+  apiKey: 'AIzaSyAUg8x52nzYgpcdr_xEP044Ja9WnR0FX3U',
   authDomain: 'gccm-4db46.firebaseapp.com',
   projectId: 'gccm-4db46',
   storageBucket: 'gccm-4db46.appspot.com',
